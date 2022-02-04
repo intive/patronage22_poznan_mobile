@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">inTiVi</string>
+    <string name="loginHeaderText">Login</string>
 </resources>
