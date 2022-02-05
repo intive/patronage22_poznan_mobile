@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="header_height_dimension">48dp</dimen>
+    <dimen name="header_margin_top_dimension">24dp</dimen>
+    <dimen name="header_text_size">24sp</dimen>
+</resources>
