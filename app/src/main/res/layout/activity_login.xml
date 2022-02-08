@@ -8,7 +8,7 @@
     tools:context=".LoginActivity">
 
   <LinearLayout
-      android:id="@+id/linearLayout"
+      android:id="@+id/header_layout"
       android:layout_width="match_parent"
       android:layout_height="@dimen/header_height"
       android:layout_marginTop="@dimen/header_margin_top"
@@ -38,10 +38,10 @@
       android:hint="@string/loginEditTextHint"
       android:inputType="text"
       android:textColor="@color/black"
-      app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+      app:layout_constraintTop_toBottomOf="@+id/header_layout"
       app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
       android:layout_marginTop="@dimen/loginEditText_marginTop"
-      android:layout_marginHorizontal="@dimen/loginEditText_marginHorizontal" />
+      android:layout_marginHorizontal="@dimen/login_form_margin_horizontal" />
 
   <EditText
       android:id="@+id/passwordEditText"
@@ -52,7 +52,7 @@
       android:textColor="@color/black"
       app:layout_constraintTop_toBottomOf="@+id/loginEditText"
       app:layout_constraintBottom_toTopOf="@+id/loginButton"
-      android:layout_marginHorizontal="@dimen/passwordEditText_marginHorizontal" />
+      android:layout_marginHorizontal="@dimen/login_form_margin_horizontal" />
 
   <Button
       android:id="@+id/loginButton"
