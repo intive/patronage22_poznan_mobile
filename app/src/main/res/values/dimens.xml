@@ -3,4 +3,9 @@
     <dimen name="header_height">48dp</dimen>
     <dimen name="header_margin_top">24dp</dimen>
     <dimen name="header_text_size">24sp</dimen>
+    <dimen name="loginEditText_marginHorizontal">100dp</dimen>
+    <dimen name="loginEditText_marginTop">120dp</dimen>
+    <dimen name="passwordEditText_marginHorizontal">@dimen/loginEditText_marginHorizontal</dimen>
+    <dimen name="loginButton_height">60dp</dimen>
+    <dimen name="loginButton_marginTop">40dp</dimen>
 </resources>

@@ -8,6 +8,7 @@
     tools:context=".LoginActivity">
 
   <LinearLayout
+      android:id="@+id/linearLayout"
       android:layout_width="match_parent"
       android:layout_height="@dimen/header_height"
       android:layout_marginTop="@dimen/header_margin_top"
@@ -29,4 +30,38 @@
         android:textSize="@dimen/header_text_size" />
 
   </LinearLayout>
+
+  <EditText
+      android:id="@+id/loginEditText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/loginEditTextHint"
+      android:inputType="text"
+      android:textColor="@color/black"
+      app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+      app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
+      android:layout_marginTop="@dimen/loginEditText_marginTop"
+      android:layout_marginHorizontal="@dimen/loginEditText_marginHorizontal" />
+
+  <EditText
+      android:id="@+id/passwordEditText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/passwordEditTextHint"
+      android:inputType="textPassword"
+      android:textColor="@color/black"
+      app:layout_constraintTop_toBottomOf="@+id/loginEditText"
+      app:layout_constraintBottom_toTopOf="@+id/loginButton"
+      android:layout_marginHorizontal="@dimen/passwordEditText_marginHorizontal" />
+
+  <Button
+      android:id="@+id/loginButton"
+      android:layout_width="wrap_content"
+      android:layout_height="@dimen/loginButton_height"
+      android:text="@string/loginButtonText"
+      app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      android:layout_marginTop="@dimen/loginButton_marginTop" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
