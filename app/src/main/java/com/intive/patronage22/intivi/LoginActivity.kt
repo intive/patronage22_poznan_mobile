@@ -6,38 +6,35 @@ import android.widget.Button
 import android.widget.EditText
 
 class LoginActivity : AppCompatActivity() {
+
+    private var isLoginFormValid: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val loginButton: Button = findViewById(R.id.loginButton)
-        val loginEditText: EditText = findViewById(R.id.loginEditText)
-        val passwordEditText: EditText = findViewById(R.id.passwordEditText)
+        findViewById<Button>(R.id.loginButton).setOnClickListener {
+            isLoginOK()
+            isPasswordOK()
+            isLoginFormValid = isLoginOK() && isPasswordOK()
+        }
+    }
 
-        loginButton.setOnClickListener {
+    private fun isLoginOK(): Boolean {
+        if (findViewById<EditText>(R.id.loginEditText).text.isEmpty()) {
+            findViewById<EditText>(R.id.loginEditText).error = ""
+            return false
+        } else {
+            return true
+        }
+    }
 
-            fun loginValidation(): Boolean {
-                val isLoginOK: Boolean
-                val isPasswordOK: Boolean
-
-                if (loginEditText.text.isEmpty()) {
-                    loginEditText.error = ""
-                    isLoginOK = false
-                } else {
-                    isLoginOK = true
-                }
-
-                if (passwordEditText.text.length < 5) {
-                    passwordEditText.error = ""
-                    isPasswordOK = false
-                } else {
-                    isPasswordOK = true
-                }
-
-                return isLoginOK && isPasswordOK
-            }
-
-            loginValidation()
+    private fun isPasswordOK(): Boolean {
+        if (findViewById<EditText>(R.id.passwordEditText).text.length < 5) {
+            findViewById<EditText>(R.id.passwordEditText).error = ""
+            return false
+        } else {
+            return true
         }
     }
 }
