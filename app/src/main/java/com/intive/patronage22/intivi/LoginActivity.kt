@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
             when (view.id) {
                 R.id.loginButton -> {
                     isLoginFormValid = isLoginOK() and isPasswordOK()
-                    if (isLoginFormValid == true) {
+                    if (isLoginFormValid) {
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     }
