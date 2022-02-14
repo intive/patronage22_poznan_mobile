@@ -21,8 +21,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isLoginOK(): Boolean {
-        if (findViewById<EditText>(R.id.loginEditText).text.isEmpty()) {
-            findViewById<EditText>(R.id.loginEditText).error = ""
+        val editText = findViewById<EditText>(R.id.loginEditText)
+        if (editText.text.isEmpty()) {
+            editText.error = ""
             return false
         } else {
             return true
@@ -30,8 +31,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isPasswordOK(): Boolean {
-        if (findViewById<EditText>(R.id.passwordEditText).text.length < 5) {
-            findViewById<EditText>(R.id.passwordEditText).error = ""
+        val editText = findViewById<EditText>(R.id.passwordEditText)
+        if (editText.text.length < 5) {
+            editText.error = ""
             return false
         } else {
             return true
