@@ -14,17 +14,10 @@ class MainActivity : AppCompatActivity() {
 
         clickNavigate(findViewById<ImageView>(R.id.imageView), DetailsActivity::class.java)
 
-        /*
-        findViewById<ImageView>(R.id.imageView).setOnClickListener{
-            startActivity(Intent(this, DetailsActivity::class.java))
-        }
-        */
     }
 
     private fun clickNavigate(view: View, activity: Class<*>){
-        Log.d("logos", "View: $view, Activity: $activity" )
         view.setOnClickListener{
-            Log.d("logos", "startingActivity: $activity")
             startActivity(Intent(this, activity))
         }
     }
