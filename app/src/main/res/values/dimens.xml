@@ -7,4 +7,5 @@
     <dimen name="loginEditText_marginTop">120dp</dimen>
     <dimen name="loginButton_height">60dp</dimen>
     <dimen name="loginButton_marginTop">40dp</dimen>
+    <dimen name="mainOuterLayoutPaddingTop">40dp</dimen>
 </resources>
