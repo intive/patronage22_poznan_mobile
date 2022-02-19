@@ -4,4 +4,5 @@
     <string name="loginButtonText">Log In</string>
     <string name="passwordEditTextHint">Password</string>
     <string name="loginEditTextHint">Login</string>
+    <string name="patronageLogo">Patronage logo</string>
 </resources>
