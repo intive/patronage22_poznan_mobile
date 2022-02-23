@@ -9,4 +9,9 @@
     <dimen name="loginButton_marginTop">40dp</dimen>
     <dimen name="patronage_logo_height">35dp</dimen>
     <dimen name="patronage_logo_padding">3dp</dimen>
+    <dimen name="details_screen_toolbar_height">52dp</dimen>
+    <dimen name="details_screen_toolbar_margin_top">20dp</dimen>
+    <dimen name="toolbar_circle_width">32dp</dimen>
+    <dimen name="toolbar_circle_margin_left_right">16dp</dimen>
+    <dimen name="toolbar_circle_margin_top">12dp</dimen>
 </resources>
