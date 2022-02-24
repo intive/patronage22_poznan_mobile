@@ -14,4 +14,6 @@
     <dimen name="toolbar_circle_width">32dp</dimen>
     <dimen name="toolbar_circle_margin_left_right">16dp</dimen>
     <dimen name="toolbar_circle_margin_top">12dp</dimen>
+    <dimen name="toolbar_back_arrow_padding">4dp</dimen>
+    <dimen name="toolbar_heart_icon_padding">6dp</dimen>
 </resources>

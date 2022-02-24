@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/details_screen_toolbar_height"
         android:background="@android:color/transparent"
+        app:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,7 +38,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="@dimen/toolbar_circle_margin_left_right"
                 android:layout_marginTop="@dimen/toolbar_circle_margin_top"
-                android:background="@drawable/details_screen_toolbar_circle"
+                android:background="@drawable/ic_toolbar_circle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -49,7 +50,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    app:srcCompat="@drawable/ic_round_chevron_left_24" />
+                    android:contentDescription="@string/backArrow"
+                    android:padding="@dimen/toolbar_back_arrow_padding"
+                    app:srcCompat="@drawable/ic_chevron_left" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -60,7 +63,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/toolbar_circle_margin_top"
                 android:layout_marginEnd="@dimen/toolbar_circle_margin_left_right"
-                android:background="@drawable/details_screen_toolbar_circle"
+                android:background="@drawable/ic_toolbar_circle"
                 app:layout_constraintEnd_toEndOf="@+id/detailsScreenToolbar"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -72,8 +75,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:padding="6dp"
-                    app:srcCompat="@drawable/ic_round_favorite_border_24" />
+                    android:contentDescription="@string/heartIcon"
+                    android:padding="@dimen/toolbar_heart_icon_padding"
+                    android:src="@drawable/ic_favourite" />
             </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
