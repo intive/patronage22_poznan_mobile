@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        clickNavigate(findViewById<ImageView>(R.id.imageView), DetailsActivity::class.java)
+        clickNavigate(findViewById<ImageView>(R.id.app_logo), DetailsActivity::class.java)
     }
 
     private fun clickNavigate(view: View, activity: Class<*>){
