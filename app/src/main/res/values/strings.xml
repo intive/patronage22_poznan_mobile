@@ -7,4 +7,5 @@
     <string name="patronageLogo">Patronage logo</string>
     <string name="heartIcon">Heart icon</string>
     <string name="backArrow">Back arrow</string>
+    <string name="helloWorld">Hello World!</string>
 </resources>

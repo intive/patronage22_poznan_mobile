@@ -7,6 +7,7 @@
     <dimen name="loginEditText_marginTop">120dp</dimen>
     <dimen name="loginButton_height">60dp</dimen>
     <dimen name="loginButton_marginTop">40dp</dimen>
+    <dimen name="mainOuterLayoutPaddingTop">40dp</dimen>
     <dimen name="patronage_logo_height">35dp</dimen>
     <dimen name="patronage_logo_padding">3dp</dimen>
     <dimen name="details_screen_toolbar_height">52dp</dimen>
@@ -16,4 +17,7 @@
     <dimen name="toolbar_circle_margin_top">12dp</dimen>
     <dimen name="toolbar_back_arrow_padding">4dp</dimen>
     <dimen name="toolbar_heart_icon_padding">6dp</dimen>
+    <dimen name="app_logo_height">32dp</dimen>
+    <dimen name="app_name_margin_start">4dp</dimen>
+    <dimen name="app_logo_margin_start">12dp</dimen>
 </resources>
