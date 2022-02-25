@@ -10,7 +10,6 @@
     <dimen name="mainOuterLayoutPaddingTop">40dp</dimen>
     <dimen name="patronage_logo_height">35dp</dimen>
     <dimen name="patronage_logo_padding">3dp</dimen>
-    <dimen name="app_name_width">57dp</dimen>
     <dimen name="app_logo_height">32dp</dimen>
     <dimen name="app_name_margin_start">4dp</dimen>
     <dimen name="app_logo_margin_start">12dp</dimen>
