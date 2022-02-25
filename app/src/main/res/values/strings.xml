@@ -5,4 +5,7 @@
     <string name="passwordEditTextHint">Password</string>
     <string name="loginEditTextHint">Login</string>
     <string name="patronageLogo">Patronage logo</string>
+    <string name="movies">Movies</string>
+    <string name="series">Series</string>
+    <string name="kids">Kids</string>
 </resources>
