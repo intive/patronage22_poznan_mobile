@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/header_bar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@android:color/holo_blue_dark"
@@ -33,14 +34,41 @@
             android:text="@string/app_name"
             android:textAppearance="@style/headline6" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/filters_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_bar">
+
+        <TextView
+            android:id="@+id/filter_button_movies"
+            android:text="@string/movies"
+            style="@style/filter_button_style"/>
+
+        <TextView
+            android:id="@+id/button2"
+            android:text="@string/series"
+            style="@style/filter_button_style"/>
+
+        <TextView
+            android:id="@+id/button"
+            android:text="@string/kids"
+            style="@style/filter_button_style"/>
+    </LinearLayout>
   
     <LinearLayout
         android:id="@+id/linearOuterLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="@dimen/mainOuterLayoutPaddingTop"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filters_bar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
         <include layout="@layout/item_grid_home"/>

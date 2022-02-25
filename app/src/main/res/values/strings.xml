@@ -8,4 +8,7 @@
     <string name="heartIcon">Heart icon</string>
     <string name="backArrow">Back arrow</string>
     <string name="helloWorld">Hello World!</string>
+    <string name="movies">Movies</string>
+    <string name="series">Series</string>
+    <string name="kids">Kids</string>
 </resources>
