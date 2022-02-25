@@ -6,4 +6,113 @@
     android:layout_height="match_parent"
     tools:context=".DetailsActivity">
 
+        <ImageView
+            android:id="@+id/detailsPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detailsPhotoHeight"
+            android:scaleType="centerCrop"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/details_photo"
+            tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/detailsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detailsLeftMargin"
+            android:layout_marginTop="@dimen/detailsTitleTopMargin"
+            android:text="@string/detailsTitleText"
+            android:textSize="@dimen/detailsTitleTextSize"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
+            app:lineHeight="@dimen/detailsLineHeight" />
+
+        <TextView
+            android:id="@+id/details_year_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detailsLeftMargin"
+            android:layout_marginTop="@dimen/detailsInfoTopMargin"
+            android:text="@string/detailsYearText"
+            android:textSize="@dimen/detailsInfoTextSize"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
+            app:lineHeight="@dimen/detailsLineHeight" />
+
+        <ImageView
+            android:id="@+id/detailsCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/circle_shape"
+            app:layout_constraintLeft_toRightOf="@+id/details_year_text"
+            app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
+            android:layout_marginStart="@dimen/detailsLeftMargin"
+            android:layout_marginTop="@dimen/detailsCircle"
+            tools:ignore="ContentDescription"/>
+
+    <TextView
+            android:id="@+id/detailsSeasonsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detailsLeftMargin"
+            android:layout_marginTop="@dimen/detailsInfoTopMargin"
+            android:text="@string/detailsSeasonsText"
+            android:textSize="@dimen/detailsInfoTextSize"
+            app:layout_constraintLeft_toRightOf="@+id/detailsCircle"
+            app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
+            app:lineHeight="@dimen/detailsLineHeight" />
+
+    <ImageView
+        android:id="@+id/detailsCircle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/circle_shape"
+        app:layout_constraintLeft_toRightOf="@+id/detailsSeasonsText"
+        app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
+        android:layout_marginStart="@dimen/detailsLeftMargin"
+        android:layout_marginTop="@dimen/detailsCircle"
+        tools:ignore="ContentDescription"/>
+
+    <TextView
+        android:id="@+id/detailsPGText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/detailsLeftMargin"
+        android:layout_marginTop="@dimen/detailsInfoTopMargin"
+        android:text="@string/detailsPGText"
+        android:textSize="@dimen/detailsInfoTextSize"
+        app:layout_constraintLeft_toRightOf="@+id/detailsCircle2"
+        app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
+        app:lineHeight="@dimen/detailsLineHeight" />
+
+    <TextView
+        android:id="@+id/detailsDescriptionText"
+        android:layout_width="@dimen/detailsDescriptionTextWidth"
+        android:layout_height="@dimen/detailsDescriptionTextHeight"
+        android:layout_gravity="center"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="@dimen/detailsDescriptionMarginTop"
+        android:text="@string/detailsDescriptionText"
+        android:textSize="@dimen/detailsInfoTextSize"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
+        app:lineHeight="@dimen/detailsDescriptionLineHeight" />
+
+    <Button
+        android:id="@+id/watchButton"
+        android:layout_width="@dimen/detailsWatchButtonWidth"
+        android:layout_height="@dimen/detailsWatchButtonHeight"
+        android:layout_marginBottom="@dimen/detailsWatchButtonBottomMargin"
+        android:text="@string/detailsWatchButtonText"
+        android:textSize="@dimen/detailsWatchButtonTextSize"
+        android:drawableLeft="@drawable/ic_chevronright"
+        android:paddingStart="@dimen/detailsWatchButtonPaddingLeft"
+        android:paddingEnd="@dimen/detailsWatchButtonPaddingRight"
+        app:cornerRadius="@dimen/detailsWatchButtonCornerRadius"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

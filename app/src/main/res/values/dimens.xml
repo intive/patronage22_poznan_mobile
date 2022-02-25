@@ -10,4 +10,24 @@
     <dimen name="mainOuterLayoutPaddingTop">40dp</dimen>
     <dimen name="patronage_logo_height">35dp</dimen>
     <dimen name="patronage_logo_padding">3dp</dimen>
+    <dimen name="detailsPhotoHeight">372dp</dimen>
+    <dimen name="detailsLeftMargin">16dp</dimen>
+    <dimen name="detailsTitleTopMargin">20dp</dimen>
+    <dimen name="detailsTitleTextSize">20sp</dimen>
+    <dimen name="detailsLineHeight">32dp</dimen>
+    <dimen name="detailsInfoTopMargin">52dp</dimen>
+    <dimen name="detailsInfoTextSize">14sp</dimen>
+    <dimen name="detailsCircle">60dp</dimen>
+    <dimen name="detailsDescriptionTextHeight">80dp</dimen>
+    <dimen name="detailsDescriptionTextWidth">288dp</dimen>
+    <dimen name="detailsDescriptionMarginTop">96dp</dimen>
+    <dimen name="detailsDescriptionLineHeight">20dp</dimen>
+    <dimen name="detailsWatchButtonHeight">64dp</dimen>
+    <dimen name="detailsWatchButtonWidth">288dp</dimen>
+    <dimen name="detailsWatchButtonTextSize">16sp</dimen>
+    <dimen name="detailsWatchButtonBottomMargin">24dp</dimen>
+    <dimen name="detailsWatchButtonPaddingLeft">114dp</dimen>
+    <dimen name="detailsWatchButtonPaddingRight">90dp</dimen>
+    <dimen name="detailsWatchButtonCornerRadius">12dp</dimen>
+
 </resources>
