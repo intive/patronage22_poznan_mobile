@@ -11,6 +11,7 @@
     <string name="detailsPGText">PG</string>
     <string name="detailsDescriptionText">Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.</string>
     <string name="detailsWatchButtonText">Watch</string>
-
-
+    <string name="heartIcon">Heart icon</string>
+    <string name="backArrow">Back arrow</string>
+    <string name="helloWorld">Hello World!</string>
 </resources>
