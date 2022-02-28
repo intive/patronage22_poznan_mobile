@@ -19,4 +19,9 @@
         <item name="android:paddingBottom">8dp</item>
         <item name="android:layout_marginStart">12dp</item>
     </style>
+    <style name="tabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="font">@font/inter</item>
+        <item name="android:textSize">10sp</item>
+    </style>
 </resources>

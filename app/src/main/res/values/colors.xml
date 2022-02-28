@@ -10,4 +10,5 @@
     <color name="green">#44EC52</color>
     <color name="bastille">#1E1B26</color>
     <color name="steel_grey">#272233</color>
+    <color name="divider_color">#3B334C</color>
 </resources>
