@@ -5,6 +5,7 @@
     <string name="passwordEditTextHint">Password</string>
     <string name="loginEditTextHint">Login</string>
     <string name="patronageLogo">Patronage logo</string>
+
     <string name="detailsTitleText">The Witcher</string>
     <string name="detailsYearText">2019</string>
     <string name="detailsSeasonsText">2 seasons</string>
@@ -12,5 +13,10 @@
     <string name="detailsDescriptionText">Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.</string>
     <string name="detailsWatchButtonText">Watch</string>
 
-
+    <string name="heartIcon">Heart icon</string>
+    <string name="backArrow">Back arrow</string>
+    <string name="helloWorld">Hello World!</string>
+    <string name="movies">Movies</string>
+    <string name="series">Series</string>
+    <string name="kids">Kids</string>
 </resources>
