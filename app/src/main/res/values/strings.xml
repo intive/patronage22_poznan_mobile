@@ -22,4 +22,7 @@
     <string name="series">Series</string>
     <string name="kids">Kids</string>
     <string name="forgotPasswordText">Forgot password</string>
+    <string name="resetPassword">Reset password</string>
+    <string name="re_enter_new_password">Re-enter new password</string>
+    <string name="show_password">Show password</string>
 </resources>
