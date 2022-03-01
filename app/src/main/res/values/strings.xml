@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">inTiVi</string>
     <string name="loginHeaderText">Login</string>
-    <string name="loginButtonText">Sign in</string>
+    <string name="signInButtonText">Sign in</string>
+    <string name="signUpButtonText">Sign up</string>
     <string name="passwordEditTextHint">Password</string>
     <string name="loginEditTextHint">E-mail</string>
+    <string name="repeatPassEditTextHint">Repeat password</string>
     <string name="patronageLogo">Patronage logo</string>
     <string name="heartIcon">Heart icon</string>
     <string name="backArrow">Back arrow</string>

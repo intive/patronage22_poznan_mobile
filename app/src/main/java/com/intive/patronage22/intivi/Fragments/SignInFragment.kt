@@ -22,7 +22,7 @@ class SignInFragment : Fragment() {
     ): View {
         val bind = FragmentSignInBinding.inflate(layoutInflater)
 
-        bind.loginButton.setOnClickListener{
+        bind.signInButton.setOnClickListener{
             isLoginFormValid = isLoginOK(bind.root.rootView) and isPasswordOK(bind.root.rootView)
             if (isLoginFormValid) {
                 val intent = Intent(this.requireContext(), MainActivity::class.java)

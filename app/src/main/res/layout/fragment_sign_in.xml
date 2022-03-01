@@ -44,9 +44,9 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/signInButton"
         android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
-        android:text="@string/loginButtonText"
+        android:text="@string/signInButtonText"
         app:cornerRadius="@dimen/loginButtonRadius"
         style="@style/logInUpButton"/>
 
