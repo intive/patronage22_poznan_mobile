@@ -6,121 +6,133 @@
     android:layout_height="match_parent"
     tools:context=".DetailsActivity">
 
-        <ImageView
-            android:id="@+id/detailsPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/detailsPhotoHeight"
-            android:scaleType="centerCrop"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/details_photo"
-            tools:ignore="ContentDescription"/>
+    <ImageView
+        android:id="@+id/detailsPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detailsPhotoHeight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/details_photo"
+        android:scaleType="centerCrop"
+        android:scrollX="170dp"
+        tools:ignore="ContentDescription" />
+
+    <RelativeLayout
+        android:id="@+id/detailsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detailsLayoutHeight"
+        android:orientation="vertical"
+        android:background="@drawable/details_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/detailsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detailsLeftMargin"
+            android:layout_marginStart="@dimen/detailsStartMargin"
             android:layout_marginTop="@dimen/detailsTitleTopMargin"
             android:text="@string/detailsTitleText"
             android:textSize="@dimen/detailsTitleTextSize"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
+            android:fontFamily="@font/inter"
             app:lineHeight="@dimen/detailsLineHeight" />
+
+        <RelativeLayout
+            android:id="@+id/infoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detailsInfoLayoutHeight"
+            android:layout_marginTop="@dimen/detailsInfoTopMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/details_year_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detailsStartMargin"
+                android:text="@string/detailsYearText"
+                android:textSize="@dimen/detailsInfoTextSize"
+                android:fontFamily="@font/inter_semibold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:lineHeight="@dimen/detailsLineHeight" />
+
+            <ImageView
+                android:id="@+id/detailsCircle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/circle_shape"
+                tools:ignore="ContentDescription"
+                android:layout_toEndOf="@+id/details_year_text"
+                android:layout_marginStart="@dimen/detailsStartMargin"
+                android:layout_marginTop="@dimen/detailsCircleMarginTop"
+                />
+
+            <TextView
+                android:id="@+id/detailsSeasonsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detailsSeasonsText"
+                android:textSize="@dimen/detailsInfoTextSize"
+                android:fontFamily="@font/inter_semibold"
+                android:layout_toEndOf="@+id/detailsCircle"
+                app:lineHeight="@dimen/detailsLineHeight"
+                android:layout_marginStart="@dimen/detailsStartMargin"/>
+
+            <ImageView
+                android:id="@+id/detailsCircle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/circle_shape"
+                tools:ignore="ContentDescription"
+                android:layout_toEndOf="@+id/detailsSeasonsText"
+                android:layout_marginStart="@dimen/detailsStartMargin"
+                android:layout_marginTop="@dimen/detailsCircleMarginTop" />
+
+            <TextView
+                android:id="@+id/detailsPGText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detailsStartMargin"
+                android:text="@string/detailsPGText"
+                android:textSize="@dimen/detailsInfoTextSize"
+                android:fontFamily="@font/inter_semibold"
+                android:layout_toEndOf="@+id/detailsCircle2"
+                app:lineHeight="@dimen/detailsLineHeight" />
+
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/details_year_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detailsLeftMargin"
-            android:layout_marginTop="@dimen/detailsInfoTopMargin"
-            android:text="@string/detailsYearText"
+            android:id="@+id/detailsDescriptionText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detailsDescriptionTextHeight"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/detailsStartMargin"
+            android:layout_marginTop="@dimen/detailsDescriptionMarginTop"
+            android:fontFamily="@font/inter"
+            android:text="@string/detailsDescriptionText"
             android:textSize="@dimen/detailsInfoTextSize"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
-            app:lineHeight="@dimen/detailsLineHeight" />
+            app:lineHeight="@dimen/detailsDescriptionLineHeight"
+            android:textColor="@color/gray_20"/>
 
-        <ImageView
-            android:id="@+id/detailsCircle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/circle_shape"
-            app:layout_constraintLeft_toRightOf="@+id/details_year_text"
-            app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
-            android:layout_marginStart="@dimen/detailsLeftMargin"
-            android:layout_marginTop="@dimen/detailsCircle"
-            tools:ignore="ContentDescription"/>
-
-    <TextView
-            android:id="@+id/detailsSeasonsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detailsLeftMargin"
-            android:layout_marginTop="@dimen/detailsInfoTopMargin"
-            android:text="@string/detailsSeasonsText"
-            android:textSize="@dimen/detailsInfoTextSize"
-            app:layout_constraintLeft_toRightOf="@+id/detailsCircle"
-            app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
-            app:lineHeight="@dimen/detailsLineHeight" />
-
-    <ImageView
-        android:id="@+id/detailsCircle2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/circle_shape"
-        app:layout_constraintLeft_toRightOf="@+id/detailsSeasonsText"
-        app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
-        android:layout_marginStart="@dimen/detailsLeftMargin"
-        android:layout_marginTop="@dimen/detailsCircle"
-        tools:ignore="ContentDescription"/>
-
-    <TextView
-        android:id="@+id/detailsPGText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/detailsLeftMargin"
-        android:layout_marginTop="@dimen/detailsInfoTopMargin"
-        android:text="@string/detailsPGText"
-        android:textSize="@dimen/detailsInfoTextSize"
-        app:layout_constraintLeft_toRightOf="@+id/detailsCircle2"
-        app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
-        app:lineHeight="@dimen/detailsLineHeight" />
-
-    <TextView
-        android:id="@+id/detailsDescriptionText"
-        android:layout_width="@dimen/detailsDescriptionTextWidth"
-        android:layout_height="@dimen/detailsDescriptionTextHeight"
-        android:layout_gravity="center"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="@dimen/detailsDescriptionMarginTop"
-        android:text="@string/detailsDescriptionText"
-        android:textSize="@dimen/detailsInfoTextSize"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailsPhoto"
-        app:lineHeight="@dimen/detailsDescriptionLineHeight" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/watchButton"
-        android:layout_width="@dimen/detailsWatchButtonWidth"
-        android:layout_height="@dimen/detailsWatchButtonHeight"
-        android:layout_marginBottom="@dimen/detailsWatchButtonBottomMargin"
         android:text="@string/detailsWatchButtonText"
-        android:textSize="@dimen/detailsWatchButtonTextSize"
         android:drawableLeft="@drawable/ic_chevronright"
-        android:paddingStart="@dimen/detailsWatchButtonPaddingLeft"
-        android:paddingEnd="@dimen/detailsWatchButtonPaddingRight"
+        android:paddingStart="@dimen/detailsWatchButtonPaddingStart"
+        android:paddingEnd="@dimen/detailsWatchButtonPaddingEnd"
+        android:layout_marginHorizontal="@dimen/detailsStartMargin"
         app:cornerRadius="@dimen/detailsWatchButtonCornerRadius"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-  
-  
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/logInUpButton"
+        />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/details_screen_toolbar_height"
-        android:background="@android:color/transparent"
+        android:background="@drawable/gradient_background"
         app:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -193,15 +205,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <LinearLayout
-        android:id="@+id/emptyLayout"
-        android:layout_width="match_parent"
-        android:layout_height="677dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
