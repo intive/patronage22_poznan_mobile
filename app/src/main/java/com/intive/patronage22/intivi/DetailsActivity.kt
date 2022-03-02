@@ -2,6 +2,7 @@ package com.intive.patronage22.intivi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.RelativeLayout
 
 class DetailsActivity : AppCompatActivity() {
