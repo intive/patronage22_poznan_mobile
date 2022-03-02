@@ -85,7 +85,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/footer_tab"
         android:layout_width="0dp"
-        android:layout_height="51dp"
+        android:layout_height="54dp"
         android:background="@color/steel_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,8 @@
         app:tabMode="fixed"
         app:tabPaddingEnd="24dp"
         app:tabPaddingStart="24dp"
-        app:tabPaddingTop="5dp"
+        app:tabPaddingTop="8dp"
+        app:tabPaddingBottom="2dp"
         app:tabTextAppearance="@style/tabTextAppearance"
         app:tabTextColor="@color/white">
 
@@ -109,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_home"
-            android:text="@string/home" />
+            android:text="@string/home"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/favourites_tab"
