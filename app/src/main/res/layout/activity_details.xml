@@ -7,7 +7,7 @@
     tools:context=".DetailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+        android:id="@+id/appBarLayoutDetails"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
         android:background="@android:color/transparent"
@@ -91,7 +91,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayoutDetails">
 
     </LinearLayout>
 
