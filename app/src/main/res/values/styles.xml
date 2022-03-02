@@ -20,6 +20,14 @@
         <item name="android:layout_marginStart">12dp</item>
     </style>
 
+    <style name="loginTabText" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="lineHeight">32dp</item>
+    </style>
+
     <style name="logInUpButton">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
@@ -31,5 +39,15 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="loginEditText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/login_edit_text</item>
+        <item name="android:padding">25dp</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#E9E9E9</item>
     </style>
 </resources>

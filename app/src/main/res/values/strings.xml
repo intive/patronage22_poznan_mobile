@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">inTiVi</string>
     <string name="loginHeaderText">Login</string>
-    <string name="loginButtonText">Log In</string>
+    <string name="signInButtonText">Sign in</string>
+    <string name="signUpButtonText">Sign up</string>
     <string name="passwordEditTextHint">Password</string>
-    <string name="loginEditTextHint">Login</string>
+    <string name="loginEditTextHint">E-mail</string>
+    <string name="repeatPassEditTextHint">Repeat password</string>
     <string name="patronageLogo">Patronage logo</string>
 
     <string name="detailsTitleText">The Witcher</string>
@@ -19,4 +21,5 @@
     <string name="movies">Movies</string>
     <string name="series">Series</string>
     <string name="kids">Kids</string>
+    <string name="forgotPasswordText">Forgot password</string>
 </resources>

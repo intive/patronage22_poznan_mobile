@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="header_height">48dp</dimen>
-    <dimen name="header_margin_top">24dp</dimen>
+    <dimen name="header_height">72dp</dimen>
     <dimen name="header_text_size">24sp</dimen>
-    <dimen name="login_form_margin_horizontal">100dp</dimen>
-    <dimen name="loginEditText_marginTop">120dp</dimen>
-    <dimen name="loginButton_height">60dp</dimen>
-    <dimen name="loginButton_marginTop">40dp</dimen>
     <dimen name="mainOuterLayoutPaddingTop">40dp</dimen>
     <dimen name="patronage_logo_height">35dp</dimen>
     <dimen name="patronage_logo_padding">3dp</dimen>
@@ -39,4 +34,13 @@
     <dimen name="app_name_margin_start">4dp</dimen>
     <dimen name="app_logo_margin_start">12dp</dimen>
 
+    <dimen name="loginMarginHorizontal">16dp</dimen>
+    <dimen name="loginEmailMarginTop">24dp</dimen>
+    <dimen name="loginPasswordMarginTop">12dp</dimen>
+    <dimen name="loginPasswordTextMarginTop">16dp</dimen>
+    <dimen name="loginPasswordTextSize">14sp</dimen>
+    <dimen name="loginButtonRadius">10dp</dimen>
+    <dimen name="tabLayoutWidth">250dp</dimen>
+    <dimen name="tabLayoutMarginTop">48dp</dimen>
+    <dimen name="tabIndicatorHeight">2dp</dimen>
 </resources>
