@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.SignInFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-39dp"
+        tools:layout_editor_absoluteY="-134dp">
+
+        <EditText
+            android:id="@+id/loginEditText"
+            android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
+            android:layout_marginTop="@dimen/loginEmailMarginTop"
+            android:hint = "@string/loginEditTextHint"
+            android:inputType="text"
+            style="@style/loginEditText"/>
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_below="@id/loginEditText"
+            android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
+            android:layout_marginTop="@dimen/loginPasswordMarginTop"
+            android:hint="@string/passwordEditTextHint"
+            android:inputType="textPassword"
+            style="@style/loginEditText"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/forgotpassText"
+            android:layout_below="@+id/passwordEditText"
+            android:text="@string/forgotPasswordText"
+            android:textColor="@color/greenAccents"
+            android:layout_marginTop="@dimen/loginPasswordTextMarginTop"
+            android:layout_marginStart="@dimen/loginMarginHorizontal"
+            android:fontFamily="@font/inter"
+            android:textSize="@dimen/loginPasswordTextSize" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
+        android:text="@string/loginButtonText"
+        app:cornerRadius="@dimen/loginButtonRadius"
+        style="@style/logInUpButton"/>
+
+</FrameLayout>
