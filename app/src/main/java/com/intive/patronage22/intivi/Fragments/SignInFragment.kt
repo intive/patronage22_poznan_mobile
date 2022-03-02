@@ -12,7 +12,7 @@ import com.intive.patronage22.intivi.R
 
 import com.intive.patronage22.intivi.databinding.FragmentSignInBinding
 
-class SignInFragments : Fragment() {
+class SignInFragment : Fragment() {
 
     private var isLoginFormValid: Boolean = false
 

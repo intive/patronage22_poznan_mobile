@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.intive.patronage22.intivi.R
 
-class SignUpFragments : Fragment() {
+class SignUpFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
