@@ -61,11 +61,12 @@
             android:text="@string/kids"
             style="@style/filter_button_style"/>
     </LinearLayout>
-  
+
     <LinearLayout
         android:id="@+id/linearOuterLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/mainOuterLayoutPaddingTop"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/filters_bar"
