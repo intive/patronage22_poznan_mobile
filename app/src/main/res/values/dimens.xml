@@ -39,8 +39,8 @@
     <dimen name="loginPasswordMarginTop">12dp</dimen>
     <dimen name="loginPasswordTextMarginTop">16dp</dimen>
     <dimen name="loginPasswordTextSize">14sp</dimen>
-    <dimen name="loginButtonRadius">10dp</dimen>
     <dimen name="tabLayoutWidth">250dp</dimen>
     <dimen name="tabLayoutMarginTop">48dp</dimen>
     <dimen name="tabIndicatorHeight">2dp</dimen>
+    <dimen name="editTextHeight">72dp</dimen>
 </resources>
