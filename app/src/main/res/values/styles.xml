@@ -24,7 +24,7 @@
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
         <item name="lineHeight">32dp</item>
     </style>
 
