@@ -43,4 +43,20 @@
     <dimen name="tabLayoutWidth">250dp</dimen>
     <dimen name="tabLayoutMarginTop">48dp</dimen>
     <dimen name="tabIndicatorHeight">2dp</dimen>
+
+    <dimen name="movieHeigh">230px</dimen>
+    <dimen name="movieWidth">140px</dimen>
+    <dimen name="titleHeigh">40px</dimen>
+    <dimen name="titleWidth">100px</dimen>
+    <dimen name="titleLineHeight">20px</dimen>
+    <dimen name="titlePadding">8px</dimen>
+    <dimen name="titleFontWeight">600</dimen>
+    <dimen name="titleTextSize">14px</dimen>
+    <dimen name="favoritiesWidth">13.33px</dimen>
+    <dimen name="favoritiesHeight">11.33px</dimen>
+    <dimen name="favoritiesMargin">15px</dimen>
+    <dimen name="favoritiesPaddingLeft">1.33px</dimen>
+    <dimen name="favoritiesPaddingTop">2.33px</dimen>
+    <dimen name="favoritiesPaddingRight">1.33px</dimen>
+    <dimen name="favoritiesPaddingBottom">2.33px</dimen>
 </resources>
