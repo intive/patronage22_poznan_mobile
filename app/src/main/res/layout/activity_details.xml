@@ -115,7 +115,7 @@
 
     </RelativeLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/watchButton"
         android:text="@string/detailsWatchButtonText"
         android:drawableLeft="@drawable/ic_chevronright"

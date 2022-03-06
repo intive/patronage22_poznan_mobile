@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="header_height">72dp</dimen>
+    <dimen name="header_height">52dp</dimen>
     <dimen name="header_text_size">24sp</dimen>
     <dimen name="mainOuterLayoutPaddingTop">40dp</dimen>
     <dimen name="patronage_logo_height">35dp</dimen>
