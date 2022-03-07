@@ -21,5 +21,8 @@
     <string name="movies">Movies</string>
     <string name="series">Series</string>
     <string name="kids">Kids</string>
+    <string name="home">Home</string>
+    <string name="favourites">Favourites</string>
+    <string name="genres">Genres</string>
     <string name="forgotPasswordText">Forgot password</string>
 </resources>
