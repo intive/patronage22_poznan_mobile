@@ -32,13 +32,6 @@ class SignInFragment : Fragment() {
         return bind.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
-        super.onViewCreated(view, savedInstanceState)
-        isLoginOK(view)
-        isPasswordOK(view)
-        return
-    }
-
     private fun isLoginOK(view: View): Boolean {
         val editText = view.findViewById<EditText>(R.id.loginEditText)
         if (editText.text.isEmpty()) {
