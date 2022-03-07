@@ -21,7 +21,7 @@ class SignUpFragment : Fragment() {
         val bind = FragmentSignUpBinding.inflate(layoutInflater)
 
         bind.SignUpButton.setOnClickListener {
-            if (isEmailOK() and isPasswordOK() and isRepeatPasswordOK()) {
+            if (isValid()) {
                 val intent = Intent(this.requireContext(), MainActivity::class.java)
                 startActivity(intent)
             }
@@ -32,7 +32,7 @@ class SignUpFragment : Fragment() {
     private fun isEmailOK(): Boolean {
         val editText = requireView().findViewById<EditText>(R.id.loginEditText)
         if (!isEmailValid(editText.text.toString())) {
-            editText.error = "This is not an e-mail address"
+            editText.error = getString(R.string.emailValidMessage)
             return false
         } else {
             return true
@@ -54,7 +54,7 @@ class SignUpFragment : Fragment() {
     private fun isPasswordOK(): Boolean {
         val editText = requireView().findViewById<EditText>(R.id.passwordEditText)
         if (editText.text.length < 5) {
-            editText.error = "Password must be at least 5 characters long"
+            editText.error = getString(R.string.passwordValidMessage)
             return false
         } else {
             return true
@@ -65,10 +65,12 @@ class SignUpFragment : Fragment() {
         val password = requireView().findViewById<EditText>(R.id.passwordEditText)
         val repeatPassword = requireView().findViewById<EditText>(R.id.repeatPassword)
         if (password.text.toString() != repeatPassword.text.toString()) {
-            repeatPassword.error = "Passwords do not match"
+            repeatPassword.error = getString(R.string.repeatPassValidMessage)
             return false
         } else {
             return true
         }
     }
+
+    private fun isValid() = isEmailOK() and isPasswordOK() and isRepeatPasswordOK()
 }

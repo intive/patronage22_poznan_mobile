@@ -22,4 +22,8 @@
     <string name="series">Series</string>
     <string name="kids">Kids</string>
     <string name="forgotPasswordText">Forgot password</string>
+
+    <string name="emailValidMessage">This is not an e-mail address</string>
+    <string name="passwordValidMessage">Password must be at least 5 characters long</string>
+    <string name="repeatPassValidMessage">Passwords do not match</string>
 </resources>
