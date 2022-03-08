@@ -26,7 +26,7 @@
     <string name="genres">Genres</string>
     <string name="forgotPasswordText">Forgot password</string>
 
-    <string name="emailValidMessage">This is not an e-mail address</string>
-    <string name="passwordValidMessage">Password must be at least 5 characters long</string>
+    <string name="emailValidMessage">Please enter a correct e-mail address</string>
+    <string name="passwordValidMessage">Password must be between 5 and 40 characters long (no spaces)</string>
     <string name="repeatPassValidMessage">Passwords do not match</string>
 </resources>
