@@ -11,16 +11,12 @@
     <dimen name="detailsStartMargin">16dp</dimen>
     <dimen name="detailsTitleTopMargin">20dp</dimen>
     <dimen name="detailsTitleTextSize">20sp</dimen>
-    <dimen name="detailsLineHeight">32dp</dimen>
-    <dimen name="detailsInfoLayoutHeight">20dp</dimen>
+    <dimen name="detailsLineHeight">20dp</dimen>
     <dimen name="detailsInfoTopMargin">52dp</dimen>
     <dimen name="detailsInfoTextSize">14sp</dimen>
     <dimen name="detailsCircleMarginTop">8dp</dimen>
     <dimen name="detailsDescriptionTextHeight">80dp</dimen>
     <dimen name="detailsDescriptionMarginTop">96dp</dimen>
-    <dimen name="detailsDescriptionLineHeight">20dp</dimen>
-    <dimen name="detailsWatchButtonPaddingStart">160dp</dimen>
-    <dimen name="detailsWatchButtonPaddingEnd">140dp</dimen>
     <dimen name="detailsWatchButtonCornerRadius">12dp</dimen>
 
     <dimen name="details_screen_toolbar_height">52dp</dimen>
