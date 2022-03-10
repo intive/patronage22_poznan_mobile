@@ -34,7 +34,7 @@
                 android:fontFamily="@font/inter"
                 android:lineHeight="@dimen/titleLineHeight"
                 android:padding="@dimen/titlePadding"
-                android:text="@string/Moonfall"
+                android:text="@string/moonfal"
                 android:textFontWeight="600"
                 android:textSize="@dimen/titleTextSize"
                 android:textStyle="normal"/>
