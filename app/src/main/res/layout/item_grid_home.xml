@@ -6,27 +6,30 @@
     android:layout_height="wrap_content"
     android:background="@android:color/transparent">
     <androidx.cardview.widget.CardView
-        android:layout_width="@dimen/movieWidth"
-        android:layout_height="wrap_content"
-        android:id="@+id/cardview">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cardview"
+        android:paddingLeft="16px"
+        android:paddingRight="16px">
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/bastille">
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/movieAvatar"
-                android:layout_width="@dimen/movieWidth"
-                android:layout_height="@dimen/movieHeigh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 android:src="@drawable/moonfall_image"
                 app:shapeAppearanceOverlay="@style/roundedImage" />
 
             <TextView
                 android:id="@+id/movieTitle"
-                android:layout_width="@dimen/titleWidth"
-                android:layout_height="@dimen/titleHeigh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/movieAvatar"
                 android:fontFamily="@font/inter"
                 android:lineHeight="@dimen/titleLineHeight"
@@ -34,21 +37,22 @@
                 android:text="@string/Moonfall"
                 android:textFontWeight="600"
                 android:textSize="@dimen/titleTextSize"
-                android:textStyle="normal" />
+                android:textStyle="normal"/>
 
             <ImageView
                 android:id="@+id/movieFavorities"
-                android:layout_width="@dimen/favoritiesWidth"
-                android:layout_height="@dimen/favoritiesHeight"
+                android:layout_width="11.33px"
+                android:layout_height="13.33px"
                 android:layout_below="@id/movieAvatar"
-                android:layout_marginLeft="@dimen/favoritiesMargin"
-                android:layout_marginTop="@dimen/favoritiesMargin"
-                android:layout_toRightOf="@id/movieTitle"
+                android:layout_alignParentRight="true"
                 android:paddingLeft="@dimen/favoritiesPaddingLeft"
                 android:paddingTop="@dimen/favoritiesPaddingTop"
                 android:paddingRight="@dimen/favoritiesPaddingRight"
                 android:paddingBottom="@dimen/favoritiesPaddingBottom"
-                android:scaleType="centerCrop"
+                android:layout_marginLeft="8px"
+                android:layout_marginRight="8px"
+                android:layout_marginTop="12.33px"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_favourite" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
