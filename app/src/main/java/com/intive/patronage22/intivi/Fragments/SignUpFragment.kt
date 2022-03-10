@@ -20,7 +20,7 @@ class SignUpFragment : Fragment() {
     ): View {
         val bind = FragmentSignUpBinding.inflate(layoutInflater)
 
-        bind.SignUpButton.setOnClickListener {
+        bind.signUpButton.setOnClickListener {
             if (isValid()) {
                 val intent = Intent(this.requireContext(), MainActivity::class.java)
                 startActivity(intent)
