@@ -30,24 +30,23 @@
             style="@style/loginEditText"/>
 
         <TextView
+            android:id="@+id/forgotpassText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/forgotpassText"
             android:layout_below="@+id/passwordEditText"
+            android:layout_marginStart="@dimen/loginMarginHorizontal"
+            android:layout_marginTop="@dimen/loginPasswordTextMarginTop"
+            android:fontFamily="@font/inter"
             android:text="@string/forgotPasswordText"
             android:textColor="@color/greenAccents"
-            android:layout_marginTop="@dimen/loginPasswordTextMarginTop"
-            android:layout_marginStart="@dimen/loginMarginHorizontal"
-            android:fontFamily="@font/inter"
             android:textSize="@dimen/loginPasswordTextSize" />
 
     </RelativeLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signInButton"
         android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
         android:text="@string/signInButtonText"
-        app:cornerRadius="@dimen/loginButtonRadius"
         style="@style/logInUpButton"/>
 
 </FrameLayout>
