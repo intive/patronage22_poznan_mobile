@@ -40,10 +40,11 @@
 
     </RelativeLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/SignUpButton"
+    <Button
+        android:id="@+id/signUpButton"
         android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
         android:text="@string/signUpButtonText"
+        app:cornerRadius="@dimen/detailsWatchButtonCornerRadius"
         style="@style/logInUpButton"/>
 
 </FrameLayout>
