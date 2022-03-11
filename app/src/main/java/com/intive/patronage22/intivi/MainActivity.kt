@@ -19,22 +19,17 @@ class MainActivity : AppCompatActivity() {
 
         tabLayout = findViewById(R.id.footer_tab)
         viewPager = findViewById(R.id.main_viewPager)
-        Log.d("bayraktar", "wtf is this")
-
-        val adapter = MainFragmentsAdapter(this, tabLayout.tabCount)
-        viewPager.adapter = adapter
+        viewPager.adapter = MainFragmentsAdapter(this, tabLayout.tabCount)
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> {
                     tab.setText(R.string.home)
                     tab.setIcon(R.drawable.ic_home)
-                    Log.d("bayraktar", "Home selected")
                 }
                 1 -> {
                     tab.setText(R.string.favourites)
                     tab.setIcon(R.drawable.ic_favourite)
-                    Log.d("bayraktar", "Favourites selected")
                 }
                 2 -> {
                     tab.setText(R.string.genres)

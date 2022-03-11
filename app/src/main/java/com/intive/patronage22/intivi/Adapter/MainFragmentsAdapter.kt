@@ -15,11 +15,9 @@ internal class MainFragmentsAdapter (fa: FragmentActivity, var totalTabs: Int): 
     override fun createFragment(position: Int): Fragment {
         return when(position){
             ActiveTab.HOME.ordinal -> {
-                Log.d("bayraktar", "Adapter calls home")
                 HomeFragment()
             }
             ActiveTab.FAVOURITES.ordinal-> {
-                Log.d("bayraktar", "Adapter calls favourites")
                 FavouritesFragment()
             }
             ActiveTab.GENRES.ordinal-> {

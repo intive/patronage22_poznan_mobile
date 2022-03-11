@@ -10,9 +10,7 @@ import androidx.fragment.app.Fragment
 import com.intive.patronage22.intivi.DetailsActivity
 import com.intive.patronage22.intivi.R
 
-
 class HomeFragment : Fragment() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
