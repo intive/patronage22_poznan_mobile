@@ -31,7 +31,10 @@ class SignInFragment : Fragment() {
 
     private fun isEmailOK(): Boolean {
         val editText = requireView().findViewById<EditText>(R.id.loginEditText)
-        if (!isEmailValid(editText.text.toString())) {
+        val email = editText.text.toString()
+        val localPartLength = email.split("@").first().length
+        val domainPartLength = email.split("@").last().length
+        if (!isEmailValid(email) || localPartLength > 64 || domainPartLength > 255) {
             editText.error = getString(R.string.emailValidMessage)
             return false
         } else {
