@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VideoPlayerActivity"
+    android:background="@drawable/video_player_photo">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginHorizontal="@dimen/videoPlayerMarginHorizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/videoPlayerMarginTop"
+        android:elevation="3dp">
+
+        <TextView
+            android:id="@+id/video_player_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/videoPlayerTitle"
+            android:textSize="@dimen/detailsInfoTextSize"
+            android:fontFamily="@font/inter_semibold"
+            android:layout_alignParentStart="true"
+            app:flow_verticalAlign="center"
+            android:lineHeight="@dimen/detailsLineHeight"
+            android:textColor="@color/white">
+        </TextView>
+        
+        <ImageView
+            android:id="@+id/close_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="3dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close_white"
+            tools:ignore="ContentDescription">
+        </ImageView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/previous_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_previous"
+            android:layout_gravity="center"
+            tools:ignore="ContentDescription">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/backwards_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_backwards"
+            android:layout_marginStart="@dimen/detailsStartMargin"
+            android:layout_gravity="center"
+            tools:ignore="ContentDescription">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/start_watch_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_start_watch"
+            android:layout_marginStart="@dimen/videoPlayerStartMargin"
+            android:layout_gravity="center"
+            tools:ignore="ContentDescription">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/forwards_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_forwards"
+            android:layout_marginStart="@dimen/videoPlayerStartMargin"
+            android:layout_gravity="center"
+            tools:ignore="ContentDescription">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/next_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_previous"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/detailsStartMargin"
+            android:scaleX="-1"
+            tools:ignore="ContentDescription">
+        </ImageView>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/VideoPlayerMarginBottom"
+        android:elevation="3dp">
+
+        <ImageView
+            android:id="@+id/scrub_bar_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="49dp"
+            app:srcCompat="@drawable/ic_scrub_bar_grey"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="@dimen/scrubBarMarginBottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/scrub_bar_green"
+            tools:ignore="ContentDescription">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/scrub_bar_green"
+            android:layout_width="@dimen/scrubBarGreenWidth"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_scrub_bar_green"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="@dimen/scrubBarMarginBottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:ignore="ContentDescription">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/elipse_scrub_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_ellipse"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="-8dp"
+            app:layout_constraintStart_toEndOf="@+id/scrub_bar_green"
+            tools:ignore="ContentDescription">
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/videoTime"
+            app:layout_constraintBottom_toBottomOf="@+id/scrub_bar_gray"
+            app:layout_constraintTop_toTopOf="@+id/scrub_bar_gray"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textSize="@dimen/VideoPlayerTimeTextSize"
+            android:lineHeight="16sp">
+
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
