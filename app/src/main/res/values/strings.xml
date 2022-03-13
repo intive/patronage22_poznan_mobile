@@ -29,7 +29,7 @@
     <string name="passwordValidMessage">Password must be between 5 and 40 characters long (no spaces)</string>
     <string name="repeatPassValidMessage">Passwords do not match</string>
     <string name="resetPassword">Reset password</string>
-    <string name="reEnterNewPassword">Re-enter new password</string>
+    <string name="reenterNewPassword">Re-enter new password</string>
     <string name="showPassword">Show password</string>
     <string name="emailHasBeenSent">Email has been sent</string>
 
