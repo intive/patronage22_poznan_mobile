@@ -14,11 +14,11 @@
 
         <EditText
             android:id="@+id/loginEditText"
+            style="@style/loginEditText"
             android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
             android:layout_marginTop="@dimen/loginEmailMarginTop"
-            android:hint = "@string/loginEditTextHint"
-            android:inputType="text"
-            style="@style/loginEditText"/>
+            android:hint="@string/loginEditTextHint"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/passwordEditText"

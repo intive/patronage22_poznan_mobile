@@ -2,19 +2,26 @@ package com.intive.patronage22.intivi.Fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.intive.patronage22.intivi.MainActivity
 import com.intive.patronage22.intivi.R
+import com.intive.patronage22.intivi.ViewModels.LoginViewModel
 import com.intive.patronage22.intivi.databinding.FragmentSignUpBinding
 import java.util.regex.Pattern
 
 class SignUpFragment : Fragment() {
 
     private lateinit var bind: FragmentSignUpBinding
+    private val loginViewModel: LoginViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,13 +35,55 @@ class SignUpFragment : Fragment() {
                 activity?.onBackPressed()
             }
         }
+
+        bind.loginEditText.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if(loginViewModel.emailHolder.value != p0.toString()) {
+                    Log.d(
+                        "Sign UP",
+                        "WATCHER: VM = ${loginViewModel.emailHolder.value} -> Text = ${p0.toString()}"
+                    )
+                    loginViewModel.emailHolder.value = p0.toString()
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
+
+        bind.passwordEditText.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                loginViewModel.passwordHolder.value = p0.toString()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
+
+        loginViewModel.emailHolder.observe(viewLifecycleOwner) { emailHolder ->
+            if(bind.loginEditText.text.toString() != emailHolder) {
+                Log.d("Sign UP", "OBSERVER: VM = $emailHolder <- Text = ${bind.loginEditText.text}")
+                bind.loginEditText.setText(emailHolder)
+            }
+        }
+
+        loginViewModel.passwordHolder.observe(viewLifecycleOwner) { passwordHolder ->
+            if(bind.passwordEditText.text.toString() != passwordHolder) {
+                bind.passwordEditText.setText(passwordHolder)
+            }
+        }
+
         return bind.root
     }
 
     override fun onPause() {
         super.onPause()
-        bind.loginEditText.text.clear()
-        bind.passwordEditText.text.clear()
         bind.repeatPassword.text.clear()
     }
 
