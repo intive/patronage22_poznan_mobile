@@ -40,7 +40,7 @@
       android:id="@+id/tabLayout"
       android:layout_width="@dimen/tabLayoutWidth"
       android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/tabLayoutMarginTop"
+      android:layout_marginTop="15dp"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/header_bar"
       app:tabIndicatorColor="@color/green"

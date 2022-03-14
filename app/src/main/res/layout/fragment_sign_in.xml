@@ -38,7 +38,7 @@
             android:layout_marginTop="@dimen/loginPasswordTextMarginTop"
             android:fontFamily="@font/inter"
             android:text="@string/forgotPasswordText"
-            android:textColor="@color/greenAccents"
+            android:textColor="@color/green"
             android:textSize="@dimen/loginPasswordTextSize" />
 
     </RelativeLayout>
