@@ -24,6 +24,10 @@ class SignUpFragment : Fragment() {
             if (isValid()) {
                 val intent = Intent(this.requireContext(), MainActivity::class.java)
                 startActivity(intent)
+
+                bind.loginEditText.text.clear()
+                bind.passwordEditText.text.clear()
+                bind.repeatPassword.text.clear()
             }
         }
         return bind.root

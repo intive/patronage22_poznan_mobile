@@ -24,6 +24,9 @@ class SignInFragment : Fragment() {
             if (isLoginFormValid()) {
                 val intent = Intent(this.requireContext(), MainActivity::class.java)
                 startActivity(intent)
+
+                bind.passwordEditText.text.clear()
+                bind.loginEditText.text.clear()
             }
         }
         return bind.root
