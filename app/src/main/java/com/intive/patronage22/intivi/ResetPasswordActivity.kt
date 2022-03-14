@@ -1,12 +1,16 @@
 package com.intive.patronage22.intivi
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 
 class ResetPasswordActivity : AppCompatActivity() {
@@ -31,6 +35,14 @@ class ResetPasswordActivity : AppCompatActivity() {
                 editTextResetPassword.transformationMethod = PasswordTransformationMethod.getInstance()
                 eye.setImageDrawable(show)
             }
+        }
+
+        findViewById<Button>(R.id.buttonResetPassword).setOnClickListener {
+            findViewById<TextView>(R.id.textViewResetPasswordMessage).visibility = View.VISIBLE
+            Thread {
+                Thread.sleep(5000)
+                startActivity(Intent(applicationContext, LoginActivity::class.java))
+            }.start()
         }
     }
 }
