@@ -109,65 +109,30 @@
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <SeekBar
+        android:id="@+id/simpleSeekBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="17dp"
+        android:progress="25"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:maxHeight="3dp"
+        android:minHeight="3dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/videoTime"
+        app:layout_constraintBottom_toBottomOf="@+id/simpleSeekBar"
+        app:layout_constraintTop_toTopOf="@+id/simpleSeekBar"
+        app:layout_constraintLeft_toRightOf="@+id/simpleSeekBar"
         app:layout_constraintRight_toRightOf="parent"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/VideoPlayerMarginBottom"
-        android:elevation="3dp">
-
-        <ImageView
-            android:id="@+id/scrub_bar_gray"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="49dp"
-            app:srcCompat="@drawable/ic_scrub_bar_grey"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="@dimen/scrubBarMarginBottom"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/scrub_bar_green"
-            tools:ignore="ContentDescription">
-        </ImageView>
-
-        <ImageView
-            android:id="@+id/scrub_bar_green"
-            android:layout_width="@dimen/scrubBarGreenWidth"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_scrub_bar_green"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="@dimen/scrubBarMarginBottom"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            tools:ignore="ContentDescription">
-        </ImageView>
-
-        <ImageView
-            android:id="@+id/elipse_scrub_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_ellipse"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="-8dp"
-            app:layout_constraintStart_toEndOf="@+id/scrub_bar_green"
-            tools:ignore="ContentDescription">
-        </ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/videoTime"
-            app:layout_constraintBottom_toBottomOf="@+id/scrub_bar_gray"
-            app:layout_constraintTop_toTopOf="@+id/scrub_bar_gray"
-            app:layout_constraintRight_toRightOf="parent"
-            android:textSize="@dimen/VideoPlayerTimeTextSize"
-            android:lineHeight="16sp">
-
-        </TextView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginEnd="@dimen/detailsStartMargin"
+        android:textSize="@dimen/VideoPlayerTimeTextSize"
+        android:gravity="center">
+    </TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
