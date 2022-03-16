@@ -12,7 +12,7 @@
     <string name="detailsYearText">2019</string>
     <string name="detailsSeasonsText">2 seasons</string>
     <string name="detailsPGText">PG</string>
-    <string name="detailsDescriptionText">Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.</string>
+    <string name="detailsDescriptionText">Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.\n</string>
     <string name="detailsWatchButtonText">Watch</string>
 
     <string name="heartIcon">Heart icon</string>
