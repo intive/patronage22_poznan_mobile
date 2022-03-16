@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.intive.patronage22.intivi.MainActivity
+import com.intive.patronage22.intivi.*
 import com.intive.patronage22.intivi.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
@@ -26,5 +26,8 @@ class SignInFragment : Fragment() {
         return bind.root
     }
 
-    private fun isValid() = Validation().isLoginFormValid()
+    private fun isValid() = isLoginFormValid(
+        requireView().findViewById(R.id.editTextLoginEmail),
+        requireView().findViewById(R.id.editTextLoginPassword)
+    )
 }

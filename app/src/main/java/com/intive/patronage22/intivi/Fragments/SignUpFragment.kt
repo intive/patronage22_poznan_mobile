@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.intive.patronage22.intivi.MainActivity
+import com.intive.patronage22.intivi.*
 import com.intive.patronage22.intivi.databinding.FragmentSignUpBinding
 
 class SignUpFragment : Fragment() {
@@ -26,5 +26,9 @@ class SignUpFragment : Fragment() {
         return bind.root
     }
 
-    private fun isValid() = Validation().isRegisterFormValid()
+    private fun isValid() = isRegisterFormValid(
+        requireView().findViewById(R.id.editTextRegisterEmail),
+        requireView().findViewById(R.id.editTextRegisterPassword),
+        requireView().findViewById(R.id.editTextRegisterRepeatPassword)
+    )
 }
