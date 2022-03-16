@@ -15,6 +15,9 @@ interface UserDao {
             "password LIKE :password LIMIT 1")
     fun findUser(username: String, password: String): User
 
+    @Query("SELECT * FROM user WHERE username LIKE :usernameQuery ")
+    fun findAllByName(usernameQuery: String): List<User>
+
     @Query("SELECT * FROM User WHERE uid =:userID")
     fun getUser(userID: Int): User
 
