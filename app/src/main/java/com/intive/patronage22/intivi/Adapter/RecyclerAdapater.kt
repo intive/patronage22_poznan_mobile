@@ -9,14 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.R
 
 class RecyclerAdapater:RecyclerView.Adapter<RecyclerAdapater.ViewHolder>() {
+
     private var titles = arrayOf("Moonfal","sdad")
     private var images = intArrayOf(R.drawable.moonfall_image, R.drawable.moonfall_image)
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapater.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_grid_home, parent,false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerAdapater.ViewHolder, position: Int) {
         holder.itemTitle.text = titles[position]
         holder.itemImage.setImageResource(images[position])
     }
@@ -25,13 +27,9 @@ class RecyclerAdapater:RecyclerView.Adapter<RecyclerAdapater.ViewHolder>() {
         return titles.size
     }
 
-    inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        var itemImage: ImageView
-        var itemTitle: TextView
+    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        var itemImage: ImageView = itemView.findViewById(R.id.movieAvatar)
+        var itemTitle: TextView = itemView.findViewById(R.id.movieTitle)
 
-        init {
-            itemImage = itemView.findViewById(R.id.avatar)
-            itemTitle = itemView.findViewById(R.id.title)
-        }
     }
 }
