@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import androidx.fragment.app.Fragment
 import com.intive.patronage22.intivi.MainActivity
 import com.intive.patronage22.intivi.R
 import com.intive.patronage22.intivi.databinding.FragmentSignInBinding
