@@ -33,5 +33,8 @@
     <string name="showPassword">Show password</string>
     <string name="emailHasBeenSent">Email has been sent</string>
 
+
+    <string name="signUp">Sign up</string>
+    <string name="signIn">Sign in</string>
     <string name="moonfal">Moonfal</string>
 </resources>

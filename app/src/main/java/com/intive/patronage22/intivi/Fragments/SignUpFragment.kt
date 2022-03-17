@@ -2,11 +2,11 @@ package com.intive.patronage22.intivi.Fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 import com.intive.patronage22.intivi.MainActivity
 import com.intive.patronage22.intivi.R
 import com.intive.patronage22.intivi.databinding.FragmentSignUpBinding
@@ -14,19 +14,28 @@ import java.util.regex.Pattern
 
 class SignUpFragment : Fragment() {
 
+    private lateinit var bind: FragmentSignUpBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val bind = FragmentSignUpBinding.inflate(layoutInflater)
+    ): View? {
+        bind = FragmentSignUpBinding.inflate(layoutInflater)
 
         bind.signUpButton.setOnClickListener {
             if (isValid()) {
                 val intent = Intent(this.requireContext(), MainActivity::class.java)
                 startActivity(intent)
+                activity?.onBackPressed()
             }
         }
         return bind.root
+    }
+
+    override fun onPause() {
+        super.onPause()
+        bind.loginEditText.text.clear()
+        bind.passwordEditText.text.clear()
+        bind.repeatPassword.text.clear()
     }
 
     private fun isEmailOK(): Boolean {
