@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.R
 
+
 class RecyclerAdapater:RecyclerView.Adapter<RecyclerAdapater.ViewHolder>() {
 
     private var titles = arrayOf("Moonfal","sdad")
@@ -30,6 +31,5 @@ class RecyclerAdapater:RecyclerView.Adapter<RecyclerAdapater.ViewHolder>() {
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var itemImage: ImageView = itemView.findViewById(R.id.movieAvatar)
         var itemTitle: TextView = itemView.findViewById(R.id.movieTitle)
-
     }
 }

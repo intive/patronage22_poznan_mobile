@@ -6,8 +6,8 @@
     android:paddingLeft="16px"
     android:paddingRight="16px">
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@color/bastille">
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/movieAvatar"
@@ -34,8 +34,8 @@
 
         <ImageView
             android:id="@+id/favorities"
-            android:layout_width="11.33px"
-            android:layout_height="13.33px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/movieAvatar"
             android:layout_alignParentRight="true"
             android:paddingLeft="@dimen/favoritiesPaddingLeft"
