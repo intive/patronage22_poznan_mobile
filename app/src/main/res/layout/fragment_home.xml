@@ -73,15 +73,21 @@
             tools:layout_conversion_absoluteHeight="32dp"
             tools:layout_conversion_absoluteWidth="59dp" />
     </LinearLayout>
-
-
-    <include
-        layout="@layout/item_grid_home"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filter_component" />
+        app:layout_constraintTop_toBottomOf="@+id/filter_component"
+        android:gravity="center_horizontal">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:foregroundGravity="center"
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_grid_home"
+            android:paddingTop="8dp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
