@@ -46,6 +46,15 @@
                 android:textColor="@color/green"
                 android:textSize="@dimen/loginPasswordTextSize" />
 
+            <TextView
+                android:id="@+id/emailHasBeenSentText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/forgotpassText"
+                android:layout_marginStart="@dimen/loginMarginHorizontal"
+                android:text="@string/emailHasBeenSent"
+                android:visibility="invisible" />
+
             <Button
                 android:id="@+id/signInButton"
                 android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
