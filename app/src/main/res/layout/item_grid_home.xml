@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="16px"
-    android:paddingRight="16px">
+    android:layout_width="140dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="0dp">
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/bastille">
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/movieAvatar"
             android:layout_width="wrap_content"
@@ -16,20 +17,20 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:src="@drawable/moonfall_image"
+            android:src="@drawable/avatar_moonfall"
             app:shapeAppearanceOverlay="@style/roundedImage" />
 
         <TextView
             android:id="@+id/movieTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_below="@id/movieAvatar"
             android:fontFamily="@font/inter"
-            android:lineHeight="@dimen/titleLineHeight"
-            android:padding="@dimen/titlePadding"
-            android:text="@string/moonfal"
+            android:lineHeight="20sp"
+            android:text="Little Nicholas' treasure"
             android:textFontWeight="600"
-            android:textSize="@dimen/titleTextSize"
+            android:textSize="14sp"
+            android:layout_margin="8dp"
             android:textStyle="normal"/>
 
         <ImageView
@@ -38,13 +39,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/movieAvatar"
             android:layout_alignParentRight="true"
-            android:paddingLeft="@dimen/favoritiesPaddingLeft"
-            android:paddingTop="@dimen/favoritiesPaddingTop"
-            android:paddingRight="@dimen/favoritiesPaddingRight"
-            android:paddingBottom="@dimen/favoritiesPaddingBottom"
-            android:layout_marginLeft="8px"
-            android:layout_marginRight="8px"
-            android:layout_marginTop="12.33px"
+            android:nextFocusRight="@id/movieAvatar"
+            android:layout_margin="8dp"
+
+
             android:scaleType="centerInside"
             android:src="@drawable/ic_favourite" />
     </RelativeLayout>

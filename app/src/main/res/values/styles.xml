@@ -59,7 +59,7 @@
 
     <style name="roundedImage">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">60dp</item>
+        <item name="cornerSize">20dp</item>
         <item name="color">@color/bastille</item>
     </style>
 </resources>
