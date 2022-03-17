@@ -24,6 +24,13 @@ class SignInFragment : Fragment() {
     ): View {
         bind = FragmentSignInBinding.inflate(layoutInflater)
 
+        bind.forgotpassText.setOnClickListener {
+            bind.emailHasBeenSentText.visibility = View.VISIBLE
+            Handler(Looper.getMainLooper()).postDelayed({
+                bind.emailHasBeenSentText.visibility = View.INVISIBLE
+            }, 5000)
+        }
+
         bind.signInButton.setOnClickListener {
             if (isLoginFormValid()) {
                 val intent = Intent(this.requireContext(), MainActivity::class.java)
