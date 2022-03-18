@@ -42,10 +42,6 @@ class SignUpFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(loginViewModel.emailHolder.value != p0.toString()) {
-                    Log.d(
-                        "Sign UP",
-                        "WATCHER: VM = ${loginViewModel.emailHolder.value} -> Text = ${p0.toString()}"
-                    )
                     loginViewModel.emailHolder.value = p0.toString()
                 }
             }
@@ -68,7 +64,6 @@ class SignUpFragment : Fragment() {
 
         loginViewModel.emailHolder.observe(viewLifecycleOwner) { emailHolder ->
             if(bind.loginEditText.text.toString() != emailHolder) {
-                Log.d("Sign UP", "OBSERVER: VM = $emailHolder <- Text = ${bind.loginEditText.text}")
                 bind.loginEditText.setText(emailHolder)
             }
         }
