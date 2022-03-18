@@ -6,51 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.SignInFragment">
 
-    <RelativeLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-39dp"
-        tools:layout_editor_absoluteY="-134dp">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp">
 
-        <EditText
-            android:id="@+id/loginEditText"
-            android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
-            android:layout_marginTop="@dimen/loginEmailMarginTop"
-            android:hint = "@string/loginEditTextHint"
-            android:inputType="text"
-            style="@style/loginEditText"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="-39dp"
+            tools:layout_editor_absoluteY="-134dp">
 
-        <EditText
-            android:id="@+id/passwordEditText"
-            android:layout_below="@id/loginEditText"
-            android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
-            android:layout_marginTop="@dimen/loginPasswordMarginTop"
-            android:hint="@string/passwordEditTextHint"
-            android:inputType="textPassword"
-            style="@style/loginEditText"/>
+            <EditText
+                android:id="@+id/loginEditText"
+                android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
+                android:layout_marginTop="@dimen/loginEmailMarginTop"
+                android:hint = "@string/loginEditTextHint"
+                android:inputType="text"
+                style="@style/loginEditText"/>
 
-        <TextView
-            android:id="@+id/forgotpassText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/passwordEditText"
-            android:layout_marginStart="@dimen/loginMarginHorizontal"
-            android:layout_marginTop="@dimen/loginPasswordTextMarginTop"
-            android:fontFamily="@font/inter"
-            android:text="@string/forgotPasswordText"
-            android:textColor="@color/green"
-            android:textSize="@dimen/loginPasswordTextSize" />
+            <EditText
+                android:id="@+id/passwordEditText"
+                android:layout_below="@id/loginEditText"
+                android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
+                android:layout_marginTop="@dimen/loginPasswordMarginTop"
+                android:hint="@string/passwordEditTextHint"
+                android:inputType="textPassword"
+                style="@style/loginEditText"/>
 
-        <TextView
-            android:id="@+id/emailHasBeenSentText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/forgotpassText"
-            android:layout_marginStart="@dimen/loginMarginHorizontal"
-            android:text="@string/emailHasBeenSent"
-            android:visibility="invisible" />
+            <TextView
+                android:id="@+id/forgotpassText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/passwordEditText"
+                android:layout_marginStart="@dimen/loginMarginHorizontal"
+                android:layout_marginTop="@dimen/loginPasswordTextMarginTop"
+                android:fontFamily="@font/inter"
+                android:text="@string/forgotPasswordText"
+                android:textColor="@color/green"
+                android:textSize="@dimen/loginPasswordTextSize" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/emailHasBeenSentText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/forgotpassText"
+                android:layout_marginStart="@dimen/loginMarginHorizontal"
+                android:text="@string/emailHasBeenSent"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/signInButton"
