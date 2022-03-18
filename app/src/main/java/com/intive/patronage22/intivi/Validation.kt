@@ -3,47 +3,53 @@ package com.intive.patronage22.intivi
 import android.util.Patterns.EMAIL_ADDRESS
 import android.widget.EditText
 
-fun isLoginFormValid(email: EditText, password: EditText): Boolean {
+fun isLoginFormValid(email: EditText, password: EditText, emailMess: String, passMess: String): Boolean {
+    setEmailValidMessage(email, emailMess)
+    setPasswordValidMessage(password, passMess)
     return isEmailOK(email) and isPasswordOK(password)
 }
 
-fun isRegisterFormValid(email: EditText, password: EditText, repeatPassword: EditText): Boolean {
+fun isRegisterFormValid(email: EditText, password: EditText, repeatPassword: EditText, emailMess: String, passMess: String, repeatPassMess: String): Boolean {
+    setEmailValidMessage(email, emailMess)
+    setPasswordValidMessage(password, passMess)
+    setRepeatPasswordValidMessage(password, repeatPassword, repeatPassMess)
     return isEmailOK(email) and isPasswordOK(password) and isRepeatPasswordOK(password, repeatPassword)
+}
+
+private fun setEmailValidMessage(email: EditText, message: String) {
+    if (!isEmailOK(email)) {
+        email.error = message
+    }
+}
+
+private fun setPasswordValidMessage(password: EditText, message: String) {
+    if (!isPasswordOK(password)) {
+        password.error = message
+    }
+}
+
+private fun setRepeatPasswordValidMessage(password: EditText, repeatPass: EditText, message: String) {
+    if (!isRepeatPasswordOK(password, repeatPass)) {
+        repeatPass.error = message
+    }
 }
 
 private fun isEmailOK(editText: EditText): Boolean {
     val email = editText.text.toString()
     val localPartLength = email.split("@").first().length
     val domainPartLength = email.split("@").last().length
-
-    if (!isEmailValid(email) || localPartLength > 64 || domainPartLength > 255) {
-        editText.error = "Please enter a correct e-mail address"
-        return false
-    } else {
-        return true
-    }
+    return !(!isEmailValid(email) || localPartLength > 64 || domainPartLength > 255)
 }
 
 private fun isEmailValid(email: String): Boolean {
     return EMAIL_ADDRESS.matcher(email).matches()
 }
 
-private fun isPasswordOK(editText: EditText): Boolean {
-    if (editText.text.length !in (5..40) || (editText.text.toString()
-            .filterNot { it.isWhitespace() }.length != editText.text.length)
-    ) {
-        editText.error = "Password must be between 5 and 40 characters long (no spaces)"
-        return false
-    } else {
-        return true
-    }
+private fun isPasswordOK(password: EditText): Boolean {
+    return !(password.text.length !in (5..40) || (password.text.toString()
+        .filterNot { it.isWhitespace() }.length != password.text.length))
 }
 
 private fun isRepeatPasswordOK(password: EditText, repeatPassword: EditText): Boolean {
-    if (password.text.toString() != repeatPassword.text.toString()) {
-        repeatPassword.error = "Passwords do not match"
-        return false
-    } else {
-        return true
-    }
+    return password.text.toString() == repeatPassword.text.toString()
 }
