@@ -18,7 +18,7 @@
             android:layout_marginTop="@dimen/loginEmailMarginTop"
             android:hint = "@string/loginEditTextHint"
             android:inputType="text"
-            style="@style/loginEditText"/>
+            style="@style/inputText"/>
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -27,7 +27,7 @@
             android:layout_marginTop="@dimen/loginPasswordMarginTop"
             android:hint="@string/passwordEditTextHint"
             android:inputType="textPassword"
-            style="@style/loginEditText"/>
+            style="@style/inputText"/>
 
         <EditText
             android:id="@+id/repeatPassword"
@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/loginPasswordMarginTop"
             android:hint="@string/repeatPassEditTextHint"
             android:inputType="textPassword"
-            style="@style/loginEditText"/>
+            style="@style/inputText"/>
 
     </RelativeLayout>
 

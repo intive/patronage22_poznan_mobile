@@ -42,7 +42,7 @@ class SignInFragment : Fragment() {
 
     override fun onPause() {
         super.onPause ()
-        bind.loginEditText.text.clear()
+        //bind.loginEditText.text.clear()
         bind.passwordEditText.text.clear()
     }
     private fun isEmailOK(): Boolean {

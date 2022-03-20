@@ -47,14 +47,18 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="loginEditText">
-        <item name="android:layout_height">@dimen/editTextHeight</item>
+    <style name="inputText">
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@drawable/login_edit_text_green</item>
-        <item name="android:padding">20dp</item>
+        <item name="android:paddingEnd">@dimen/inputTextPaddingHorizontal</item>
+        <item name="android:paddingStart">@dimen/inputTextPaddingHorizontal</item>
+        <item name="android:paddingTop">@dimen/inputTextPaddingVertical</item>
+        <item name="android:paddingBottom">@dimen/inputTextPaddingVertical</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">#E9E9E9</item>
+        <item name="android:textColor">@color/greyscale</item>
+        <item name="android:textColorHint">@color/greyscale</item>
     </style>
 
     <style name="roundedImage">
