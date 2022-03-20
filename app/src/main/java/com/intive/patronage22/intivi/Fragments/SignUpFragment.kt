@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.activityViewModels
 import com.intive.patronage22.intivi.MainActivity
+import com.intive.patronage22.intivi.OnTextChangeListener
 import com.intive.patronage22.intivi.R
 import com.intive.patronage22.intivi.ViewModels.LoginViewModel
 import com.intive.patronage22.intivi.databinding.FragmentSignUpBinding
@@ -36,29 +37,19 @@ class SignUpFragment : Fragment() {
             }
         }
 
-        bind.loginEditText.addTextChangedListener(object: TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
+        bind.loginEditText.addTextChangedListener(object: OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(loginViewModel.emailHolder.value != p0.toString()) {
-                    loginViewModel.emailHolder.value = p0.toString()
+                    loginViewModel.updateEmail(p0.toString())
                 }
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
             }
         })
 
-        bind.passwordEditText.addTextChangedListener(object: TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
+        bind.passwordEditText.addTextChangedListener(object: OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                loginViewModel.passwordHolder.value = p0.toString()
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
+                if(loginViewModel.passwordHolder.value != p0.toString()) {
+                    loginViewModel.updatePassword(p0.toString())
+                }
             }
         })
 
