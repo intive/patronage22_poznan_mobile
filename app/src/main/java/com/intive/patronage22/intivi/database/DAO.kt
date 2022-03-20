@@ -1,7 +1,8 @@
 package database
 
-import android.service.autofill.UserData
 import androidx.room.*
+import com.intive.patronage22.intivi.database.Favorites
+import com.intive.patronage22.intivi.database.User
 
 @Dao
 interface UserDao {
@@ -38,4 +39,19 @@ interface UserDao {
 
     @Delete
     fun delete(user: User)
+}
+
+@Dao
+interface FavoritesDao{
+    @Query("SELECT * FROM `Favorites movies`")
+    fun getAll(): List<Favorites>
+
+    @Insert
+    fun insert(favorites: Favorites)
+
+    @Delete
+    fun delete(favorites: Favorites)
+
+    @Query("SELECT IsFavorites from `favorites movies` where movieID=:vMovieId")
+    fun isFavorite(vMovieId:Long): Boolean
 }

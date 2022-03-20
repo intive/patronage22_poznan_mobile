@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.databinding.FragmentHomeBinding
 import com.intive.patronage22.intivi.Adapter.RecyclerAdapter
 import com.intive.patronage22.intivi.DetailsActivity
@@ -16,11 +15,8 @@ import com.intive.patronage22.intivi.R
 import com.intive.patronage22.intivi.model.MovieItem
 import com.intive.patronage22.intivi.model.movieList
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(){
     private lateinit var bind: FragmentHomeBinding
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
-    var recyclerView: RecyclerView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,6 +37,7 @@ class HomeFragment : Fragment() {
         bind.recyclerView.layoutManager=GridLayoutManager(activity,2)
         setData()
     }
+
     private fun clickNavigate(view: View, activity: Class<*>){
         view.setOnClickListener{
             startActivity(Intent(getActivity(), activity))
