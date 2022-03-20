@@ -17,31 +17,31 @@
             tools:layout_editor_absoluteX="-39dp"
             tools:layout_editor_absoluteY="-134dp">
 
-            <EditText
-                android:id="@+id/editTextRegisterEmail"
-                android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
-                android:layout_marginTop="@dimen/loginEmailMarginTop"
-                android:hint = "@string/loginEditTextHint"
-                android:inputType="text"
-                style="@style/loginEditText"/>
+        <EditText
+            android:id="@+id/loginEditText"
+            android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
+            android:layout_marginTop="@dimen/loginEmailMarginTop"
+            android:hint = "@string/loginEditTextHint"
+            android:inputType="text"
+            style="@style/inputText"/>
 
-            <EditText
-                android:id="@+id/editTextRegisterPassword"
-                android:layout_below="@id/editTextRegisterEmail"
-                android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
-                android:layout_marginTop="@dimen/loginPasswordMarginTop"
-                android:hint="@string/passwordEditTextHint"
-                android:inputType="textPassword"
-                style="@style/loginEditText"/>
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_below="@id/loginEditText"
+            android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
+            android:layout_marginTop="@dimen/loginPasswordMarginTop"
+            android:hint="@string/passwordEditTextHint"
+            android:inputType="textPassword"
+            style="@style/inputText"/>
 
-            <EditText
-                android:id="@+id/editTextRegisterRepeatPassword"
-                android:layout_below="@id/editTextRegisterPassword"
-                android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
-                android:layout_marginTop="@dimen/loginPasswordMarginTop"
-                android:hint="@string/repeatPassEditTextHint"
-                android:inputType="textPassword"
-                style="@style/loginEditText"/>
+        <EditText
+            android:id="@+id/repeatPassword"
+            android:layout_below="@id/passwordEditText"
+            android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
+            android:layout_marginTop="@dimen/loginPasswordMarginTop"
+            android:hint="@string/repeatPassEditTextHint"
+            android:inputType="textPassword"
+            style="@style/inputText"/>
 
         </RelativeLayout>
 

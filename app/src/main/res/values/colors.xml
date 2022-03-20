@@ -13,4 +13,5 @@
     <color name="divider_color">#3B334C</color>
     <color name="gray_20">#D2D2D2</color>
     <color name="grey_white">#DEE2E2</color>
+    <color name="greyscale">#E9E9E9</color>
 </resources>
