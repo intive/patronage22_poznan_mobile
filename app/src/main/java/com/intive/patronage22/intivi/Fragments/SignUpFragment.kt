@@ -42,7 +42,7 @@ class SignUpFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(loginViewModel.emailHolder.value != p0.toString()) {
-                    loginViewModel.emailHolder.value = p0.toString()
+                    loginViewModel.updateEmail(p0.toString())
                 }
             }
 
@@ -55,7 +55,9 @@ class SignUpFragment : Fragment() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                loginViewModel.passwordHolder.value = p0.toString()
+                if(loginViewModel.passwordHolder.value != p0.toString()) {
+                    loginViewModel.updatePassword(p0.toString())
+                }
             }
 
             override fun afterTextChanged(p0: Editable?) {
