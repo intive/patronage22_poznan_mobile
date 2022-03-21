@@ -5,12 +5,11 @@
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
     app:cardElevation="0dp"
-    android:layout_gravity="center_horizontal">
+    android:layout_gravity="center_horizontal"
+    app:cardBackgroundColor="@color/bastille">
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/bastille">
-
+        android:layout_height="wrap_content">
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/movieAvatar"
             android:layout_width="wrap_content"
@@ -24,15 +23,18 @@
         <TextView
             android:id="@+id/movieTitle"
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/movieAvatar"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/inter"
             android:lineHeight="20sp"
-            android:text="Little Nicholas' treasure"
+            android:text="Untitled"
             android:textFontWeight="600"
             android:textSize="14sp"
-            android:layout_margin="8dp"
-            android:textStyle="normal"/>
+            android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/favorities"

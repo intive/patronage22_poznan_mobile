@@ -78,7 +78,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_component"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:paddingBottom="100dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:foregroundGravity="center"
@@ -87,7 +88,8 @@
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_grid_home"
             android:paddingTop="8dp"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:background="@color/bastille"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
