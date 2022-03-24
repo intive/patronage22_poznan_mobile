@@ -37,7 +37,7 @@ class SignUpFragment : Fragment() {
             }
         }
 
-        bind.loginEditText.addTextChangedListener(object: OnTextChangeListener {
+        bind.emailTextInputLayout?.editText?.addTextChangedListener(object: OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(loginViewModel.emailHolder.value != p0.toString()) {
                     loginViewModel.updateEmail(p0.toString())
@@ -45,7 +45,7 @@ class SignUpFragment : Fragment() {
             }
         })
 
-        bind.passwordEditText.addTextChangedListener(object: OnTextChangeListener {
+        bind.passwordTextInputLayout?.editText?.addTextChangedListener(object: OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(loginViewModel.passwordHolder.value != p0.toString()) {
                     loginViewModel.updatePassword(p0.toString())
@@ -54,14 +54,14 @@ class SignUpFragment : Fragment() {
         })
 
         loginViewModel.emailHolder.observe(viewLifecycleOwner) { emailHolder ->
-            if(bind.loginEditText.text.toString() != emailHolder) {
-                bind.loginEditText.setText(emailHolder)
+            if(bind.emailTextInputLayout?.editText?.text.toString() != emailHolder) {
+                bind.emailTextInputLayout?.editText?.setText(emailHolder)
             }
         }
 
         loginViewModel.passwordHolder.observe(viewLifecycleOwner) { passwordHolder ->
-            if(bind.passwordEditText.text.toString() != passwordHolder) {
-                bind.passwordEditText.setText(passwordHolder)
+            if(bind.passwordTextInputLayout?.editText?.text.toString() != passwordHolder) {
+                bind.passwordTextInputLayout?.editText?.setText(passwordHolder)
             }
         }
 
@@ -70,7 +70,7 @@ class SignUpFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        bind.repeatPassword.text.clear()
+        bind.repeatPasswordTextInputLayout?.editText?.text?.clear()
     }
 
     private fun isEmailOK(): Boolean {
@@ -106,7 +106,7 @@ class SignUpFragment : Fragment() {
 
     private fun isRepeatPasswordOK(): Boolean {
         val password = requireView().findViewById<EditText>(R.id.passwordEditText)
-        val repeatPassword = requireView().findViewById<EditText>(R.id.repeatPassword)
+        val repeatPassword = requireView().findViewById<EditText>(R.id.repeatPasswordEditText)
         if (password.text.toString() != repeatPassword.text.toString()) {
             repeatPassword.error = getString(R.string.repeatPassValidMessage)
             return false

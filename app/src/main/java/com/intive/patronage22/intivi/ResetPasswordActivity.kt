@@ -18,6 +18,7 @@ class ResetPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reset_password)
 
+        /*
         findViewById<ImageView>(R.id.imageViewResetPasswordBack).setOnClickListener {
             onBackPressed()
         }
@@ -44,5 +45,6 @@ class ResetPasswordActivity : AppCompatActivity() {
                 startActivity(Intent(applicationContext, LoginActivity::class.java))
             }.start()
         }
+        */
     }
 }

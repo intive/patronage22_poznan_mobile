@@ -19,58 +19,65 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailTextInputLayout"
+            android:theme="@style/EditTextThemeOverlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:hint = "@string/loginEditTextHint"
             android:textColorHint="@color/greyscale"
-            app:hintEnabled="true"
-            app:hintAnimationEnabled="true"
             app:boxBackgroundMode="filled"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginEditText"
-                android:gravity="center_vertical"
                 android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
                 android:layout_marginTop="@dimen/loginEmailMarginTop"
                 android:inputType="textEmailAddress"
-                android:cursorVisible="true"
-                android:textCursorDrawable="@drawable/ic_indicator"
-                style="@style/inputText"
-                />
+                style="@style/inputText"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/passwordEditText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordTextInputLayout"
+            android:theme="@style/EditTextThemeOverlay"
             android:layout_below="@id/emailTextInputLayout"
-            android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
-            android:layout_marginTop="@dimen/loginPasswordMarginTop"
-            android:hint="@string/passwordEditTextHint"
-            android:inputType="textPassword"
-            style="@style/inputText"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint = "@string/passwordEditTextHint"
+            android:textColorHint="@color/greyscale"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
 
-              <TextView
-                  android:id="@+id/forgotpassText"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_below="@+id/passwordEditText"
-                  android:layout_marginStart="@dimen/loginMarginHorizontal"
-                  android:layout_marginTop="@dimen/loginPasswordTextMarginTop"
-                  android:fontFamily="@font/inter"
-                  android:text="@string/forgotPasswordText"
-                  android:textColor="@color/green"
-                  android:textSize="@dimen/loginPasswordTextSize" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
+                android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
+                android:layout_marginTop="@dimen/loginPasswordMarginTop"
+                android:inputType="textPassword"
+                style="@style/inputText"/>
 
-              <TextView
-                  android:id="@+id/emailHasBeenSentText"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_below="@+id/forgotpassText"
-                  android:layout_marginStart="@dimen/loginMarginHorizontal"
-                  android:text="@string/emailHasBeenSent"
-                  android:visibility="invisible" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+          <TextView
+              android:id="@+id/forgotPassText"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/passwordTextInputLayout"
+              android:layout_marginStart="@dimen/loginMarginHorizontal"
+              android:layout_marginTop="@dimen/loginPasswordTextMarginTop"
+              android:fontFamily="@font/inter"
+              android:text="@string/forgotPasswordText"
+              android:textColor="@color/green"
+              android:textSize="@dimen/loginPasswordTextSize" />
+
+          <TextView
+              android:id="@+id/emailHasBeenSentText"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/forgotPassText"
+              android:layout_marginStart="@dimen/loginMarginHorizontal"
+              android:text="@string/emailHasBeenSent"
+              android:visibility="invisible" />
 
         </RelativeLayout>
 
