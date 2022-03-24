@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InTiVi" >
         <activity
+            android:name=".VideoPlayerActivity"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation"/>
+        <activity
             android:name=".LoginActivity"
             android:exported="true" >
             <intent-filter>

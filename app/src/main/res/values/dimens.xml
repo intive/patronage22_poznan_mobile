@@ -56,4 +56,11 @@
     <dimen name="favoritiesPaddingBottom">2.33px</dimen>
 
     <dimen name="editTextHeight">72dp</dimen>
+    <dimen name="videoPlayerMarginHorizontal">21dp</dimen>
+    <dimen name="videoPlayerMarginTop">18dp</dimen>
+    <dimen name="videoPlayerStartMargin">32dp</dimen>
+    <dimen name="VideoPlayerMarginBottom">17dp</dimen>
+    <dimen name="scrubBarGreenWidth">140dp</dimen>
+    <dimen name="scrubBarMarginBottom">4dp</dimen>
+    <dimen name="VideoPlayerTimeTextSize">12sp</dimen>
 </resources>
