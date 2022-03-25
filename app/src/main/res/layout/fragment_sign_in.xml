@@ -18,16 +18,16 @@
               tools:layout_editor_absoluteY="-134dp">
 
               <EditText
-                  android:id="@+id/loginEditText"
+                  android:id="@+id/editTextLoginEmail"
                   style="@style/loginEditText"
                   android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
                   android:layout_marginTop="@dimen/loginEmailMarginTop"
                   android:hint="@string/loginEditTextHint"
-                  android:inputType="text" />
+                  android:inputType="textEmailAddress" />
 
               <EditText
-                  android:id="@+id/passwordEditText"
-                  android:layout_below="@id/loginEditText"
+                  android:id="@+id/editTextLoginPassword"
+                  android:layout_below="@id/editTextLoginEmail"
                   android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
                   android:layout_marginTop="@dimen/loginPasswordMarginTop"
                   android:hint="@string/passwordEditTextHint"
@@ -38,7 +38,7 @@
                   android:id="@+id/forgotpassText"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_below="@+id/passwordEditText"
+                  android:layout_below="@+id/editTextLoginPassword"
                   android:layout_marginStart="@dimen/loginMarginHorizontal"
                   android:layout_marginTop="@dimen/loginPasswordTextMarginTop"
                   android:fontFamily="@font/inter"
@@ -58,7 +58,6 @@
         </RelativeLayout>
 
     </ScrollView>
-
 
     <Button
         android:id="@+id/signInButton"
