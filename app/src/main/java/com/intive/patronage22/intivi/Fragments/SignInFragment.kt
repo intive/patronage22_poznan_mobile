@@ -40,8 +40,8 @@ class SignInFragment : Fragment() {
             }, 5000)
         }
 
-        loginEmail = bind.editTextLoginEmail
-        loginPassword = bind.editTextLoginPassword
+        loginEmail = bind.emailTextInputLayout.editText
+        loginPassword = bind.passwordTextInputLayout.editText
         val emailValidMess: String = getString(R.string.emailValidMessage)
         val passwordValidMess: String = getString(R.string.passwordValidMessage)
 
@@ -58,7 +58,7 @@ class SignInFragment : Fragment() {
             }
         }
 
-        bind.emailTextInputLayout?.editText?.addTextChangedListener(object: OnTextChangeListener {
+        loginEmail?.addTextChangedListener(object: OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(loginViewModel.emailHolder.value != p0.toString()) {
                     loginViewModel.updateEmail(p0.toString())
@@ -66,7 +66,7 @@ class SignInFragment : Fragment() {
             }
         })
 
-        bind.passwordTextInputLayout?.editText?.addTextChangedListener(object : OnTextChangeListener {
+        loginPassword?.addTextChangedListener(object : OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (loginViewModel.passwordHolder.value != p0.toString()) {
                     loginViewModel.updatePassword(p0.toString())
@@ -75,14 +75,14 @@ class SignInFragment : Fragment() {
         })
 
         loginViewModel.emailHolder.observe(viewLifecycleOwner) { emailHolder ->
-            if(bind.emailTextInputLayout?.editText?.text.toString() != emailHolder) {
-                bind.emailTextInputLayout?.editText?.setText(emailHolder)
+            if(loginEmail?.text.toString() != emailHolder) {
+                loginEmail?.setText(emailHolder)
             }
         }
 
         loginViewModel.passwordHolder.observe(viewLifecycleOwner) { passwordHolder ->
-            if(bind.passwordTextInputLayout?.editText?.text.toString() != passwordHolder) {
-                bind.passwordTextInputLayout?.editText?.setText(passwordHolder)
+            if(loginPassword?.text.toString() != passwordHolder) {
+                loginPassword?.setText(passwordHolder)
             }
         }
 

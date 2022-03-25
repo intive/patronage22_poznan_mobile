@@ -32,9 +32,9 @@ class SignUpFragment : Fragment() {
     ): View? {
         bind = FragmentSignUpBinding.inflate(layoutInflater)
 
-        registerEmail = bind.editTextRegisterEmail
-        registerPassword = bind.editTextRegisterPassword
-        registerRepeatPassword = bind.editTextRegisterRepeatPassword
+        registerEmail = bind.emailTextInputLayout.editText
+        registerPassword = bind.passwordTextInputLayout.editText
+        registerRepeatPassword = bind.repeatPasswordTextInputLayout.editText
         val emailValidMess: String = getString(R.string.emailValidMessage)
         val passwordValidMess: String = getString(R.string.passwordValidMessage)
         val repeatPassValidMess: String = getString(R.string.repeatPassValidMessage)
@@ -52,7 +52,7 @@ class SignUpFragment : Fragment() {
             }
         }
 
-        bind.emailTextInputLayout?.editText?.addTextChangedListener(object: OnTextChangeListener {
+        registerEmail?.addTextChangedListener(object: OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(loginViewModel.emailHolder.value != p0.toString()) {
                     loginViewModel.updateEmail(p0.toString())
@@ -60,7 +60,7 @@ class SignUpFragment : Fragment() {
             }
         })
 
-        bind.passwordTextInputLayout?.editText?.addTextChangedListener(object: OnTextChangeListener {
+        registerPassword?.addTextChangedListener(object: OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(loginViewModel.passwordHolder.value != p0.toString()) {
                     loginViewModel.updatePassword(p0.toString())
@@ -69,14 +69,14 @@ class SignUpFragment : Fragment() {
         })
 
         loginViewModel.emailHolder.observe(viewLifecycleOwner) { emailHolder ->
-            if(bind.emailTextInputLayout?.editText?.text.toString() != emailHolder) {
-                bind.emailTextInputLayout?.editText?.setText(emailHolder)
+            if(registerEmail?.text.toString() != emailHolder) {
+                registerEmail?.setText(emailHolder)
             }
         }
 
         loginViewModel.passwordHolder.observe(viewLifecycleOwner) { passwordHolder ->
-            if(bind.passwordTextInputLayout?.editText?.text.toString() != passwordHolder) {
-                bind.passwordTextInputLayout?.editText?.setText(passwordHolder)
+            if(registerPassword?.text.toString() != passwordHolder) {
+                registerPassword?.setText(passwordHolder)
             }
         }
 
