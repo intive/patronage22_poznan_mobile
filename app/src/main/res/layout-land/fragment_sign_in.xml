@@ -17,28 +17,52 @@
             tools:layout_editor_absoluteX="-39dp"
             tools:layout_editor_absoluteY="-134dp">
 
-            <EditText
-                android:id="@+id/loginEditText"
-                android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
-                android:layout_marginTop="@dimen/loginEmailMarginTop"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailTextInputLayout"
+                android:theme="@style/EditTextThemeOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint = "@string/loginEditTextHint"
-                android:inputType="text"
-                style="@style/loginEditText"/>
+                android:textColorHint="@color/greyscale"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
 
-            <EditText
-                android:id="@+id/passwordEditText"
-                android:layout_below="@id/loginEditText"
-                android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
-                android:layout_marginTop="@dimen/loginPasswordMarginTop"
-                android:hint="@string/passwordEditTextHint"
-                android:inputType="textPassword"
-                style="@style/loginEditText"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/loginEditText"
+                    android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
+                    android:layout_marginTop="@dimen/loginEmailMarginTop"
+                    android:inputType="textEmailAddress"
+                    style="@style/inputText"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordTextInputLayout"
+                android:theme="@style/EditTextThemeOverlay"
+                android:layout_below="@id/emailTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint = "@string/passwordEditTextHint"
+                android:textColorHint="@color/greyscale"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
+                    android:layout_marginTop="@dimen/loginPasswordMarginTop"
+                    android:inputType="textPassword"
+                    style="@style/inputText"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/forgotpassText"
+                android:id="@+id/forgotPassText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/passwordEditText"
+                android:layout_below="@+id/passwordTextInputLayout"
                 android:layout_marginStart="@dimen/loginMarginHorizontal"
                 android:layout_marginTop="@dimen/loginPasswordTextMarginTop"
                 android:fontFamily="@font/inter"
@@ -50,7 +74,7 @@
                 android:id="@+id/emailHasBeenSentText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/forgotpassText"
+                android:layout_below="@+id/forgotPassText"
                 android:layout_marginStart="@dimen/loginMarginHorizontal"
                 android:text="@string/emailHasBeenSent"
                 android:visibility="invisible" />
@@ -60,7 +84,7 @@
                 android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
                 android:text="@string/signInButtonText"
                 app:cornerRadius="@dimen/detailsWatchButtonCornerRadius"
-                android:layout_below="@+id/forgotpassText"
+                android:layout_below="@+id/forgotPassText"
                 android:layout_marginTop="@dimen/loginPasswordTextMarginTop"
                 style="@style/logInUpButton"/>
 

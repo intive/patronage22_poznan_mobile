@@ -22,21 +22,6 @@ class ResetPasswordActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        val eye = findViewById<ImageView>(R.id.imageViewShowPassword)
-        val editTextResetPassword = findViewById<EditText>(R.id.editTextResetPassword)
-        val show: Drawable? = ResourcesCompat.getDrawable(resources, R.drawable.ic_show_password, null)
-        val hide: Drawable? = ResourcesCompat.getDrawable(resources, R.drawable.ic_hide_password, null)
-
-        eye.setOnClickListener {
-            if (eye.drawable.equals(show)) {
-                editTextResetPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
-                eye.setImageDrawable(hide)
-            } else {
-                editTextResetPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-                eye.setImageDrawable(show)
-            }
-        }
-
         findViewById<Button>(R.id.buttonResetPassword).setOnClickListener {
             findViewById<TextView>(R.id.textViewResetPasswordMessage).visibility = View.VISIBLE
             Thread {
