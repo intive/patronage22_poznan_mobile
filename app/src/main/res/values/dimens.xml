@@ -65,4 +65,5 @@
     <dimen name="scrubBarGreenWidth">140dp</dimen>
     <dimen name="scrubBarMarginBottom">4dp</dimen>
     <dimen name="VideoPlayerTimeTextSize">12sp</dimen>
+    <dimen name="header_bar_margin_top">32dp</dimen>
 </resources>
