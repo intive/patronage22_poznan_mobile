@@ -1,4 +1,4 @@
-package database
+package com.intive.patronage22.intivi.database
 
 import android.content.Context
 import android.util.Log
@@ -12,43 +12,31 @@ class UserRepository {
         dao = Room.databaseBuilder(
             applicationContext,
             UsersDatabase::class.java, "UsersDatabase"
-        ).allowMainThreadQueries()
-            .build()
-            .userDao()
+        ).build().userDao()
     }
 
-    fun getUsers(): List<User> {
-        return dao.getAll()
+    suspend fun getUsersList(): List<User> {
+        return dao.getUsersList()
     }
 
-    fun getUser(userID: Int): User {
-        return dao.getUser(userID)
+    suspend fun findUser(userID: Int): User {
+        return dao.findUser(userID)
     }
 
-    fun getUserByUsername(vUsername: String): User {
-        return dao.getUserByUsername(vUsername)
-    }
-
-    fun getUserByEmail(vEmail: String): User {
-        return dao.getUserByEmail(vEmail)
-    }
-
-    //fun updateUser() {
-    //    return dao.updateUser(User)
-    //}
-
-    //fun update(date: Long?, uid: Int){
-    //    return dao.update(date,uid)
-    //}
-
-    fun findUser(username: String, password: String): User {
-        Log.d("log", "Attempted to find user: $username, $password")
+    suspend fun findUser(username: String, password: String): User {
         return dao.findUser(username, password)
     }
 
-    fun addUser(user: User) {
-        Log.d("log", "Attempted to add user")
-        return dao.insertAll(user)
+    suspend fun findUser(email: String): User {
+        return dao.findUser(email)
+    }
+
+    suspend fun insertVarargUser(vararg user: User) {
+        return dao.insertVarargUser(*user)
+    }
+
+    suspend fun deleteUser(user: User) {
+        return dao.deleteUser(user)
     }
 }
 

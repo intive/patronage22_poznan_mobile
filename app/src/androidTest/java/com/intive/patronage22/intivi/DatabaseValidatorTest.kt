@@ -3,9 +3,10 @@ package com.intive.patronage22.intivi
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import database.User
-import database.UserDao
-import database.UsersDatabase
+import com.intive.patronage22.intivi.database.User
+import com.intive.patronage22.intivi.database.UserDao
+import com.intive.patronage22.intivi.database.UsersDatabase
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -28,11 +29,10 @@ class DatabaseValidatorTest {
     }
 
     @Test
-    fun writeUserAndReadInList() {
+    fun writeUserAndReadInList() = runBlocking {
         val user = User(1, "george", "password", "e@mail.com")
-        userDao.insertAll(user)
-        val byName: List<User> = userDao.findAllByName("george")
-        val user1: User = byName[0]
-        assert(user1 == user)
+        userDao.insertVarargUser(user)
+        val foundUser: User = userDao.findUser("e@mail.com")
+        assert(foundUser == user)
     }
 }

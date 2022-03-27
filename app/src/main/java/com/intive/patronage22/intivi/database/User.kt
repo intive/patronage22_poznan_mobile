@@ -1,4 +1,4 @@
-package database
+package com.intive.patronage22.intivi.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -10,5 +10,4 @@ data class User(
     @ColumnInfo(name = "username") var username: String?,
     @ColumnInfo(name = "password") var password: String?,
     @ColumnInfo(name = "email") var email: String?,
-    //@ColumnInfo(name = "login_date") val login_date: Long?
 )
