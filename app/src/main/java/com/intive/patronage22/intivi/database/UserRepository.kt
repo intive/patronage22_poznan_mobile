@@ -20,7 +20,7 @@ class UserRepository {
         return dao.getUsersList()
     }
 
-    fun findUser(scope: CoroutineScope): List<User>? {
+    fun getUsersList(scope: CoroutineScope): List<User>? {
         var users: List<User>? = null
         runBlocking{
             scope.async(Dispatchers.IO){
