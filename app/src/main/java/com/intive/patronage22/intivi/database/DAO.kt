@@ -15,17 +15,26 @@ interface UserDao {
     @Query("SELECT * FROM User WHERE uid =:userID")
     suspend fun findUser(userID: Int): User
 
-    @Query("SELECT * FROM User WHERE email =:vEmail")
-    suspend fun findUser(vEmail: String): User
+    @Query("SELECT * FROM User WHERE email =:email")
+    suspend fun findUser(email: String): User
+
+    @Query("UPDATE User SET email=:new_email WHERE uid = :id")
+    suspend fun updateEmail(new_email: String?, id: Int)
+
+    @Query("UPDATE User SET username=:new_username WHERE uid = :id")
+    suspend fun updateUsername(new_username: String?, id: Int)
 
     @Query("UPDATE User SET password=:new_password WHERE uid = :id")
     suspend fun updatePassword(new_password: String?, id: Int)
 
+    @Query("UPDATE User SET avatar=:new_avatar WHERE uid = :id")
+    suspend fun updateAvatar(new_avatar: Int?, id: Int)
+
     @Update
     suspend fun updateUser(user: User)
 
-    @Insert
-    suspend fun insertVarargUser(vararg users: User)
+    @Insert (onConflict = OnConflictStrategy.ABORT)
+    suspend fun insertUsers(vararg users: User)
 
     @Delete
     suspend fun deleteUser(user: User)

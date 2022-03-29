@@ -2,6 +2,7 @@ package com.intive.patronage22.intivi.database
 
 import android.content.Context
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import kotlinx.coroutines.*
 
@@ -22,8 +23,8 @@ class UserRepository {
 
     fun getUsersList(scope: CoroutineScope): List<User>? {
         var users: List<User>? = null
-        runBlocking{
-            scope.async(Dispatchers.IO){
+        scope.launch(Dispatchers.IO){
+            scope.async{
                 users = dao.getUsersList()
                 return@async users
             }.await()
@@ -37,8 +38,8 @@ class UserRepository {
 
     fun findUser(scope: CoroutineScope, userID: Int): User? {
         var user: User? = null
-        runBlocking{
-            scope.async(Dispatchers.IO){
+        scope.launch(Dispatchers.IO){
+            scope.async{
                 user = dao.findUser(userID)
                 return@async user
             }.await()
@@ -52,8 +53,8 @@ class UserRepository {
 
     fun findUser(scope: CoroutineScope, email: String, password: String): User? {
         var user: User? = null
-        runBlocking{
-            scope.async(Dispatchers.IO){
+        scope.launch(Dispatchers.IO){
+            scope.async{
                 user = dao.findUser(email, password)
                 return@async user
             }.await()
@@ -67,13 +68,43 @@ class UserRepository {
 
     fun findUser(scope: CoroutineScope, email: String): User? {
         var user: User? = null
-        runBlocking{
-            scope.async(Dispatchers.IO){
+        scope.launch(Dispatchers.IO){
+            scope.async{
                 user = dao.findUser(email)
                 return@async user
             }.await()
         }
         return user
+    }
+
+    suspend fun updateUsername(newUsername: String, Id: Int) {
+        return dao.updateUsername(newUsername, Id)
+    }
+
+    fun updateUsername(scope: CoroutineScope,newUsername: String, Id: Int) {
+        scope.launch(Dispatchers.IO){
+            dao.updateEmail(newUsername, Id)
+        }
+    }
+
+    suspend fun updateEmail(newEmail: String, Id: Int) {
+        return dao.updateEmail(newEmail, Id)
+    }
+
+    fun updateEmail(scope: CoroutineScope,newEmail: String, Id: Int) {
+        scope.launch(Dispatchers.IO){
+            dao.updateEmail(newEmail, Id)
+        }
+    }
+
+    suspend fun updateAvatar(newAvatar: Int, Id: Int) {
+        return dao.updateAvatar(newAvatar, Id)
+    }
+
+    fun updateAvatar(scope: CoroutineScope,newAvatar: Int, Id: Int) {
+        scope.launch(Dispatchers.IO){
+            dao.updateAvatar(newAvatar, Id)
+        }
     }
 
     suspend fun updatePassword(newPassword: String, Id: Int) {
@@ -96,13 +127,13 @@ class UserRepository {
         }
     }
 
-    suspend fun insertVarargUser(vararg user: User) {
-        return dao.insertVarargUser(*user)
+    suspend fun insertUsers(vararg user: User) {
+        return dao.insertUsers(*user)
     }
 
-    fun insertVarargUser(scope: CoroutineScope, vararg user: User) {
+    fun insertUsers(scope: CoroutineScope, vararg user: User) {
         scope.launch(Dispatchers.IO){
-            dao.insertVarargUser(*user)
+            dao.insertUsers(*user)
         }
     }
 
