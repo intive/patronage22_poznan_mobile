@@ -14,7 +14,6 @@
     <dimen name="detailsLineHeight">20dp</dimen>
     <dimen name="detailsInfoTopMargin">52dp</dimen>
     <dimen name="detailsInfoTextSize">14sp</dimen>
-    <dimen name="detailsCircleMarginTop">8dp</dimen>
     <dimen name="detailsDescriptionTextHeight">80dp</dimen>
     <dimen name="detailsDescriptionMarginTop">96dp</dimen>
     <dimen name="detailsWatchButtonCornerRadius">12dp</dimen>
@@ -66,4 +65,5 @@
     <dimen name="scrubBarMarginBottom">4dp</dimen>
     <dimen name="VideoPlayerTimeTextSize">12sp</dimen>
     <dimen name="header_bar_padding_top">32dp</dimen>
+    <dimen name="header_bar_item_padding_bottom">8dp</dimen>
 </resources>
