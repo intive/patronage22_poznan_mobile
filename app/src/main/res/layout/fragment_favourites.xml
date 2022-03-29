@@ -10,7 +10,7 @@
         android:id="@+id/header_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/header_bar_margin_top"
+        android:paddingTop="@dimen/header_bar_padding_top"
         android:gravity="center|left"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"

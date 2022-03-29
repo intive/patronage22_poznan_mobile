@@ -10,7 +10,8 @@
   <LinearLayout
       android:id="@+id/header_bar"
       android:layout_width="match_parent"
-      android:layout_height="@dimen/header_height"
+      android:layout_height="wrap_content"
+      android:paddingTop="@dimen/header_bar_padding_top"
       android:gravity="center|start"
       android:orientation="horizontal"
       app:layout_constraintLeft_toLeftOf="parent"
