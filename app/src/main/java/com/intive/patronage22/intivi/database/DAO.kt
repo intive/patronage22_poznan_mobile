@@ -10,13 +10,13 @@ interface UserDao {
 
     @Query("SELECT * FROM User WHERE email LIKE :email AND " +
             "password LIKE :password LIMIT 1")
-    suspend fun findUser(email: String, password: String): User
+    suspend fun getUser(email: String, password: String): User
 
     @Query("SELECT * FROM User WHERE uid =:userID")
-    suspend fun findUser(userID: Int): User
+    suspend fun getUser(userID: Int): User
 
     @Query("SELECT * FROM User WHERE email =:email")
-    suspend fun findUser(email: String): User
+    suspend fun getUser(email: String): User
 
     @Query("UPDATE User SET email=:new_email WHERE uid = :id")
     suspend fun updateEmail(new_email: String?, id: Int)
@@ -38,4 +38,7 @@ interface UserDao {
 
     @Delete
     suspend fun deleteUser(user: User)
+
+    @Query("SELECT EXISTS(SELECT * FROM User WHERE email = :email)")
+    suspend fun isEmailTaken(email: String): Boolean
 }

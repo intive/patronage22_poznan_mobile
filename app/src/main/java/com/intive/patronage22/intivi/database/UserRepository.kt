@@ -1,8 +1,6 @@
 package com.intive.patronage22.intivi.database
 
 import android.content.Context
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import kotlinx.coroutines.*
 
@@ -33,14 +31,14 @@ class UserRepository {
     }
 
     suspend fun findUser(userID: Int): User {
-        return dao.findUser(userID)
+        return dao.getUser(userID)
     }
 
     fun findUser(scope: CoroutineScope, userID: Int): User? {
         var user: User? = null
         scope.launch(Dispatchers.IO){
             scope.async{
-                user = dao.findUser(userID)
+                user = dao.getUser(userID)
                 return@async user
             }.await()
         }
@@ -48,14 +46,14 @@ class UserRepository {
     }
 
     suspend fun findUser(email: String, password: String): User {
-        return dao.findUser(email, password)
+        return dao.getUser(email, password)
     }
 
     fun findUser(scope: CoroutineScope, email: String, password: String): User? {
         var user: User? = null
         scope.launch(Dispatchers.IO){
             scope.async{
-                user = dao.findUser(email, password)
+                user = dao.getUser(email, password)
                 return@async user
             }.await()
         }
@@ -63,14 +61,14 @@ class UserRepository {
     }
 
     suspend fun findUser(email: String): User {
-        return dao.findUser(email)
+        return dao.getUser(email)
     }
 
     fun findUser(scope: CoroutineScope, email: String): User? {
         var user: User? = null
         scope.launch(Dispatchers.IO){
             scope.async{
-                user = dao.findUser(email)
+                user = dao.getUser(email)
                 return@async user
             }.await()
         }
@@ -145,6 +143,21 @@ class UserRepository {
         scope.launch(Dispatchers.IO){
             dao.deleteUser(user)
         }
+    }
+
+    suspend fun isEmailTaken(email: String): Boolean{
+        return dao.isEmailTaken(email)
+    }
+
+    fun isEmailTaken(scope: CoroutineScope, email: String): Boolean {
+        var result: Boolean = false
+        scope.launch(Dispatchers.IO){
+            scope.async{
+                result = dao.isEmailTaken(email)
+                return@async result
+            }.await()
+        }
+        return result
     }
 }
 
