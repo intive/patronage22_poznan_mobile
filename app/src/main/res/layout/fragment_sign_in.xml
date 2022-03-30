@@ -32,6 +32,7 @@
                 android:id="@+id/loginEditText"
                 android:layout_marginHorizontal="@dimen/loginMarginHorizontal"
                 android:layout_marginTop="@dimen/loginEmailMarginTop"
+                android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM@._-1234567890"
                 android:inputType="textEmailAddress"
                 style="@style/inputText"/>
 

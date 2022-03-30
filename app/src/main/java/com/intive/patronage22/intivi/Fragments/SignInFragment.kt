@@ -45,8 +45,6 @@ class SignInFragment : Fragment() {
         val emailValidMess: String = getString(R.string.emailValidMessage)
         val passwordValidMess: String = getString(R.string.passwordValidMessage)
 
-        upperToLowerCase(loginEmail!!)
-
         fun isValid() = isLoginFormValid(loginEmail!!, loginPassword!!,
             emailValidMess, passwordValidMess)
 
