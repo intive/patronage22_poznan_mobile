@@ -2,6 +2,7 @@ package com.intive.patronage22.intivi
 
 import android.util.Patterns.EMAIL_ADDRESS
 import android.widget.EditText
+import java.util.regex.Pattern
 
 fun isLoginFormValid(email: EditText, password: EditText, emailMess: String, passMess: String): Boolean {
     setEmailValidMessage(email, emailMess)
@@ -36,9 +37,15 @@ private fun setRepeatPasswordValidMessage(password: EditText, repeatPass: EditTe
 
 private fun isEmailOK(editText: EditText): Boolean {
     val email = editText.text.toString()
-    val localPartLength = email.split("@").first().length
+    val localPart = email.split("@").first()
     val domainPartLength = email.split("@").last().length
-    return !(!isEmailValid(email) || localPartLength > 64 || domainPartLength > 255)
+    val localPartLength = localPart.length
+    val chars = arrayOf('.', '-', '_')
+    val starts: Boolean = chars.contains(localPart.first())
+    val ends: Boolean = chars.contains(localPart.last())
+    val regex = "\\.\\.".toRegex()
+    val dots: Boolean = regex.containsMatchIn(localPart)
+    return !(!isEmailValid(email) || localPartLength > 64 || domainPartLength > 255 || starts || ends || dots)
 }
 
 private fun isEmailValid(email: String): Boolean {
