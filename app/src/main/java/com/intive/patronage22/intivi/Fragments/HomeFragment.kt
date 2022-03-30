@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.Adapter.RecyclerAdapter
 import com.intive.patronage22.intivi.DetailsActivity
 import com.intive.patronage22.intivi.R
+import com.intive.patronage22.intivi.databinding.FragmentHomeBinding
+import com.intive.patronage22.intivi.model.MovieItem
+import com.intive.patronage22.intivi.model.movieList
 
 class HomeFragment : Fragment() {
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
-    var recyclerView: RecyclerView? = null
+    private lateinit var bind: FragmentHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,15 +27,16 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        bind = FragmentHomeBinding.inflate(inflater, container, false)
+        return bind.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         clickNavigate(view.findViewById<ImageView>(R.id.app_logo), DetailsActivity::class.java)
-        recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView?.adapter=RecyclerAdapter()
-        recyclerView?.layoutManager=GridLayoutManager(activity,2)
+        bind.recyclerView.adapter=RecyclerAdapter()
+        bind.recyclerView.layoutManager=GridLayoutManager(activity,2)
+        setData()
 
     }
 
@@ -42,5 +44,53 @@ class HomeFragment : Fragment() {
         view.setOnClickListener{
             startActivity(Intent(getActivity(), activity))
         }
+    }
+
+    private fun setData() {
+        movieList.add(MovieItem("Moonfall", R.drawable.avatar_moonfall))
+        movieList.add(MovieItem("Sing 2", R.drawable.avatar_sing_2))
+        movieList.add(MovieItem("The Expanse", R.drawable.avatar_the_expanse))
+        movieList.add(MovieItem("Death on the Nile", R.drawable.avatar_death_on_the_nile))
+        movieList.add(MovieItem("Little Nicholas' Treasure",R.drawable.avatar_little_nicholas_treasure))
+        movieList.add(MovieItem("Moonfall", R.drawable.avatar_moonfall))
+        movieList.add(MovieItem("Sing 2", R.drawable.avatar_sing_2))
+        movieList.add(MovieItem("The Expanse", R.drawable.avatar_the_expanse))
+        movieList.add(MovieItem("Death on the Nile", R.drawable.avatar_death_on_the_nile))
+        movieList.add(MovieItem("Little Nicholas' Treasure",R.drawable.avatar_little_nicholas_treasure))
+        movieList.add(MovieItem("Moonfall", R.drawable.avatar_moonfall))
+        movieList.add(MovieItem("Sing 2", R.drawable.avatar_sing_2))
+        movieList.add(MovieItem("The Expanse", R.drawable.avatar_the_expanse))
+        movieList.add(MovieItem("Death on the Nile", R.drawable.avatar_death_on_the_nile))
+        movieList.add(MovieItem("Little Nicholas' Treasure",R.drawable.avatar_little_nicholas_treasure))
+        movieList.add(MovieItem("Moonfall", R.drawable.avatar_moonfall))
+        movieList.add(MovieItem("Sing 2", R.drawable.avatar_sing_2))
+        movieList.add(MovieItem("The Expanse", R.drawable.avatar_the_expanse))
+        movieList.add(MovieItem("Death on the Nile", R.drawable.avatar_death_on_the_nile))
+        movieList.add(MovieItem("Little Nicholas' Treasure",R.drawable.avatar_little_nicholas_treasure))
+        movieList.add(MovieItem("Moonfall", R.drawable.avatar_moonfall))
+        movieList.add(MovieItem("Sing 2", R.drawable.avatar_sing_2))
+        movieList.add(MovieItem("The Expanse", R.drawable.avatar_the_expanse))
+        movieList.add(MovieItem("Death on the Nile", R.drawable.avatar_death_on_the_nile))
+        movieList.add(MovieItem("Little Nicholas' Treasure",R.drawable.avatar_little_nicholas_treasure))
+        movieList.add(MovieItem("Moonfall", R.drawable.avatar_moonfall))
+        movieList.add(MovieItem("Sing 2", R.drawable.avatar_sing_2))
+        movieList.add(MovieItem("The Expanse", R.drawable.avatar_the_expanse))
+        movieList.add(MovieItem("Death on the Nile", R.drawable.avatar_death_on_the_nile))
+        movieList.add(MovieItem("Little Nicholas' Treasure",R.drawable.avatar_little_nicholas_treasure))
+        movieList.add(MovieItem("Moonfall", R.drawable.avatar_moonfall))
+        movieList.add(MovieItem("Sing 2", R.drawable.avatar_sing_2))
+        movieList.add(MovieItem("The Expanse", R.drawable.avatar_the_expanse))
+        movieList.add(MovieItem("Death on the Nile", R.drawable.avatar_death_on_the_nile))
+        movieList.add(MovieItem("Little Nicholas' Treasure",R.drawable.avatar_little_nicholas_treasure))
+        movieList.add(MovieItem("Moonfall", R.drawable.avatar_moonfall))
+        movieList.add(MovieItem("Sing 2", R.drawable.avatar_sing_2))
+        movieList.add(MovieItem("The Expanse", R.drawable.avatar_the_expanse))
+        movieList.add(MovieItem("Death on the Nile", R.drawable.avatar_death_on_the_nile))
+        movieList.add(MovieItem("Little Nicholas' Treasure",R.drawable.avatar_little_nicholas_treasure))
+        movieList.add(MovieItem("Moonfall", R.drawable.avatar_moonfall))
+        movieList.add(MovieItem("Sing 2", R.drawable.avatar_sing_2))
+        movieList.add(MovieItem("The Expanse", R.drawable.avatar_the_expanse))
+        movieList.add(MovieItem("Death on the Nile", R.drawable.avatar_death_on_the_nile))
+        movieList.add(MovieItem("Little Nicholas' Treasure",R.drawable.avatar_little_nicholas_treasure))
     }
 }
