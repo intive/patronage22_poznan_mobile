@@ -1,6 +1,7 @@
 package com.intive.patronage22.intivi
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -30,5 +31,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }.attach()
+
+        this.window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 }

@@ -19,6 +19,7 @@
         <item name="android:textColor">@color/greyscale</item>
         <item name="android:textColorHint">@color/greyscale</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
-
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 </resources>
