@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.intive.patronage22.intivi.database.User
 import com.intive.patronage22.intivi.database.UserDao
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [User::class], version = 4)
 abstract class UsersDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 }

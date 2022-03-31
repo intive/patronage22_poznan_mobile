@@ -12,7 +12,7 @@ class UserRepository {
         dao = Room.databaseBuilder(
             applicationContext,
             UsersDatabase::class.java, "UsersDatabase"
-        ).build().userDao()
+        ).fallbackToDestructiveMigration().build().userDao()
     }
 
     suspend fun getUsersList(): List<User> {
@@ -150,7 +150,7 @@ class UserRepository {
     }
 
     fun isEmailTaken(scope: CoroutineScope, email: String): Boolean {
-        var result: Boolean = false
+        var result = false
         scope.launch(Dispatchers.IO){
             scope.async{
                 result = dao.isEmailTaken(email)
