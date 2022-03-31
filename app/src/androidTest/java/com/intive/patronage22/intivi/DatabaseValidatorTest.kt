@@ -3,9 +3,10 @@ package com.intive.patronage22.intivi
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import database.User
-import database.UserDao
-import database.UsersDatabase
+import com.intive.patronage22.intivi.database.User
+import com.intive.patronage22.intivi.database.UserDao
+import com.intive.patronage22.intivi.database.UsersDatabase
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -13,10 +14,11 @@ import org.junit.Test
 class DatabaseValidatorTest {
     private lateinit var userDao: UserDao
     private lateinit var db: UsersDatabase
+    private val user = User(1, "george", "password", "e@mail.com", System.currentTimeMillis())
+    private val context: Context = ApplicationProvider.getApplicationContext()
 
     @Before
     fun createDb() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
             context, UsersDatabase::class.java).build()
         userDao = db.userDao()
@@ -28,11 +30,22 @@ class DatabaseValidatorTest {
     }
 
     @Test
-    fun writeUserAndReadInList() {
-        val user = User(1, "george", "password", "e@mail.com")
-        userDao.insertAll(user)
-        val byName: List<User> = userDao.findAllByName("george")
-        val user1: User = byName[0]
-        assert(user1 == user)
+    fun insertUserAndCompare() = runBlocking {
+        userDao.insertUsers(user)
+        val foundUser: User = userDao.getUser("e@mail.com")
+        assert(foundUser == user)
+    }
+
+    @Test
+    fun changePassword() = runBlocking {
+        userDao.insertUsers(user)
+        userDao.updatePassword("new_password", userDao.getUser("e@mail.com").uid)
+        assert(userDao.getUser("e@mail.com").password == "new_password")
+    }
+
+    @Test
+    fun checkEmailTaken() = runBlocking {
+        userDao.insertUsers(user)
+        assert(userDao.isEmailTaken("e@mail.com"))
     }
 }

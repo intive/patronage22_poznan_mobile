@@ -1,41 +1,44 @@
-package database
+package com.intive.patronage22.intivi.database
 
-import android.service.autofill.UserData
 import androidx.room.*
+import com.intive.patronage22.intivi.database.User
 
 @Dao
 interface UserDao {
     @Query("SELECT * FROM User")
-    fun getAll(): List<User>
+    suspend fun getUsersList(): List<User>
 
-    @Query("SELECT * FROM User WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<User>
-
-    @Query("SELECT * FROM User WHERE username LIKE :username AND " +
+    @Query("SELECT * FROM User WHERE email LIKE :email AND " +
             "password LIKE :password LIMIT 1")
-    fun findUser(username: String, password: String): User
-
-    @Query("SELECT * FROM user WHERE username LIKE :usernameQuery ")
-    fun findAllByName(usernameQuery: String): List<User>
+    suspend fun getUser(email: String, password: String): User
 
     @Query("SELECT * FROM User WHERE uid =:userID")
-    fun getUser(userID: Int): User
+    suspend fun getUser(userID: Int): User
 
-    @Query("SELECT * FROM User WHERE username =:vUsername")
-    fun getUserByUsername(vUsername: String): User
+    @Query("SELECT * FROM User WHERE email =:email")
+    suspend fun getUser(email: String): User
 
-    @Query("SELECT * FROM User WHERE email =:vEmail")
-    fun getUserByEmail(vEmail: String): User
+    @Query("UPDATE User SET email=:new_email WHERE uid = :id")
+    suspend fun updateEmail(new_email: String?, id: Int)
 
-    //@Update(onConflict = OnConflictStrategy.REPLACE)
-    //fun updateUser(user: User)
+    @Query("UPDATE User SET username=:new_username WHERE uid = :id")
+    suspend fun updateUsername(new_username: String?, id: Int)
 
-    //@Query("UPDATE User SET login_date=:new_date WHERE uid = :id")
-    //fun update(new_date: Long?, id: Int)
+    @Query("UPDATE User SET password=:new_password WHERE uid = :id")
+    suspend fun updatePassword(new_password: String?, id: Int)
 
-    @Insert
-    fun insertAll(vararg users: User)
+    @Query("UPDATE User SET avatar=:new_avatar WHERE uid = :id")
+    suspend fun updateAvatar(new_avatar: Int?, id: Int)
+
+    @Update
+    suspend fun updateUser(user: User)
+
+    @Insert (onConflict = OnConflictStrategy.ABORT)
+    suspend fun insertUsers(vararg users: User)
 
     @Delete
-    fun delete(user: User)
+    suspend fun deleteUser(user: User)
+
+    @Query("SELECT EXISTS(SELECT * FROM User WHERE email = :email)")
+    suspend fun isEmailTaken(email: String): Boolean
 }
