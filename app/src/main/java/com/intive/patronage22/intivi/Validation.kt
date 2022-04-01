@@ -2,7 +2,7 @@ package com.intive.patronage22.intivi
 
 import android.util.Patterns.EMAIL_ADDRESS
 import android.widget.EditText
-import java.util.regex.Pattern
+import java.util.*
 
 fun isLoginFormValid(email: EditText, password: EditText, emailMess: String, passMess: String): Boolean {
     setEmailValidMessage(email, emailMess)
@@ -37,15 +37,19 @@ private fun setRepeatPasswordValidMessage(password: EditText, repeatPass: EditTe
 
 private fun isEmailOK(editText: EditText): Boolean {
     val email = editText.text.toString()
-    val localPart = email.split("@").first()
-    val domainPartLength = email.split("@").last().length
-    val localPartLength = localPart.length
-    val chars = arrayOf('.', '-', '_')
-    val starts: Boolean = chars.contains(localPart.first())
-    val ends: Boolean = chars.contains(localPart.last())
-    val regex = "\\.\\.".toRegex()
-    val dots: Boolean = regex.containsMatchIn(localPart)
-    return !(!isEmailValid(email) || localPartLength > 64 || domainPartLength > 255 || starts || ends || dots)
+    try {
+        val localPart = email.split("@").first()
+        val domainPartLength = email.split("@").last().length
+        val localPartLength = localPart.length
+        val chars = arrayOf('.', '-', '_')
+        val starts: Boolean = chars.contains(localPart.first())
+        val ends: Boolean = chars.contains(localPart.last())
+        val regex = "\\.\\.".toRegex()
+        val dots: Boolean = regex.containsMatchIn(localPart)
+        return !(!isEmailValid(email) || localPartLength > 64 || domainPartLength > 255 || starts || ends || dots)
+    } catch (e: Exception) {
+        return false
+    }
 }
 
 private fun isEmailValid(email: String): Boolean {
