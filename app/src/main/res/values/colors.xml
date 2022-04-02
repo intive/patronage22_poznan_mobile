@@ -15,4 +15,5 @@
     <color name="grey_white">#DEE2E2</color>
     <color name="greyscale">#E9E9E9</color>
     <color name="greyed_out">#808080</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

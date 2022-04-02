@@ -1,6 +1,7 @@
 package com.intive.patronage22.intivi
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
@@ -20,6 +21,7 @@ class DetailsActivity : AppCompatActivity() {
         findViewById<Button>(R.id.watchButton).setOnClickListener{
             startActivity(Intent(this, VideoPlayerActivity::class.java))
         }
-        this.window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+
+        if (Build.VERSION.SDK_INT < 29) this.window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 }
