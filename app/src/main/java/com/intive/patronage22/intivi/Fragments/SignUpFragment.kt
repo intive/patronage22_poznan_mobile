@@ -44,9 +44,8 @@ class SignUpFragment : Fragment() {
 
         bind.signUpButton.setOnClickListener {
             if (isValid()) {
-                val intent = Intent(this.requireContext(), MainActivity::class.java)
-                startActivity(intent)
-                activity?.onBackPressed()
+                loginViewModel.registerUser()
+                //activity?.onBackPressed()
             }
         }
 
