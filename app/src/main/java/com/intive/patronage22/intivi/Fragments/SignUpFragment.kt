@@ -39,8 +39,6 @@ class SignUpFragment : Fragment() {
         val passwordValidMess: String = getString(R.string.passwordValidMessage)
         val repeatPassValidMess: String = getString(R.string.repeatPassValidMessage)
 
-        upperToLowerCase(registerEmail!!)
-
         fun isValid() = isRegisterFormValid(registerEmail!!, registerPassword!!, registerRepeatPassword!!,
             emailValidMess, passwordValidMess, repeatPassValidMess)
 
