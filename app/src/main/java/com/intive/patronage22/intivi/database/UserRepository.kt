@@ -1,6 +1,7 @@
 package com.intive.patronage22.intivi.database
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Room
 import kotlinx.coroutines.*
 
@@ -8,12 +9,13 @@ class UserRepository {
 
     private lateinit var dao: UserDao
 
-    fun initialize(applicationContext: Context) {
-        dao = Room.databaseBuilder(
-            applicationContext,
-            UsersDatabase::class.java, "UsersDatabase"
-        ).fallbackToDestructiveMigration().build().userDao()
-    }
+
+        fun initialize(applicationContext: Context){
+            dao = Room.databaseBuilder(
+                applicationContext,
+                UsersDatabase::class.java, "UsersDatabase"
+            ).fallbackToDestructiveMigration().build().userDao()
+        }
 
     suspend fun getUsersList(): List<User> {
         return dao.getUsersList()
