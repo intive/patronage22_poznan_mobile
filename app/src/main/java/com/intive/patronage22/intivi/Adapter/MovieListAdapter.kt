@@ -7,22 +7,28 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.R
-import com.intive.patronage22.intivi.model.movieList
+import com.intive.patronage22.intivi.model.MovieItem
 
+class MovieListAdapter:RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
-class RecyclerAdapter:RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
+    private var movieList: List<MovieItem>? = null
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_grid_home, parent,false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
-        holder.itemTitle.text = movieList[position].title
-        holder.itemImage.setImageResource(movieList[position].image)
+    override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
+        holder.itemTitle.text = movieList!![position].title
+        holder.itemImage.setImageResource(movieList!![position].image)
+    }
+
+    fun setMovieList(list: List<MovieItem>) {
+        movieList = list
     }
 
     override fun getItemCount(): Int {
-        return movieList.size
+        return movieList!!.size
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

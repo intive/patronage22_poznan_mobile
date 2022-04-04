@@ -1,10 +1,13 @@
 package com.intive.patronage22.intivi.model
 
-var movieList = arrayListOf<MovieItem>()
-
-class MovieItem(
+data class MovieItem(
     val title: String,
     val image: Int
 ) {
-    val movieId:Long = movieList.size.toLong()
+    val movieId: Long = currentId++
+
+    companion object {
+        // todo: this needs to be definitely fixed
+        var currentId: Long = 0
+    }
 }
