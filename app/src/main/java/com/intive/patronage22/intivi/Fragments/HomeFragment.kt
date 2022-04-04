@@ -7,39 +7,42 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.intive.patronage22.intivi.Adapter.RecyclerAdapter
+import com.intive.patronage22.intivi.Adapter.MovieListAdapter
 import com.intive.patronage22.intivi.DetailsActivity
 import com.intive.patronage22.intivi.R
+import com.intive.patronage22.intivi.ViewModels.HomeViewModel
+import com.intive.patronage22.intivi.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
-    var recyclerView: RecyclerView? = null
+    private lateinit var bind: FragmentHomeBinding
+    private val homeViewModel: HomeViewModel by activityViewModels()
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        bind = FragmentHomeBinding.inflate(inflater, container, false)
+        return bind.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         clickNavigate(view.findViewById<ImageView>(R.id.app_logo), DetailsActivity::class.java)
-        recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView?.adapter=RecyclerAdapter()
-        recyclerView?.layoutManager=GridLayoutManager(activity,2)
+        bind.recyclerView.adapter=MovieListAdapter()
+        bind.recyclerView.layoutManager=GridLayoutManager(activity,2)
+        homeViewModel.setData()
+        (bind.recyclerView.adapter as MovieListAdapter).setMovieList(homeViewModel.movieList)
 
     }
 
-    private fun clickNavigate(view: View, activity: Class<*>){
-        view.setOnClickListener{
+    private fun clickNavigate(view: View, activity: Class<*>) {
+        view.setOnClickListener {
             startActivity(Intent(getActivity(), activity))
         }
     }
