@@ -1,4 +1,4 @@
-package com.intive.patronage22.intivi.Fragments
+package com.intive.patronage22.intivi.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.intive.patronage22.intivi.R
 
-class FavouritesFragment : Fragment() {
-
+class GenresFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +17,6 @@ class FavouritesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_favourites, container, false)
+        return inflater.inflate(R.layout.fragment_genres, container, false)
     }
 }

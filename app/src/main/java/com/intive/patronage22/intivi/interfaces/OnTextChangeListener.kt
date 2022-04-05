@@ -1,4 +1,4 @@
-package com.intive.patronage22.intivi
+package com.intive.patronage22.intivi.interfaces
 
 import android.text.Editable
 import android.text.TextWatcher

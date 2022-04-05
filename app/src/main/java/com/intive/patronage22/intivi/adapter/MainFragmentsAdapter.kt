@@ -1,10 +1,9 @@
-package com.intive.patronage22.intivi.Adapter
+package com.intive.patronage22.intivi.adapter
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.intive.patronage22.intivi.Fragments.*
+import com.intive.patronage22.intivi.fragments.*
 
 internal class MainFragmentsAdapter (fa: FragmentActivity, var totalTabs: Int): FragmentStateAdapter(fa) {
 

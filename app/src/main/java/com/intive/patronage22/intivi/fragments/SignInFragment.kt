@@ -1,12 +1,9 @@
-package com.intive.patronage22.intivi.Fragments
+package com.intive.patronage22.intivi.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +12,9 @@ import android.widget.EditText
 import com.intive.patronage22.intivi.*
 import androidx.fragment.app.activityViewModels
 import com.intive.patronage22.intivi.MainActivity
-import com.intive.patronage22.intivi.OnTextChangeListener
+import com.intive.patronage22.intivi.interfaces.OnTextChangeListener
 import com.intive.patronage22.intivi.R
-import com.intive.patronage22.intivi.ViewModels.LoginViewModel
+import com.intive.patronage22.intivi.viewmodels.LoginViewModel
 import com.intive.patronage22.intivi.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
