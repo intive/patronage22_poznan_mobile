@@ -40,7 +40,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application){
     }
 
     fun registerUser(){
-        val email = _emailHolder.value.toString()
+        val email = _emailHolder.value.toString().lowercase()
         val password = _passwordHolder.value.toString()
         viewModelScope.launch(Dispatchers.IO) {
             viewModelScope.async {
@@ -61,7 +61,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application){
         }
     }
 
-    fun loginUser(email: String = _emailHolder.value.toString(), password: String = _passwordHolder.value.toString()){
+    fun loginUser(email: String = _emailHolder.value.toString().lowercase(), password: String = _passwordHolder.value.toString()){
         viewModelScope.launch(Dispatchers.IO){
             viewModelScope.async{
                 if(userRepo.doesUserExist(email, password)){
