@@ -1,25 +1,18 @@
 package com.intive.patronage22.intivi.ViewModels
 
 import android.app.Application
-import android.content.Intent
-import android.util.Log
-import android.widget.EditText
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.*
-import com.intive.patronage22.intivi.MainActivity
 import com.intive.patronage22.intivi.database.User
 import com.intive.patronage22.intivi.database.UserRepository
-import com.intive.patronage22.intivi.isLoginFormValid
-import com.intive.patronage22.intivi.isRegisterFormValid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class LoginViewModel(application: Application) : AndroidViewModel(application){
 
     private val userRepo = UserRepository()
 
+    //TODO dejanuszify passing context into viewmodel
     init{
         userRepo.initialize(getApplication<Application>().applicationContext)
     }
@@ -47,26 +40,34 @@ class LoginViewModel(application: Application) : AndroidViewModel(application){
     }
 
     fun registerUser(){
+        val email = _emailHolder.value.toString()
+        val password = _passwordHolder.value.toString()
         viewModelScope.launch(Dispatchers.IO) {
             viewModelScope.async {
-                if (!userRepo.isEmailTaken(_emailHolder.value!!)) {
+                if (!userRepo.isEmailTaken(email)) {
                     userRepo.insertUsers(
                         User(
                             0,
                             null,
-                            _passwordHolder.value,
-                            _emailHolder.value,
+                            password,
+                            email,
                             System.currentTimeMillis(),
                             null
                         )
                     )
-                    loginUser(_emailHolder.value!!, _passwordHolder.value!!)
+                    loginUser(email, password)
                 }
             }
         }
     }
 
-    fun loginUser(email: String, password: String){
-        //TODO task 1659
+    fun loginUser(email: String = _emailHolder.value.toString(), password: String = _passwordHolder.value.toString()){
+        viewModelScope.launch(Dispatchers.IO){
+            viewModelScope.async{
+                if(userRepo.doesUserExist(email, password)){
+                    _canLogIn.value = true
+                }
+            }
+        }
     }
 }

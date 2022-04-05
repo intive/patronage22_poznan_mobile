@@ -1,12 +1,8 @@
 package com.intive.patronage22.intivi.Fragments
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -50,9 +46,7 @@ class SignInFragment : Fragment() {
 
         bind.signInButton.setOnClickListener {
             if (isValid()) {
-                val intent = Intent(this.requireContext(), MainActivity::class.java)
-                startActivity(intent)
-                activity?.onBackPressed()
+                loginViewModel.loginUser()
             }
         }
 
