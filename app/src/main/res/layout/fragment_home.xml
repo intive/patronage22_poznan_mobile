@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@id/header_bar">
 
         <TextView
-            android:id="@+id/button2"
+            android:id="@+id/filter_button_series"
             style="@style/filter_button_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             tools:layout_conversion_absoluteWidth="74dp" />
 
         <TextView
-            android:id="@+id/button"
+            android:id="@+id/filter_button_kids"
             style="@style/filter_button_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
