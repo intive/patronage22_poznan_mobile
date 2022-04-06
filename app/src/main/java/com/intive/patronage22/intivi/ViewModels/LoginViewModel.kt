@@ -17,6 +17,10 @@ class LoginViewModel(application: Application) : AndroidViewModel(application){
         userRepo.initialize(getApplication<Application>().applicationContext)
     }
 
+    private val _loggedUserId = MutableLiveData<Int>(null)
+    val loggedUserId: LiveData<Int> = _loggedUserId
+//    private val _loggedInUser = MutableLiveData<User>(null)
+//    val loggedInUser: LiveData<User> = _loggedInUser
     private val _canLogIn = MutableLiveData(false)
     val canLogIn: LiveData<Boolean> = _canLogIn
 
@@ -61,11 +65,26 @@ class LoginViewModel(application: Application) : AndroidViewModel(application){
         }
     }
 
+//    fun loginUser(email: String = _emailHolder.value.toString().lowercase(), password: String = _passwordHolder.value.toString()){
+//        viewModelScope.launch(Dispatchers.IO){
+//            viewModelScope.async{
+//                if(userRepo.doesUserExist(email, password)){
+//                    _loggedInUser.value = userRepo.findUser(email, password)
+//                    if(loggedInUser.value != null) {
+//                        _canLogIn.value = true
+//                    }
+//                }
+//            }
+//        }
+//    }
     fun loginUser(email: String = _emailHolder.value.toString().lowercase(), password: String = _passwordHolder.value.toString()){
         viewModelScope.launch(Dispatchers.IO){
             viewModelScope.async{
                 if(userRepo.doesUserExist(email, password)){
-                    _canLogIn.value = true
+                    _loggedUserId.value = userRepo.getUserId(email, password)
+                    if(_loggedUserId.value != null) {
+                        _canLogIn.value = true
+                    }
                 }
             }
         }

@@ -44,4 +44,7 @@ interface UserDao {
 
     @Query("SELECT EXISTS(SELECT * FROM User WHERE email = :email AND password = :password)")
     suspend fun doesUserExist(email: String, password: String): Boolean
+
+    @Query("SELECT uid FROM User WHERE email = :email AND password = :password")
+    suspend fun getUserId(email: String, password: String): Int
 }

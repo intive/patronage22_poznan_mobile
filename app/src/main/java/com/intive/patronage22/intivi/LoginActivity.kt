@@ -3,6 +3,7 @@ package com.intive.patronage22.intivi
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -41,8 +42,14 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel.canLogIn.observe(this) {
             if(it) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
+                try {
+                    val loggedUserId  = loginViewModel.loggedUserId.value
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("EXTRA_USER_ID", loggedUserId)
+                    startActivity(intent)
+                    finish()
+                } catch (e: Exception){
+                    Log.e("Exception: ", e?.localizedMessage.toString())}
             }
         }
     }

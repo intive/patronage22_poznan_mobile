@@ -165,6 +165,10 @@ class UserRepository {
     suspend fun doesUserExist(email: String, password: String): Boolean{
         return dao.doesUserExist(email, password)
     }
+
+    suspend fun getUserId(email: String, password: String): Int{
+        return dao.getUserId(email, password)
+    }
 }
 
 

@@ -2,6 +2,7 @@ package com.intive.patronage22.intivi.ViewModels
 
 import androidx.lifecycle.ViewModel
 import com.intive.patronage22.intivi.R
+import com.intive.patronage22.intivi.database.User
 import com.intive.patronage22.intivi.model.MovieItem
 
 class HomeViewModel: ViewModel() {

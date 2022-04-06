@@ -2,6 +2,7 @@ package com.intive.patronage22.intivi
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val loggedUserId = intent?.getIntExtra("EXTRA_USER_ID", 0)
 
         tabLayout = findViewById(R.id.footer_tab)
         viewPager = findViewById(R.id.main_viewPager)
