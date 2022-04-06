@@ -41,7 +41,7 @@ private fun isEmailOK(editText: EditText): Boolean {
         val localPart = email.split("@").first()
         val domainPartLength = email.split("@").last().length
         val localPartLength = localPart.length
-        val chars = arrayOf('.', '-', '_')
+        val chars = arrayOf('.', '-', '_', '%', '+')
         val starts: Boolean = chars.contains(localPart.first())
         val ends: Boolean = chars.contains(localPart.last())
         val regex = "\\.\\.".toRegex()
