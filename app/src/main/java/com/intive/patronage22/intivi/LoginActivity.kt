@@ -45,16 +45,12 @@ class LoginActivity : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT < 29) this.window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
-        loginViewModel.canLogIn.observe(this) {
-            if(it) {
-                try {
-                    val loggedUserId  = loginViewModel.loggedUserId.value
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("EXTRA_USER_ID", loggedUserId)
-                    startActivity(intent)
-                    finish()
-                } catch (e: Exception){
-                    Log.e("Exception: ", e?.localizedMessage.toString())}
+        loginViewModel.logInEvent.observe(this) {
+            if (it.userId != null) {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("EXTRA_USER_ID", it.userId)
+                startActivity(intent)
+                finish()
             }
         }
     }
