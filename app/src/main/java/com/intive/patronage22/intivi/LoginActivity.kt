@@ -12,16 +12,21 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.intive.patronage22.intivi.Adapter.FragmentsAdapter
 import com.intive.patronage22.intivi.ViewModels.LoginViewModel
+import com.intive.patronage22.intivi.database.UserRepository
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
+    private var userRepo = UserRepository()
     private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        userRepo.initialize(this)
+        loginViewModel.userRepo = userRepo
 
         tabLayout = findViewById(R.id.loginTabLayout)
         viewPager = findViewById(R.id.loginViewPager)

@@ -1,6 +1,7 @@
 package com.intive.patronage22.intivi.ViewModels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.intive.patronage22.intivi.database.User
 import com.intive.patronage22.intivi.database.UserRepository
@@ -8,14 +9,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class LoginViewModel(application: Application) : AndroidViewModel(application){
+class LoginViewModel: ViewModel(){
 
-    private val userRepo = UserRepository()
-
-    //TODO dejanuszify passing context into viewmodel
-    init{
-        userRepo.initialize(getApplication<Application>().applicationContext)
-    }
+    lateinit var userRepo: UserRepository
 
     private val _loggedUserId = MutableLiveData<Int>(null)
     val loggedUserId: LiveData<Int> = _loggedUserId
@@ -65,18 +61,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application){
         }
     }
 
-//    fun loginUser(email: String = _emailHolder.value.toString().lowercase(), password: String = _passwordHolder.value.toString()){
-//        viewModelScope.launch(Dispatchers.IO){
-//            viewModelScope.async{
-//                if(userRepo.doesUserExist(email, password)){
-//                    _loggedInUser.value = userRepo.findUser(email, password)
-//                    if(loggedInUser.value != null) {
-//                        _canLogIn.value = true
-//                    }
-//                }
-//            }
-//        }
-//    }
     fun loginUser(email: String = _emailHolder.value.toString().lowercase(), password: String = _passwordHolder.value.toString()){
         viewModelScope.launch(Dispatchers.IO){
             viewModelScope.async{
