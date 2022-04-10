@@ -25,14 +25,30 @@
     <string name="favourites">Favourites</string>
     <string name="genres">Genres</string>
     <string name="forgotPasswordText">Forgot password</string>
-    <string name="emailValidMessage">Please enter a correct e-mail address</string>
-    <string name="passwordValidMessage">Password must be between 5 and 40 characters long (no spaces)</string>
-    <string name="repeatPassValidMessage">Passwords do not match</string>
     <string name="resetPassword">Reset password</string>
     <string name="reenterNewPassword">Re-enter new password</string>
     <string name="showPassword">Show password</string>
     <string name="emailHasBeenSent">Email has been sent</string>
 
+    <string name="emailInvalidError">Email must be valid.</string>
+    <string name="emailIsEmpty">Email can\'t be empty.</string>
+    <string name="emailTooLongError">Email must be less than 320 characters long.</string>
+    <string name="emailLocalPartTooLongError">Local part must be 64 characters long.</string>
+    <string name="emailDomainPartTooLongError">Domain part must be 255 characters long or less.</string>
+    <string name="emailStartWithError">Local part must start with a digit or a letter.</string>
+    <string name="emailEndWithError">Local part must end with a digit or a letter.</string>
+    <string name="emailConsecutiveDotsError">Consecutive dots are not allowed.</string>
+
+    <string name="passwordTooShort">Password must be at least 8 characters long.</string>
+    <string name="passwordTooLong">Password must be less than 128 characters long.</string>
+    <string name="passwordNoDigit">Password must contain at least one digit.</string>
+    <string name="passwordNoLowercase">Password must contain at least one lower case letter.</string>
+    <string name="passwordNoUppercase">Password must contain at least one upper case letter.</string>
+    <string name="passwordNoSpecialCharacter">Password must contain at least one special character.</string>
+    <string name="passwordsDoNotMatch">Passwords must match.</string>
+
+    <string name="incorrectPasswordOrEmailError">Incorrect password or email.</string>
+    <string name="emailAlreadyTakenError">Email already taken.</string>
 
     <string name="signUp">Sign up</string>
     <string name="signIn">Sign in</string>
