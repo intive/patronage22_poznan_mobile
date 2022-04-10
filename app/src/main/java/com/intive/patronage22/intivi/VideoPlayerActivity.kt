@@ -33,9 +33,9 @@ class VideoPlayerActivity : AppCompatActivity() {
         controller.hide(WindowInsetsCompat.Type.systemBars())
         controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
-        binding.closeVideo.setOnClickListener{
-            finish()
-        }
+//        binding.closeVideo.setOnClickListener{
+//            finish()
+//        }
     }
 
     public override fun onStart() {
@@ -62,11 +62,11 @@ class VideoPlayerActivity : AppCompatActivity() {
             }
     }
 
-    private fun hideController(){
-        binding.videoControlsRoot.visibility = View.INVISIBLE
-    }
-
-    private fun showController(){
-        binding.videoControlsRoot.visibility = View.VISIBLE
-    }
+//    private fun hideController(){
+//        binding.videoControlsRoot.visibility = View.INVISIBLE
+//    }
+//
+//    private fun showController(){
+//        binding.videoControlsRoot.visibility = View.VISIBLE
+//    }
 }
