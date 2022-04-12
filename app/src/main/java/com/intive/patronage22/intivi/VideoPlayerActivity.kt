@@ -20,11 +20,11 @@ class VideoPlayerActivity : YouTubeBaseActivity() {
 
     private lateinit var binding: ActivityVideoPlayerBinding
     private lateinit var controller: WindowInsetsControllerCompat
-    val api_key =  "AIzaSyAEYViv8-o1hE3p5mbBLwI-bELPFL9UYLc"
+    val ytApiKey =  "AIzaSyAEYViv8-o1hE3p5mbBLwI-bELPFL9UYLc"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val controller = WindowInsetsControllerCompat(window, window.decorView)
+        controller = WindowInsetsControllerCompat(window, window.decorView)
         controller.hide(WindowInsetsCompat.Type.systemBars())
         controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         binding = ActivityVideoPlayerBinding.inflate(layoutInflater)
@@ -32,7 +32,7 @@ class VideoPlayerActivity : YouTubeBaseActivity() {
 
         val ytPlayer = binding.ytPlayer
 
-        ytPlayer.initialize(api_key, object : YouTubePlayer.OnInitializedListener{
+        ytPlayer.initialize(ytApiKey, object : YouTubePlayer.OnInitializedListener{
             override fun onInitializationSuccess(
                 provider: YouTubePlayer.Provider?,
                 player: YouTubePlayer?,
