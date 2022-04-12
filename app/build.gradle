@@ -52,6 +52,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation("androidx.cardview:cardview:1.0.0")
     implementation 'com.android.support:design:32.0.0'
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
 
     def junitVersion = '4.13.2'
     testImplementation "junit:junit:$junitVersion"
