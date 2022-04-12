@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.EditText
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.*
+import com.intive.patronage22.intivi.API.ApiClient
+import com.intive.patronage22.intivi.API.SessionManager
 import com.intive.patronage22.intivi.MainActivity
 import com.intive.patronage22.intivi.database.User
 import com.intive.patronage22.intivi.database.UserRepository
@@ -19,9 +21,12 @@ import kotlinx.coroutines.withContext
 class LoginViewModel(application: Application) : AndroidViewModel(application){
 
     private val userRepo = UserRepository()
+    lateinit var sessionManager: SessionManager
 
     init{
         userRepo.initialize(getApplication<Application>().applicationContext)
+        //TO DO should be change to DI
+        ApiClient().initialize(application)
     }
 
     private val _canLogIn = MutableLiveData(false)
