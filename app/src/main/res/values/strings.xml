@@ -33,10 +33,12 @@
     <string name="showPassword">Show password</string>
     <string name="emailHasBeenSent">Email has been sent</string>
 
-
     <string name="signUp">Sign up</string>
     <string name="signIn">Sign in</string>
     <string name="moonfal">Moonfal</string>
     <string name="videoPlayerTitle">S1: The beginnings</string>
     <string name="videoTime">-59:13</string>
+
+    <string name="media_url_mp3">https://storage.googleapis.com/exoplayer-test-media-0/play.mp3</string>
+    <string name="media_url_mp4">https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4</string>
 </resources>

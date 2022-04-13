@@ -3,15 +3,11 @@ package com.intive.patronage22.intivi
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.intive.patronage22.intivi.Adapter.FragmentsAdapter
+import com.intive.patronage22.intivi.adapter.FragmentsAdapter
 
 class LoginActivity : AppCompatActivity() {
 

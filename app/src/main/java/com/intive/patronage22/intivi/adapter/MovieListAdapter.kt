@@ -1,4 +1,4 @@
-package com.intive.patronage22.intivi.Adapter
+package com.intive.patronage22.intivi.adapter
 
 import android.view.LayoutInflater
 import android.view.View
