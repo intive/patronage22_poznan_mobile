@@ -1,4 +1,4 @@
-package com.intive.patronage22.intivi.Fragments
+package com.intive.patronage22.intivi.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

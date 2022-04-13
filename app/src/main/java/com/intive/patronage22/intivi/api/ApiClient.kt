@@ -1,4 +1,4 @@
-package com.intive.patronage22.intivi.API
+package com.intive.patronage22.intivi.api
 
 import android.content.Context
 import okhttp3.OkHttpClient

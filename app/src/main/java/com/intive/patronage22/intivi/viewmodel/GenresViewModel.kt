@@ -1,4 +1,4 @@
-package com.intive.patronage22.intivi.ViewModels
+package com.intive.patronage22.intivi.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

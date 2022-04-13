@@ -1,4 +1,4 @@
-package com.intive.patronage22.intivi.Fragments
+package com.intive.patronage22.intivi.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,10 +9,10 @@ import android.widget.EditText
 import android.widget.Toast
 import com.intive.patronage22.intivi.*
 import androidx.fragment.app.activityViewModels
-import com.intive.patronage22.intivi.API.ApiClient
+import com.intive.patronage22.intivi.api.ApiClient
 import com.intive.patronage22.intivi.OnTextChangeListener
 import com.intive.patronage22.intivi.R
-import com.intive.patronage22.intivi.ViewModels.LoginViewModel
+import com.intive.patronage22.intivi.viewmodel.LoginViewModel
 import com.intive.patronage22.intivi.databinding.FragmentSignUpBinding
 import com.intive.patronage22.intivi.model.SignUpResponse
 import retrofit2.Call

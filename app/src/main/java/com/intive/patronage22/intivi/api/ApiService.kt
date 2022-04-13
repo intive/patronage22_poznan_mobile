@@ -1,4 +1,4 @@
-package com.intive.patronage22.intivi.API
+package com.intive.patronage22.intivi.api
 
 import com.intive.patronage22.intivi.model.GenresResponse
 import com.intive.patronage22.intivi.model.SignInResponse

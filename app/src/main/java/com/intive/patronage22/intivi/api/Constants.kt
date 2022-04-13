@@ -1,4 +1,4 @@
-package com.intive.patronage22.intivi.API
+package com.intive.patronage22.intivi.api
 
 object Constants{
     const val BASE_URL = "https://patronage22-poznan-js-seven.vercel.app/"

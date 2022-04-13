@@ -1,4 +1,4 @@
-package com.intive.patronage22.intivi.Fragments
+package com.intive.patronage22.intivi.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
-import com.intive.patronage22.intivi.API.ApiClient
+import com.intive.patronage22.intivi.api.ApiClient
 import com.intive.patronage22.intivi.R
-import com.intive.patronage22.intivi.ViewModels.GenresViewModel
-import com.intive.patronage22.intivi.ViewModels.LoginViewModel
+import com.intive.patronage22.intivi.viewmodel.LoginViewModel
 import com.intive.patronage22.intivi.databinding.FragmentGenresBinding
 import com.intive.patronage22.intivi.model.Genres
 import com.intive.patronage22.intivi.model.GenresResponse
