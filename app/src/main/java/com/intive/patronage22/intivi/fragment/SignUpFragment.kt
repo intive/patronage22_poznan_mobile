@@ -1,22 +1,23 @@
-package com.intive.patronage22.intivi.Fragments
+package com.intive.patronage22.intivi.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import com.intive.patronage22.intivi.*
 import androidx.fragment.app.activityViewModels
-import com.intive.patronage22.intivi.MainActivity
+import com.intive.patronage22.intivi.api.ApiClient
 import com.intive.patronage22.intivi.OnTextChangeListener
 import com.intive.patronage22.intivi.R
-import com.intive.patronage22.intivi.ViewModels.LoginViewModel
+import com.intive.patronage22.intivi.viewmodel.LoginViewModel
 import com.intive.patronage22.intivi.databinding.FragmentSignUpBinding
+import com.intive.patronage22.intivi.model.SignUpResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignUpFragment : Fragment() {
 
@@ -29,7 +30,7 @@ class SignUpFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         bind = FragmentSignUpBinding.inflate(layoutInflater)
 
         registerEmail = bind.emailTextInputLayout.editText
@@ -46,6 +47,19 @@ class SignUpFragment : Fragment() {
             if (isValid()) {
                 loginViewModel.registerUser()
                 //activity?.onBackPressed()
+                ApiClient().getService()?.signUp("Bob", registerEmail?.text.toString(),registerPassword?.text.toString())
+                    ?.enqueue(object : Callback<SignUpResponse>{
+                        override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
+                            if(response.isSuccessful) {
+                                Toast.makeText(requireContext(), "The user has been created", Toast.LENGTH_SHORT).show()
+                            }
+                            else {
+                                Toast.makeText(requireContext(), "Email already in use", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                        }
+                    })
             }
         }
 

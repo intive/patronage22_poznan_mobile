@@ -1,27 +1,24 @@
-package com.intive.patronage22.intivi.ViewModels
+package com.intive.patronage22.intivi.viewmodel
 
 import android.app.Application
-import android.content.Intent
-import android.util.Log
-import android.widget.EditText
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.*
-import com.intive.patronage22.intivi.MainActivity
+import com.intive.patronage22.intivi.api.ApiClient
+import com.intive.patronage22.intivi.api.SessionManager
 import com.intive.patronage22.intivi.database.User
 import com.intive.patronage22.intivi.database.UserRepository
-import com.intive.patronage22.intivi.isLoginFormValid
-import com.intive.patronage22.intivi.isRegisterFormValid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class LoginViewModel(application: Application) : AndroidViewModel(application){
 
     private val userRepo = UserRepository()
+    lateinit var sessionManager: SessionManager
 
     init{
         userRepo.initialize(getApplication<Application>().applicationContext)
+        //TO DO should be change to DI
+        ApiClient().initialize(application)
     }
 
     private val _canLogIn = MutableLiveData(false)

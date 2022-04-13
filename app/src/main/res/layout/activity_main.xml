@@ -16,7 +16,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/footer_tab"
         android:layout_width="0dp"
-        android:layout_height="54dp"
+        android:layout_height="58dp"
         android:background="@color/steel_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

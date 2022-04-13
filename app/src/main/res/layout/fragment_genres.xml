@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.GenresFragment"
+    tools:context=".fragment.GenresFragment"
     android:fitsSystemWindows="true">
 
     <ImageView
@@ -14,86 +14,13 @@
         tools:ignore="ContentDescription">
     </ImageView>
 
-    <ScrollView
+    <ListView
+        android:id="@+id/genres_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_marginTop="20dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="top">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Action"
-                style="@style/genresText"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Anime"
-                style="@style/genresText"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Comedies"
-                style="@style/genresText"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Documentaries"
-                style="@style/genresText"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Drama"
-                style="@style/genresText"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="European"
-                style="@style/genresText"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Family"
-                style="@style/genresText"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fantasy"
-                style="@style/genresText"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Horror"
-                style="@style/genresText"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Romantic"
-                style="@style/genresText"/>
-
-            <RelativeLayout
-                android:id="@+id/footer_tab_space"
-                android:layout_width="match_parent"
-                android:layout_height="30dp">
-            </RelativeLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
-
+        android:layout_marginStart="16dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="24dp"
+        android:paddingVertical="24dp">
+    </ListView>
 </FrameLayout>
