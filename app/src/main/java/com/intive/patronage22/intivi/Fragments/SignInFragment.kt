@@ -2,23 +2,26 @@ package com.intive.patronage22.intivi.Fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import androidx.fragment.app.Fragment
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import com.intive.patronage22.intivi.*
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.intive.patronage22.intivi.MainActivity
-import com.intive.patronage22.intivi.OnTextChangeListener
-import com.intive.patronage22.intivi.R
+import com.intive.patronage22.intivi.*
+import com.intive.patronage22.intivi.API.ApiClient
+import com.intive.patronage22.intivi.API.SessionManager
 import com.intive.patronage22.intivi.ViewModels.LoginViewModel
 import com.intive.patronage22.intivi.databinding.FragmentSignInBinding
+import com.intive.patronage22.intivi.model.SignInResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class SignInFragment : Fragment() {
 
@@ -51,8 +54,27 @@ class SignInFragment : Fragment() {
         bind.signInButton.setOnClickListener {
             if (isValid()) {
                 val intent = Intent(this.requireContext(), MainActivity::class.java)
-                startActivity(intent)
-                activity?.onBackPressed()
+                loginViewModel.sessionManager = SessionManager(this.requireContext())
+
+                ApiClient().getService()?.signIn(loginEmail?.text.toString(),loginPassword?.text.toString())
+                    ?.enqueue(object : Callback<SignInResponse> {
+
+                        override fun onResponse(call: Call<SignInResponse>, response: Response<SignInResponse>) {
+                            val loginResponse = response.body()
+                            if(response.isSuccessful) {
+                                if (loginResponse?.token != null) {
+                                    loginViewModel.sessionManager.saveAuthToken(loginResponse.token)
+                                    startActivity(intent)
+                                    activity?.onBackPressed()
+                                }
+                            }
+                            else {
+                                Toast.makeText(requireContext(), "Incorrect e-mail or password", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
+                        }
+                    })
             }
         }
 
