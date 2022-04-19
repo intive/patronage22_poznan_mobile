@@ -7,25 +7,17 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.google.android.material.textfield.TextInputLayout
 import com.intive.patronage22.intivi.*
-import com.intive.patronage22.intivi.api.ApiClient
-import com.intive.patronage22.intivi.api.SessionManager
 import com.intive.patronage22.intivi.viewmodel.LoginViewModel
 import com.intive.patronage22.intivi.databinding.FragmentSignInBinding
-import com.intive.patronage22.intivi.model.SignInResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
 
 class SignInFragment : Fragment() {
 
-    private var loginEmail: EditText? = null
-    private var loginPassword: EditText? = null
+    private lateinit var emailTextInput: TextInputLayout
+    private lateinit var passwordTextInput: TextInputLayout
     private val loginViewModel: LoginViewModel by activityViewModels()
     private lateinit var bind: FragmentSignInBinding
   
@@ -42,42 +34,14 @@ class SignInFragment : Fragment() {
             }, 5000)
         }
 
-        loginEmail = bind.emailTextInputLayout.editText
-        loginPassword = bind.passwordTextInputLayout.editText
-        val emailValidMess: String = getString(R.string.emailValidMessage)
-        val passwordValidMess: String = getString(R.string.passwordValidMessage)
-
-        fun isValid() = isLoginFormValid(loginEmail!!, loginPassword!!,
-            emailValidMess, passwordValidMess)
+        emailTextInput = bind.emailTextInputLayout
+        passwordTextInput = bind.passwordTextInputLayout
 
         bind.signInButton.setOnClickListener {
-            if (isValid()) {
-                val intent = Intent(this.requireContext(), MainActivity::class.java)
-                loginViewModel.sessionManager = SessionManager(this.requireContext())
-
-                ApiClient().getService()?.signIn(loginEmail?.text.toString(),loginPassword?.text.toString())
-                    ?.enqueue(object : Callback<SignInResponse> {
-
-                        override fun onResponse(call: Call<SignInResponse>, response: Response<SignInResponse>) {
-                            val loginResponse = response.body()
-                            if(response.isSuccessful) {
-                                if (loginResponse?.token != null) {
-                                    loginViewModel.sessionManager.saveAuthToken(loginResponse.token)
-                                    startActivity(intent)
-                                    activity?.onBackPressed()
-                                }
-                            }
-                            else {
-                                Toast.makeText(requireContext(), "Incorrect e-mail or password", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                        override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
-                        }
-                    })
-            }
+            loginViewModel.onSignInButtonClicked()
         }
 
-        loginEmail?.addTextChangedListener(object: OnTextChangeListener {
+        emailTextInput.editText?.addTextChangedListener(object: OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(loginViewModel.emailHolder.value != p0.toString()) {
                     loginViewModel.updateEmail(p0.toString())
@@ -85,7 +49,7 @@ class SignInFragment : Fragment() {
             }
         })
 
-        loginPassword?.addTextChangedListener(object : OnTextChangeListener {
+        passwordTextInput.editText?.addTextChangedListener(object : OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (loginViewModel.passwordHolder.value != p0.toString()) {
                     loginViewModel.updatePassword(p0.toString())
@@ -94,15 +58,27 @@ class SignInFragment : Fragment() {
         })
 
         loginViewModel.emailHolder.observe(viewLifecycleOwner) { emailHolder ->
-            if(loginEmail?.text.toString() != emailHolder) {
-                loginEmail?.setText(emailHolder)
+            if(emailTextInput.editText?.text.toString() != emailHolder) {
+                emailTextInput.editText?.setText(emailHolder)
             }
         }
 
         loginViewModel.passwordHolder.observe(viewLifecycleOwner) { passwordHolder ->
-            if(loginPassword?.text.toString() != passwordHolder) {
-                loginPassword?.setText(passwordHolder)
+            if(passwordTextInput.editText?.text.toString() != passwordHolder) {
+                passwordTextInput.editText?.setText(passwordHolder)
             }
+        }
+
+        loginViewModel.emailErrorMessage.observe(viewLifecycleOwner){
+            if(it!=null) {
+                emailTextInput.error = resources.getString(it)
+            } else emailTextInput.error = null
+        }
+
+        loginViewModel.passwordErrorMessage.observe(viewLifecycleOwner){
+            if(it!=null) {
+                passwordTextInput.error = resources.getString(it)
+            } else passwordTextInput.error = null
         }
 
         return bind.root
