@@ -74,4 +74,8 @@
         <item name="color">@color/bastille</item>
     </style>
 
+    <style name="headerBarStyle">
+        <item name="android:paddingTop">@dimen/header_bar_padding_top</item>
+    </style>
+
 </resources>

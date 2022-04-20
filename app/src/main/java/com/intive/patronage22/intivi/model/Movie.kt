@@ -1,7 +1,5 @@
 package com.intive.patronage22.intivi.model
 
-import com.google.gson.annotations.SerializedName
-
 data class Movie (
     val adult: Boolean,
     val genreIDS: List<Long>,

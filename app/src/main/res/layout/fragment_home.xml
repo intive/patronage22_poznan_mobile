@@ -5,14 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.HomeFragment"
-    android:id="@+id/frameLayout">
+    android:id="@+id/homeRootLayout">
+
+    <TextView
+        android:id="@+id/no_movies_error_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading_movies_message"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_component"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <LinearLayout
         android:id="@+id/header_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/header_bar_padding_top"
-        android:gravity="center|left"
+        style="@style/headerBarStyle"
+        android:gravity="center|start"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -24,7 +35,8 @@
             android:layout_height="@dimen/app_logo_height"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/app_logo_margin_start"
-            android:background="@drawable/app_logo" />
+            android:background="@drawable/app_logo"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/appName"
@@ -50,18 +62,9 @@
             style="@style/filter_button_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/series"
+            android:text="@string/popular"
             tools:layout_conversion_absoluteHeight="32dp"
             tools:layout_conversion_absoluteWidth="69dp" />
-
-        <TextView
-            android:id="@+id/filter_button_movies"
-            style="@style/filter_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/movies"
-            tools:layout_conversion_absoluteHeight="32dp"
-            tools:layout_conversion_absoluteWidth="74dp" />
 
         <TextView
             android:id="@+id/filter_button_kids"
@@ -70,15 +73,25 @@
             android:layout_height="wrap_content"
             android:text="@string/kids"
             tools:layout_conversion_absoluteHeight="32dp"
+            tools:layout_conversion_absoluteWidth="74dp" />
+
+        <TextView
+            android:id="@+id/filter_button_movies"
+            style="@style/filter_button_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            tools:layout_conversion_absoluteHeight="32dp"
             tools:layout_conversion_absoluteWidth="59dp" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_component"
-        android:gravity="center_horizontal"
-        android:paddingBottom="100dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:foregroundGravity="center"

@@ -7,12 +7,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.R
-import com.intive.patronage22.intivi.model.MovieItem
+import com.intive.patronage22.intivi.model.Movie
+//import com.intive.patronage22.intivi.model.MovieItem
+import com.squareup.picasso.Picasso
 
-//TODO commit changes thus far so it can be selectively reverted. Change this adapter, remove MovieItem and MovieResponse classes, associated lists.
+//TODO Change this adapter, remove MovieItem class, associated lists.
 
 
-class MovieListAdapter(private val homeItemsList: List<MovieItem>):RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
+class MovieListAdapter(private val MovieItemList: List<Movie>):RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_grid_home, parent,false)
@@ -20,12 +22,13 @@ class MovieListAdapter(private val homeItemsList: List<MovieItem>):RecyclerView.
     }
 
     override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
-        holder.itemTitle.text = homeItemsList[position].title
-        holder.itemImage.setImageResource(homeItemsList[position].image)
+        holder.itemTitle.text = MovieItemList[position].title
+        //holder.itemImage.setImageResource(MovieItemList[position].images.poster.xs)
+        Picasso.get().load(MovieItemList[position].images.poster.xl).error(R.drawable.app_logo).into(holder.itemImage)
     }
 
     override fun getItemCount(): Int {
-        return homeItemsList.size
+        return MovieItemList.size
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

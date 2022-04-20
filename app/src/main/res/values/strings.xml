@@ -63,4 +63,8 @@
     <string name="emailAlreadyTakenError">Email already taken.</string>
     <string name="serverConnectionFailedError">Server connection failed.</string>
     <string name="failed_fetch_request">Failed fetch request.</string>
+    <string name="no_movies_error_message"><![CDATA[Sorry, couldn\'t find any movies. \n :<]]></string>
+    <string name="loading_movies_message">Loading movies…</string>
+    <string name="popular">Popular</string>
+    <string name="unknown">\???</string>
 </resources>
