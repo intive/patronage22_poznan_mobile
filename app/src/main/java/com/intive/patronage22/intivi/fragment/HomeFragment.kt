@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.tabs.TabLayout
 import com.intive.patronage22.intivi.adapter.MovieListAdapter
 import com.intive.patronage22.intivi.DetailsActivity
 import com.intive.patronage22.intivi.R
@@ -29,45 +28,6 @@ class HomeFragment : Fragment() {
     ): View {
         bind = FragmentHomeBinding.inflate(inflater, container, false)
 
-//        bind.filterButtonMovies.setOnClickListener{
-//            bind.recyclerView.apply {
-//                layoutManager = GridLayoutManager(activity,2)
-//                adapter = MovieListAdapter(homeViewModel.moviesItemsFilter())
-//            }
-//        }
-//
-//        bind.filterButtonSeries.setOnClickListener{
-//            bind.recyclerView.apply {
-//                layoutManager = GridLayoutManager(activity,2)
-//                adapter = MovieListAdapter(homeViewModel.seriesCardFilter())
-//            }
-//        }
-//
-//        bind.filterButtonKids.setOnClickListener{
-//            bind.recyclerView.apply {
-//                layoutManager = GridLayoutManager(activity,2)
-//                adapter = MovieListAdapter(homeViewModel.kidsCardFilter())
-//            }
-//        }
-
-//        val actFooterTab = activity?.findViewById<TabLayout>(R.id.footer_tab)
-//        actFooterTab?.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//            }
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//                bind.recyclerView.apply {
-//                    layoutManager = GridLayoutManager(activity,2)
-//                    adapter = MovieListAdapter(homeViewModel.popularMoviesList.value!!)
-//                }
-//            }
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//                bind.recyclerView.apply {
-//                    layoutManager = GridLayoutManager(activity,2)
-//                    adapter = MovieListAdapter(homeViewModel.popularMoviesList.value!!)
-//                }
-//            }
-//        })
-
         homeViewModel.popularMoviesList.observe(viewLifecycleOwner) {
             if(it.isNotEmpty()) {
                 bind.recyclerView.adapter = MovieListAdapter(homeViewModel.popularMoviesList.value!!)
@@ -84,7 +44,6 @@ class HomeFragment : Fragment() {
 
         bind.recyclerView.apply {
             layoutManager = GridLayoutManager(activity,2)
-            //homeViewModel.createHomeItems()
             if(homeViewModel.popularMoviesList.value != null) {
                 adapter = MovieListAdapter(homeViewModel.popularMoviesList.value!!)
             }

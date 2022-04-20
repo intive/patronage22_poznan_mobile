@@ -11,9 +11,6 @@ import com.intive.patronage22.intivi.model.Movie
 //import com.intive.patronage22.intivi.model.MovieItem
 import com.squareup.picasso.Picasso
 
-//TODO Change this adapter, remove MovieItem class, associated lists.
-
-
 class MovieListAdapter(private val MovieItemList: List<Movie>):RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListAdapter.ViewHolder {
@@ -23,7 +20,6 @@ class MovieListAdapter(private val MovieItemList: List<Movie>):RecyclerView.Adap
 
     override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
         holder.itemTitle.text = MovieItemList[position].title
-        //holder.itemImage.setImageResource(MovieItemList[position].images.poster.xs)
         Picasso.get().load(MovieItemList[position].images.poster.xl).error(R.drawable.app_logo).into(holder.itemImage)
     }
 
