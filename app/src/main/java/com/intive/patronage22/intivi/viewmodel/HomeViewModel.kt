@@ -1,17 +1,31 @@
 package com.intive.patronage22.intivi.viewmodel
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.intive.patronage22.intivi.R
+import com.intive.patronage22.intivi.api.ApiClient
 import com.intive.patronage22.intivi.model.MovieItem
+import com.intive.patronage22.intivi.model.Movie
+import com.intive.patronage22.intivi.model.MovieResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeViewModel: ViewModel() {
 
     var homeItemsList = mutableListOf<MovieItem>()
     var filteredItemsList = mutableListOf<MovieItem>()
 
+    private val _popularMoviesList = MutableLiveData<List<Movie>>()
+    val popularMoviesList: LiveData<List<Movie>> = _popularMoviesList
+
     enum class HomeItemType{
         MOVIES, SERIES, KIDS
     }
+
+    init{fetchPopular()}
 
     fun createHomeItems(){
         homeItemsList.add(MovieItem("Moonfal",R.drawable.avatar_moonfall, HomeItemType.MOVIES))
@@ -51,4 +65,26 @@ class HomeViewModel: ViewModel() {
         }
         return filteredItemsList
     }
+
+    fun fetchPopular() {
+        Log.d("bayraktar", "attempting to fetch popular")
+        ApiClient().getService()?.fetchPopular()?.enqueue(object : Callback<List<Movie>> {
+            override fun onFailure(call: Call<List<Movie>>, t: Throwable) {
+                Log.d("bayraktar", "Popular fetch failure. T =  $t")
+            }
+
+            override fun onResponse(call: Call<List<Movie>>, response: Response<List<Movie>>) {
+                val responseBody = response.body()
+                if (response.isSuccessful) {
+                    if (responseBody != null) {
+                        _popularMoviesList.value = responseBody!!
+                        Log.d("bayraktar", "Popular movies fetch successful. Response: ${responseBody}")
+                    }
+                } else {
+                    Log.d("bayraktar", "Fetch response error code = ${response.code()}")
+                }
+            }
+        })
+    }
+
 }

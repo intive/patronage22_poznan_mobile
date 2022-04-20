@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.R
 import com.intive.patronage22.intivi.model.MovieItem
 
+//TODO commit changes thus far so it can be selectively reverted. Change this adapter, remove MovieItem and MovieResponse classes, associated lists.
+
 
 class MovieListAdapter(private val homeItemsList: List<MovieItem>):RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
