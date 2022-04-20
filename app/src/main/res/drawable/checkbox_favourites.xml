@@ -3,6 +3,6 @@
     <item android:state_checked="false"
         android:drawable="@drawable/ic_favourite_grid_item" />
     <item android:state_checked="true"
-        android:drawable="@drawable/ic_favourite_fill_grid_item" />
+        android:drawable="@drawable/ic_favourite_grid_item_fill" />
     <item android:drawable="@drawable/ic_favourite_grid_item" />
 </selector>

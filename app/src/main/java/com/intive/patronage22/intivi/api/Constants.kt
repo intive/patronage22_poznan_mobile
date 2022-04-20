@@ -6,4 +6,5 @@ object Constants{
     const val SIGNIN_URL = "api/users/signin"
     const val GENRES_URL = "api/movies/genre/movie/list"
     const val POPULAR_URL = "api/movies/popular"
+    const val FAVOURITES_URL = "/api/mylist"
 }

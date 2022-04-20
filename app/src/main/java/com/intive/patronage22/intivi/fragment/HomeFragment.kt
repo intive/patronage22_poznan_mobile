@@ -27,14 +27,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         bind = FragmentHomeBinding.inflate(inflater, container, false)
-
-        homeViewModel.popularMoviesList.observe(viewLifecycleOwner) {
-            if(it.isNotEmpty()) {
-                bind.recyclerView.adapter = MovieListAdapter(homeViewModel.popularMoviesList.value!!)
-                bind.noMoviesErrorTextView.visibility = View.GONE
-            }
-        }
-
         return bind.root
     }
 
@@ -45,7 +37,23 @@ class HomeFragment : Fragment() {
         bind.recyclerView.apply {
             layoutManager = GridLayoutManager(activity,2)
             if(homeViewModel.popularMoviesList.value != null) {
-                adapter = MovieListAdapter(homeViewModel.popularMoviesList.value!!)
+                adapter = MovieListAdapter(homeViewModel.popularMoviesList.value!!, homeViewModel)
+            }
+        }
+
+        //TODO update individual items instead of the whole dataset
+        homeViewModel.popularMoviesList.observe(viewLifecycleOwner) {
+            bind.recyclerView.adapter = MovieListAdapter(homeViewModel.popularMoviesList.value!!, homeViewModel)
+            if(it.isNotEmpty()) {
+                bind.noMoviesErrorTextView.visibility = View.GONE
+            } else {
+                bind.noMoviesErrorTextView.visibility = View.VISIBLE
+            }
+        }
+
+        homeViewModel.favouriteMoviesList.observe(viewLifecycleOwner) {
+            if (homeViewModel.popularMoviesList.value != null) {
+                bind.recyclerView.adapter = MovieListAdapter(homeViewModel.popularMoviesList.value!!, homeViewModel)
             }
         }
 
@@ -53,7 +61,6 @@ class HomeFragment : Fragment() {
 
     }
 
-    //TODO click on recycler view item (in onBindViewHolder) starts details activity with appropriate movie details.
     private fun clickNavigate(view: View, activity: Class<*>) {
         view.setOnClickListener {
             startActivity(Intent(getActivity(), activity))
