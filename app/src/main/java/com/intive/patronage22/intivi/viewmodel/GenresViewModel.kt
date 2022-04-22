@@ -27,7 +27,6 @@ class GenresViewModel: ViewModel() {
         ApiClient().getService()?.fetchGenres()?.enqueue(object : Callback<GenresResponse> {
             override fun onFailure(call: Call<GenresResponse>, t: Throwable) {
                 _genresApiSuccess.value = false
-                Log.d("bayraktar", "Genres fetch failed")
             }
 
             override fun onResponse(call: Call<GenresResponse>, response: Response<GenresResponse>) {
@@ -39,7 +38,6 @@ class GenresViewModel: ViewModel() {
                     }
                 } else {
                     _genresApiSuccess.value = false
-                    Log.d("bayraktar", "Api response not successful. Code: ${response.code()}, body = ${response.message()}")
                 }
             }
         })

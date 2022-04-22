@@ -3,4 +3,5 @@ ext {
     ext.room_version = "2.4.2"
     ext.lifecycle_version = "2.4.1"
     ext.nav_version = "2.4.1"
+    ext.picassoVersion = "2.71828"
 }

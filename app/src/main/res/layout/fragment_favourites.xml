@@ -10,8 +10,8 @@
         android:id="@+id/header_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/header_bar_padding_top"
-        android:gravity="center|left"
+        style="@style/headerBarStyle"
+        android:gravity="center|start"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -23,7 +23,8 @@
             android:layout_height="@dimen/app_logo_height"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/app_logo_margin_start"
-            android:background="@drawable/app_logo" />
+            android:background="@drawable/app_logo"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/appName"

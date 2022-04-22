@@ -1,8 +1,6 @@
 package com.intive.patronage22.intivi.api
 
-import com.intive.patronage22.intivi.model.GenresResponse
-import com.intive.patronage22.intivi.model.SignInResponse
-import com.intive.patronage22.intivi.model.SignUpResponse
+import com.intive.patronage22.intivi.model.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -25,4 +23,7 @@ interface ApiService {
 
     @GET(Constants.GENRES_URL)
     fun fetchGenres(): Call<GenresResponse>
+
+    @GET(Constants.POPULAR_URL)
+    fun fetchPopular(): Call<List<Movie>>
 }
