@@ -26,7 +26,10 @@
             android:textColorHint="@color/greyscale"
             app:boxBackgroundMode="filled"
             app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp">
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/error_red"
+            app:errorIconTint="@color/error_red">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginEditText"
@@ -47,7 +50,10 @@
             android:textColorHint="@color/greyscale"
             app:boxBackgroundMode="filled"
             app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp">
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/error_red"
+            app:errorIconTint="@color/error_red">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordEditText"

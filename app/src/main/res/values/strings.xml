@@ -41,4 +41,26 @@
 
     <string name="media_url_mp3">https://storage.googleapis.com/exoplayer-test-media-0/play.mp3</string>
     <string name="media_url_mp4">https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4</string>
+
+    <string name="emailInvalidError">Email must be valid.</string>
+    <string name="emailIsEmpty">Email can\'t be empty.</string>
+    <string name="emailTooLongError">Email must be less than 320 characters long.</string>
+    <string name="emailLocalPartTooLongError">Local part must be 64 characters long.</string>
+    <string name="emailDomainPartTooLongError">Domain part must be 255 characters long or less.</string>
+    <string name="emailStartWithError">Local part must start with a digit or a letter.</string>
+    <string name="emailEndWithError">Local part must end with a digit or a letter.</string>
+    <string name="emailConsecutiveDotsError">Consecutive dots are not allowed.</string>
+
+    <string name="passwordTooShort">Password must be at least 8 characters long.</string>
+    <string name="passwordTooLong">Password must be less than 128 characters long.</string>
+    <string name="passwordNoDigit">Password must contain at least one digit.</string>
+    <string name="passwordNoLowercase">Password must contain at least one lower case letter.</string>
+    <string name="passwordNoUppercase">Password must contain at least one upper case letter.</string>
+    <string name="passwordNoSpecialCharacter">Password must contain at least one special character.</string>
+    <string name="passwordsDoNotMatch">Passwords must match.</string>
+
+    <string name="incorrectPasswordOrEmailError">Incorrect password or email.</string>
+    <string name="emailAlreadyTakenError">Email already taken.</string>
+    <string name="serverConnectionFailedError">Server connection failed.</string>
+    <string name="failed_fetch_request">Failed fetch request.</string>
 </resources>

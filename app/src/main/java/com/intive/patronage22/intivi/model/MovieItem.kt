@@ -1,6 +1,6 @@
 package com.intive.patronage22.intivi.model
 
-import com.intive.patronage22.intivi.ViewModels.HomeViewModel
+import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 
 data class MovieItem(
     val title: String,
