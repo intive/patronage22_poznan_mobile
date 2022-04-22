@@ -1,6 +1,6 @@
 package com.intive.patronage22.intivi.model
 
-data class FavouriteMovie(
+data class FavouriteMovieResponse(
     val adult: Boolean,
     val backdropPath: String,
     val belongsToCollection: BelongsToCollection? = null,

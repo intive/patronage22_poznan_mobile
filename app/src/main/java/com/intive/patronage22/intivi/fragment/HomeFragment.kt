@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        homeViewModel.favouriteMoviesList.observe(viewLifecycleOwner) {
+        homeViewModel.favouriteMoviesListResponse.observe(viewLifecycleOwner) {
             if (homeViewModel.popularMoviesList.value != null) {
                 bind.recyclerView.adapter =
                     MovieListAdapter(homeViewModel.popularMoviesList.value!!, homeViewModel)

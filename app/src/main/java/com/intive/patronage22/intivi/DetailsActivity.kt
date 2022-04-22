@@ -33,10 +33,10 @@ class DetailsActivity : AppCompatActivity() {
         val movieId = bundle?.getInt("movieId")
         detailsViewModel.getMovieDetails(movieId!!)
 
-        detailsViewModel.movieDetails.observe(this) {
-            if (detailsViewModel.movieDetails.value != null) {
-                val details = detailsViewModel.movieDetails.value!!
-                Picasso.get().load(details.images.poster.original).error(R.drawable.app_logo)
+        detailsViewModel.movieResponseDetails.observe(this) {
+            if (detailsViewModel.movieResponseDetails.value != null) {
+                val details = detailsViewModel.movieResponseDetails.value!!
+                Picasso.get().load(details.posterOriginalUrl).error(R.drawable.app_logo)
                     .into(bind.detailsPhoto)
                 bind.detailsTitle.text = details.title
                 bind.detailsDescriptionText.text = details.overview

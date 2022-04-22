@@ -8,13 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.R
-import com.intive.patronage22.intivi.model.Movie
+import com.intive.patronage22.intivi.model.MovieItem
 import com.intive.patronage22.intivi.model.OpenDetailsEvent
 import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
 
 class MovieListAdapter(
-    private val MovieItemList: List<Movie>,
+    private val movieResponseItemList: List<MovieItem>,
     private val viewModel: HomeViewModel
 ) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
@@ -24,9 +24,10 @@ class MovieListAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
-        holder.itemMovieId = MovieItemList[position].id
-        holder.itemTitle.text = MovieItemList[position].title
-        Picasso.get().load(MovieItemList[position].images.poster.xl).error(R.drawable.app_logo)
+        holder.itemMovieId = movieResponseItemList[position].id
+        holder.itemTitle.text = movieResponseItemList[position].title
+        Picasso.get().load(movieResponseItemList[position].posterXlUrl)
+            .error(R.drawable.app_logo)
             .into(holder.itemImage)
         if (viewModel.checkFavouriteStatus(holder.itemMovieId!!)) {
             holder.itemFavourite.setBackgroundResource(R.drawable.ic_favourite_grid_item_fill)
@@ -52,7 +53,7 @@ class MovieListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return MovieItemList.size
+        return movieResponseItemList.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

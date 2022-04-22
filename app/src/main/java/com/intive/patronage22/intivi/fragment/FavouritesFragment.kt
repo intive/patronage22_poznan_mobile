@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.intive.patronage22.intivi.R
-import com.intive.patronage22.intivi.adapter.FavouritesListAdapter
+import com.intive.patronage22.intivi.adapter.MovieListAdapter
 import com.intive.patronage22.intivi.databinding.FragmentFavouritesBinding
 import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 import kotlinx.coroutines.delay
@@ -33,15 +33,18 @@ class FavouritesFragment : Fragment() {
 
         bind.recyclerView.apply {
             layoutManager = GridLayoutManager(activity, 2)
-            if (homeViewModel.favouriteMoviesList.value != null) {
+            if (homeViewModel.favouriteMoviesListResponse.value != null) {
                 adapter =
-                    FavouritesListAdapter(homeViewModel.favouriteMoviesList.value!!, homeViewModel)
+                    MovieListAdapter(
+                        homeViewModel.favouriteMoviesListResponse.value!!,
+                        homeViewModel
+                    )
             }
         }
 
-        homeViewModel.favouriteMoviesList.observe(viewLifecycleOwner) {
+        homeViewModel.favouriteMoviesListResponse.observe(viewLifecycleOwner) {
             bind.recyclerView.adapter =
-                FavouritesListAdapter(homeViewModel.favouriteMoviesList.value!!, homeViewModel)
+                MovieListAdapter(homeViewModel.favouriteMoviesListResponse.value!!, homeViewModel)
             if (it.isNotEmpty()) {
                 bind.favouritesTextMessage.visibility = View.GONE
             } else {

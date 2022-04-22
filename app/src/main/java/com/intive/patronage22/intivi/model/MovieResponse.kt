@@ -1,6 +1,6 @@
 package com.intive.patronage22.intivi.model
 
-data class Movie(
+data class MovieResponse(
     val adult: Boolean,
     val genreIDS: List<Long>,
     val id: Int,

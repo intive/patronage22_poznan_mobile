@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.intive.patronage22.intivi.api.ApiClient
-import com.intive.patronage22.intivi.model.FavouriteMovie
-import com.intive.patronage22.intivi.model.Movie
-import com.intive.patronage22.intivi.model.OpenDetailsEvent
+import com.intive.patronage22.intivi.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,11 +14,11 @@ class HomeViewModel : ViewModel() {
     private val _openDetailsEvent = MutableLiveData(OpenDetailsEvent(null))
     val openDetailsEvent: LiveData<OpenDetailsEvent> = _openDetailsEvent
 
-    private val _popularMoviesList = MutableLiveData<List<Movie>>()
-    val popularMoviesList: LiveData<List<Movie>> = _popularMoviesList
+    private val _popularMoviesList = MutableLiveData<List<MovieItem>>()
+    val popularMoviesList: LiveData<List<MovieItem>> = _popularMoviesList
 
-    private val _favouriteMoviesList = MutableLiveData<List<FavouriteMovie>>()
-    val favouriteMoviesList: LiveData<List<FavouriteMovie>> = _favouriteMoviesList
+    private val _favouriteMoviesList = MutableLiveData<List<MovieItem>>()
+    val favouriteMoviesListResponse: LiveData<List<MovieItem>> = _favouriteMoviesList
 
     init {
         fetchFavourites()
@@ -32,16 +30,16 @@ class HomeViewModel : ViewModel() {
     }
 
     fun fetchPopular() {
-        ApiClient().getService()?.fetchPopular()?.enqueue(object : Callback<List<Movie>> {
-            override fun onFailure(call: Call<List<Movie>>, t: Throwable) {
+        ApiClient().getService()?.fetchPopular()?.enqueue(object : Callback<List<MovieResponse>> {
+            override fun onFailure(call: Call<List<MovieResponse>>, t: Throwable) {
                 //Handle failure
             }
 
-            override fun onResponse(call: Call<List<Movie>>, response: Response<List<Movie>>) {
+            override fun onResponse(call: Call<List<MovieResponse>>, response: Response<List<MovieResponse>>) {
                 val responseBody = response.body()
                 if (response.isSuccessful) {
                     if (responseBody != null) {
-                        _popularMoviesList.value = responseBody!!
+                        _popularMoviesList.value = MovieResponseParser.parseMovieResponseToMovieItem(responseBody!!)
                     }
                 } else {
                     //Handle error
@@ -52,19 +50,19 @@ class HomeViewModel : ViewModel() {
 
     fun fetchFavourites() {
         ApiClient().getService()?.fetchFavourites()
-            ?.enqueue(object : Callback<List<FavouriteMovie>> {
-                override fun onFailure(call: Call<List<FavouriteMovie>>, t: Throwable) {
+            ?.enqueue(object : Callback<List<FavouriteMovieResponse>> {
+                override fun onFailure(call: Call<List<FavouriteMovieResponse>>, t: Throwable) {
                     //handle failure
                 }
 
                 override fun onResponse(
-                    call: Call<List<FavouriteMovie>>,
-                    response: Response<List<FavouriteMovie>>
+                    call: Call<List<FavouriteMovieResponse>>,
+                    response: Response<List<FavouriteMovieResponse>>
                 ) {
                     val responseBody = response.body()
                     if (response.isSuccessful) {
                         if (responseBody != null) {
-                            _favouriteMoviesList.value = responseBody!!
+                            _favouriteMoviesList.value = MovieResponseParser.parseMovieResponseToMovieItem(responseBody!!)
                         }
                     } else {
                         //handle error
@@ -106,8 +104,8 @@ class HomeViewModel : ViewModel() {
     }
 
     fun checkFavouriteStatus(movieID: Int): Boolean {
-        if (favouriteMoviesList.value != null) {
-            return favouriteMoviesList.value!!.find { it.id == movieID } != null
+        if (favouriteMoviesListResponse.value != null) {
+            return favouriteMoviesListResponse.value!!.find { it.id == movieID } != null
         } else return false
     }
 }
