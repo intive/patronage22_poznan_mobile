@@ -10,12 +10,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailsViewModel: ViewModel() {
+class DetailsViewModel : ViewModel() {
 
     private val _movieDetails = MutableLiveData<Movie>()
     val movieDetails: LiveData<Movie> = _movieDetails
 
-    fun getMovieDetails(movieId: Int){
+    fun getMovieDetails(movieId: Int) {
         ApiClient().getService()?.getMovieDetails(movieId)?.enqueue(object : Callback<Movie> {
             override fun onFailure(call: Call<Movie>, t: Throwable) {
                 Log.d("bayraktar", "fetch details failure = $t, movieId = $movieId")
@@ -27,7 +27,10 @@ class DetailsViewModel: ViewModel() {
                     Log.d("bayraktar", "fetch details success! response = $responseBody")
                     _movieDetails.value = responseBody!!
                 } else {
-                    Log.d("bayraktar", "fetch details error = ${response.code()}, movieId = $movieId")
+                    Log.d(
+                        "bayraktar",
+                        "fetch details error = ${response.code()}, movieId = $movieId"
+                    )
                 }
             }
         })

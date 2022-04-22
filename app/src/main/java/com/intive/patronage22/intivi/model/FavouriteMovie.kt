@@ -29,24 +29,24 @@ data class FavouriteMovie(
     val images: FavouritesImages
 )
 
-data class BelongsToCollection (
+data class BelongsToCollection(
     val id: Long,
     val name: String,
     val poster_path: String,
     val backdrop_path: String
 )
 
-data class Genre (
+data class Genre(
     val id: Long,
     val name: String
 )
 
-data class FavouritesImages (
+data class FavouritesImages(
     val poster: Backdrop,
     val backdrop: Backdrop
 )
 
-data class Backdrop (
+data class Backdrop(
     val xxs: String,
     val xs: String,
     val s: String,
@@ -56,19 +56,19 @@ data class Backdrop (
     val original: String
 )
 
-data class ProductionCompany (
+data class ProductionCompany(
     val id: Long,
     val logo_path: String? = null,
     val name: String,
     val origin_country: String
 )
 
-data class ProductionCountry (
+data class ProductionCountry(
     val iso_3166_1: String,
     val name: String
 )
 
-data class SpokenLanguage (
+data class SpokenLanguage(
     val english_name: String,
     val iso_639_1: String,
     val name: String

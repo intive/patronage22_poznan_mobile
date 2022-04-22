@@ -1,6 +1,6 @@
 package com.intive.patronage22.intivi.model
 
-data class Movie (
+data class Movie(
     val adult: Boolean,
     val genreIDS: List<Long>,
     val id: Int,
@@ -16,12 +16,12 @@ data class Movie (
     val images: Images
 )
 
-data class Images (
+data class Images(
     val poster: ImageUrls,
     val backdrop: ImageUrls
 )
 
-data class ImageUrls (
+data class ImageUrls(
     val xxs: String,
     val xs: String,
     val s: String,

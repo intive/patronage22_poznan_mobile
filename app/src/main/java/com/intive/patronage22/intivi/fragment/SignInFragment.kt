@@ -1,6 +1,5 @@
 package com.intive.patronage22.intivi.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,9 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.textfield.TextInputLayout
-import com.intive.patronage22.intivi.*
-import com.intive.patronage22.intivi.viewmodel.LoginViewModel
+import com.intive.patronage22.intivi.OnTextChangeListener
 import com.intive.patronage22.intivi.databinding.FragmentSignInBinding
+import com.intive.patronage22.intivi.viewmodel.LoginViewModel
 
 class SignInFragment : Fragment() {
 
@@ -20,7 +19,7 @@ class SignInFragment : Fragment() {
     private lateinit var passwordTextInput: TextInputLayout
     private val loginViewModel: LoginViewModel by activityViewModels()
     private lateinit var bind: FragmentSignInBinding
-  
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,9 +40,9 @@ class SignInFragment : Fragment() {
             loginViewModel.onSignInButtonClicked()
         }
 
-        emailTextInput.editText?.addTextChangedListener(object: OnTextChangeListener {
+        emailTextInput.editText?.addTextChangedListener(object : OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(loginViewModel.emailHolder.value != p0.toString()) {
+                if (loginViewModel.emailHolder.value != p0.toString()) {
                     loginViewModel.updateEmail(p0.toString())
                 }
             }
@@ -58,25 +57,25 @@ class SignInFragment : Fragment() {
         })
 
         loginViewModel.emailHolder.observe(viewLifecycleOwner) { emailHolder ->
-            if(emailTextInput.editText?.text.toString() != emailHolder) {
+            if (emailTextInput.editText?.text.toString() != emailHolder) {
                 emailTextInput.editText?.setText(emailHolder)
             }
         }
 
         loginViewModel.passwordHolder.observe(viewLifecycleOwner) { passwordHolder ->
-            if(passwordTextInput.editText?.text.toString() != passwordHolder) {
+            if (passwordTextInput.editText?.text.toString() != passwordHolder) {
                 passwordTextInput.editText?.setText(passwordHolder)
             }
         }
 
-        loginViewModel.emailErrorMessage.observe(viewLifecycleOwner){
-            if(it!=null) {
+        loginViewModel.emailErrorMessage.observe(viewLifecycleOwner) {
+            if (it != null) {
                 emailTextInput.error = resources.getString(it)
             } else emailTextInput.error = null
         }
 
-        loginViewModel.passwordErrorMessage.observe(viewLifecycleOwner){
-            if(it!=null) {
+        loginViewModel.passwordErrorMessage.observe(viewLifecycleOwner) {
+            if (it != null) {
                 passwordTextInput.error = resources.getString(it)
             } else passwordTextInput.error = null
         }

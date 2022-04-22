@@ -1,24 +1,15 @@
 package com.intive.patronage22.intivi.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.Toast
-import com.intive.patronage22.intivi.*
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.textfield.TextInputLayout
-import com.intive.patronage22.intivi.api.ApiClient
 import com.intive.patronage22.intivi.OnTextChangeListener
-import com.intive.patronage22.intivi.R
-import com.intive.patronage22.intivi.viewmodel.LoginViewModel
 import com.intive.patronage22.intivi.databinding.FragmentSignUpBinding
-import com.intive.patronage22.intivi.model.SignUpResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.intive.patronage22.intivi.viewmodel.LoginViewModel
 
 class SignUpFragment : Fragment() {
 
@@ -43,56 +34,56 @@ class SignUpFragment : Fragment() {
             loginViewModel.onRegisterButtonClicked()
         }
 
-        loginViewModel.emailErrorMessage.observe(viewLifecycleOwner){
-            if(it!=null) {
+        loginViewModel.emailErrorMessage.observe(viewLifecycleOwner) {
+            if (it != null) {
                 emailTextInput.error = resources.getString(it)
             } else emailTextInput.error = null
         }
 
-        loginViewModel.passwordErrorMessage.observe(viewLifecycleOwner){
-            if(it!=null) {
+        loginViewModel.passwordErrorMessage.observe(viewLifecycleOwner) {
+            if (it != null) {
                 passwordTextInput.error = resources.getString(it)
             } else passwordTextInput.error = null
         }
 
-        loginViewModel.repeatPasswordErrorMessage.observe(viewLifecycleOwner){
-            if(it!=null) {
+        loginViewModel.repeatPasswordErrorMessage.observe(viewLifecycleOwner) {
+            if (it != null) {
                 repeatPasswordTextInput.error = resources.getString(it)
             } else repeatPasswordTextInput.error = null
         }
 
-        emailTextInput.editText?.addTextChangedListener(object: OnTextChangeListener {
+        emailTextInput.editText?.addTextChangedListener(object : OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(loginViewModel.emailHolder.value != p0.toString()) {
+                if (loginViewModel.emailHolder.value != p0.toString()) {
                     loginViewModel.updateEmail(p0.toString())
                 }
             }
         })
 
-        passwordTextInput.editText?.addTextChangedListener(object: OnTextChangeListener {
+        passwordTextInput.editText?.addTextChangedListener(object : OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(loginViewModel.passwordHolder.value != p0.toString()) {
+                if (loginViewModel.passwordHolder.value != p0.toString()) {
                     loginViewModel.updatePassword(p0.toString())
                 }
             }
         })
 
-        repeatPasswordTextInput.editText?.addTextChangedListener(object: OnTextChangeListener {
+        repeatPasswordTextInput.editText?.addTextChangedListener(object : OnTextChangeListener {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(loginViewModel.secondPasswordHolder.value != p0.toString()) {
+                if (loginViewModel.secondPasswordHolder.value != p0.toString()) {
                     loginViewModel.updateSecondPassword(p0.toString())
                 }
             }
         })
 
         loginViewModel.emailHolder.observe(viewLifecycleOwner) { emailHolder ->
-            if(emailTextInput.editText?.text.toString() != emailHolder) {
+            if (emailTextInput.editText?.text.toString() != emailHolder) {
                 emailTextInput.editText?.setText(emailHolder)
             }
         }
 
         loginViewModel.passwordHolder.observe(viewLifecycleOwner) { passwordHolder ->
-            if(passwordTextInput.editText?.text.toString() != passwordHolder) {
+            if (passwordTextInput.editText?.text.toString() != passwordHolder) {
                 passwordTextInput.editText?.setText(passwordHolder)
             }
         }

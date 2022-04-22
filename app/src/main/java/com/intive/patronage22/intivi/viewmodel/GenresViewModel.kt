@@ -1,13 +1,8 @@
 package com.intive.patronage22.intivi.viewmodel
 
-import android.app.Application
-import android.util.Log
-import android.widget.ArrayAdapter
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.intive.patronage22.intivi.R
 import com.intive.patronage22.intivi.api.ApiClient
 import com.intive.patronage22.intivi.model.Genres
 import com.intive.patronage22.intivi.model.GenresResponse
@@ -15,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GenresViewModel: ViewModel() {
+class GenresViewModel : ViewModel() {
 
     private val _genresList = MutableLiveData<List<Genres>>()
     val genresList: LiveData<List<Genres>> = _genresList
@@ -29,7 +24,10 @@ class GenresViewModel: ViewModel() {
                 _genresApiSuccess.value = false
             }
 
-            override fun onResponse(call: Call<GenresResponse>, response: Response<GenresResponse>) {
+            override fun onResponse(
+                call: Call<GenresResponse>,
+                response: Response<GenresResponse>
+            ) {
                 val responseBody = response.body()
                 if (response.isSuccessful) {
                     if (responseBody?.genres != null) {

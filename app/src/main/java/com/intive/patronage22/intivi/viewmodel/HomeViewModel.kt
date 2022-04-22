@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private val _openDetailsEvent = MutableLiveData(OpenDetailsEvent(null))
     val openDetailsEvent: LiveData<OpenDetailsEvent> = _openDetailsEvent
@@ -22,12 +22,12 @@ class HomeViewModel: ViewModel() {
     private val _favouriteMoviesList = MutableLiveData<List<FavouriteMovie>>()
     val favouriteMoviesList: LiveData<List<FavouriteMovie>> = _favouriteMoviesList
 
-    init{
+    init {
         fetchFavourites()
         fetchPopular()
     }
 
-    fun setDetailsEvent(detailsEvent: OpenDetailsEvent){
+    fun setDetailsEvent(detailsEvent: OpenDetailsEvent) {
         _openDetailsEvent.value = detailsEvent
     }
 
@@ -51,28 +51,32 @@ class HomeViewModel: ViewModel() {
     }
 
     fun fetchFavourites() {
-        ApiClient().getService()?.fetchFavourites()?.enqueue(object : Callback<List<FavouriteMovie>> {
-            override fun onFailure(call: Call<List<FavouriteMovie>>, t: Throwable) {
-                //handle failure
-            }
-
-            override fun onResponse(call: Call<List<FavouriteMovie>>, response: Response<List<FavouriteMovie>>) {
-                val responseBody = response.body()
-                if (response.isSuccessful) {
-                    if (responseBody != null) {
-                        _favouriteMoviesList.value = responseBody!!
-                    }
-                } else {
-                    //handle error
+        ApiClient().getService()?.fetchFavourites()
+            ?.enqueue(object : Callback<List<FavouriteMovie>> {
+                override fun onFailure(call: Call<List<FavouriteMovie>>, t: Throwable) {
+                    //handle failure
                 }
-            }
-        })
+
+                override fun onResponse(
+                    call: Call<List<FavouriteMovie>>,
+                    response: Response<List<FavouriteMovie>>
+                ) {
+                    val responseBody = response.body()
+                    if (response.isSuccessful) {
+                        if (responseBody != null) {
+                            _favouriteMoviesList.value = responseBody!!
+                        }
+                    } else {
+                        //handle error
+                    }
+                }
+            })
     }
 
     fun putFavourite(movieID: Int) {
-        ApiClient().getService()?.putFavourites(movieID)?.enqueue(object : Callback<Unit>{
+        ApiClient().getService()?.putFavourites(movieID)?.enqueue(object : Callback<Unit> {
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     fetchFavourites()
                 } else {
                     //handle error
@@ -86,9 +90,9 @@ class HomeViewModel: ViewModel() {
     }
 
     fun deleteFavourite(movieID: Int) {
-        ApiClient().getService()?.deleteFavourites(movieID)?.enqueue(object : Callback<Unit>{
+        ApiClient().getService()?.deleteFavourites(movieID)?.enqueue(object : Callback<Unit> {
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     fetchFavourites()
                 } else {
                     //handle error
@@ -101,8 +105,8 @@ class HomeViewModel: ViewModel() {
         })
     }
 
-    fun checkFavouriteStatus(movieID: Int): Boolean{
-        if(favouriteMoviesList.value!=null) {
+    fun checkFavouriteStatus(movieID: Int): Boolean {
+        if (favouriteMoviesList.value != null) {
             return favouriteMoviesList.value!!.find { it.id == movieID } != null
         } else return false
     }
