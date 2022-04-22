@@ -2,13 +2,12 @@ package com.intive.patronage22.intivi
 
 import android.util.Patterns.EMAIL_ADDRESS
 
-object LoginValidation {
+object LoginValidator {
 
-    fun checkEmailError(email: String): Int?{
+    fun checkEmailError(email: String): Int? {
         val localPart = email.split("@").first()
         val domainPart = email.split("@").last()
-        //val printableCharacters = Regex("""\\!#%\$&'\*\+-/=\?\^_`\{\|}~""")
-        return when{
+        return when {
             email.isEmpty() -> R.string.emailIsEmpty
             email.length > 320 -> R.string.emailTooLongError
             domainPart.length > 255 -> R.string.emailDomainPartTooLongError
@@ -22,7 +21,7 @@ object LoginValidation {
     }
 
     fun checkPasswordError(password: String): Int? {
-        return when{
+        return when {
             password.length < 8 -> R.string.passwordTooShort
             password.length > 128 -> R.string.passwordTooLong
             !password.contains(Regex("(?=.*[0-9])")) -> R.string.passwordNoDigit
@@ -34,7 +33,7 @@ object LoginValidation {
     }
 
     fun checkSecondPasswordError(password: String, repeatPassword: String): Int? {
-        return if(password != repeatPassword) R.string.passwordsDoNotMatch
+        return if (password != repeatPassword) R.string.passwordsDoNotMatch
         else null
     }
 }

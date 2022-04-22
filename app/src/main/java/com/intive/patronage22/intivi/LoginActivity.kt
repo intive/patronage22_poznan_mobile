@@ -49,7 +49,10 @@ class LoginActivity : AppCompatActivity() {
             }
         }.attach()
 
-        if (Build.VERSION.SDK_INT < 29) this.window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        if (Build.VERSION.SDK_INT < 29) this.window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
 
         loginViewModel.logInEvent.observe(this) {
             if (it.canLogIn && it.token != null) {

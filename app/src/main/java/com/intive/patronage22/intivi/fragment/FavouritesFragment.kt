@@ -1,10 +1,10 @@
 package com.intive.patronage22.intivi.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -32,15 +32,17 @@ class FavouritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         bind.recyclerView.apply {
-            layoutManager = GridLayoutManager(activity,2)
-            if(homeViewModel.favouriteMoviesList.value != null) {
-                adapter = FavouritesListAdapter(homeViewModel.favouriteMoviesList.value!!, homeViewModel)
+            layoutManager = GridLayoutManager(activity, 2)
+            if (homeViewModel.favouriteMoviesList.value != null) {
+                adapter =
+                    FavouritesListAdapter(homeViewModel.favouriteMoviesList.value!!, homeViewModel)
             }
         }
 
         homeViewModel.favouriteMoviesList.observe(viewLifecycleOwner) {
-            bind.recyclerView.adapter = FavouritesListAdapter(homeViewModel.favouriteMoviesList.value!!, homeViewModel)
-            if(it.isNotEmpty()) {
+            bind.recyclerView.adapter =
+                FavouritesListAdapter(homeViewModel.favouriteMoviesList.value!!, homeViewModel)
+            if (it.isNotEmpty()) {
                 bind.favouritesTextMessage.visibility = View.GONE
             } else {
                 bind.favouritesTextMessage.visibility = View.VISIBLE
@@ -51,8 +53,8 @@ class FavouritesFragment : Fragment() {
 
     }
 
-    private fun waitForMovies(){
-        lifecycleScope.launch{
+    private fun waitForMovies() {
+        lifecycleScope.launch {
             delay(15000)
             bind.favouritesTextMessage.text = getString(R.string.loading_favourites_error)
         }

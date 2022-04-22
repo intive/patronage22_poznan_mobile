@@ -2,7 +2,6 @@ package com.intive.patronage22.intivi.api
 
 import com.intive.patronage22.intivi.model.*
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {

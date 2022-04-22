@@ -27,7 +27,7 @@ class ApiClient {
             .build()
     }
 
-    companion object{
+    companion object {
         var apiService: ApiService? = null
     }
 }
