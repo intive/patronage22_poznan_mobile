@@ -1,18 +1,24 @@
 package com.intive.patronage22.intivi
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.intive.patronage22.intivi.adapter.MainFragmentsAdapter
+import com.intive.patronage22.intivi.viewmodel.HomeViewModel
+import com.intive.patronage22.intivi.viewmodel.LoginViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
+    private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,5 +46,15 @@ class MainActivity : AppCompatActivity() {
         }.attach()
 
         if (Build.VERSION.SDK_INT < 29) this.window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+
+        homeViewModel.openDetailsEvent.observe(this) {
+            if (it.movieId != null) {
+                Log.d("bayraktar", "Opening details with id = ${it.movieId}")
+                val intent = Intent(this, DetailsActivity::class.java)
+                intent.putExtra("movieId", it.movieId)
+                startActivity(intent)
+                finish()
+            }
+        }
     }
 }

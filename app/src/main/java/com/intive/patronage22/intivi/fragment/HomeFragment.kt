@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        clickNavigate(view.findViewById<ImageView>(R.id.app_logo), DetailsActivity::class.java)
 
         bind.recyclerView.apply {
             layoutManager = GridLayoutManager(activity,2)
@@ -59,12 +58,6 @@ class HomeFragment : Fragment() {
 
         waitForMovies()
 
-    }
-
-    private fun clickNavigate(view: View, activity: Class<*>) {
-        view.setOnClickListener {
-            startActivity(Intent(getActivity(), activity))
-        }
     }
 
     private fun waitForMovies(){

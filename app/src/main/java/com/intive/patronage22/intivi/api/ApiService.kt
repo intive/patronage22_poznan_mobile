@@ -36,4 +36,7 @@ interface ApiService {
 
     @DELETE("/api/mylist/{movieID}")
     fun deleteFavourites(@Path("movieID") movieID: Int): Call<Unit>
+
+    @GET("/api/movies/{movieID}")
+    fun getMovieDetails(@Path("movieID") movieID: Int): Call<Movie>
 }

@@ -6,11 +6,15 @@ import androidx.lifecycle.ViewModel
 import com.intive.patronage22.intivi.api.ApiClient
 import com.intive.patronage22.intivi.model.FavouriteMovie
 import com.intive.patronage22.intivi.model.Movie
+import com.intive.patronage22.intivi.model.OpenDetailsEvent
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class HomeViewModel: ViewModel() {
+
+    private val _openDetailsEvent = MutableLiveData(OpenDetailsEvent(null))
+    val openDetailsEvent: LiveData<OpenDetailsEvent> = _openDetailsEvent
 
     private val _popularMoviesList = MutableLiveData<List<Movie>>()
     val popularMoviesList: LiveData<List<Movie>> = _popularMoviesList
@@ -21,6 +25,10 @@ class HomeViewModel: ViewModel() {
     init{
         fetchFavourites()
         fetchPopular()
+    }
+
+    fun setDetailsEvent(detailsEvent: OpenDetailsEvent){
+        _openDetailsEvent.value = detailsEvent
     }
 
     fun fetchPopular() {
@@ -98,5 +106,4 @@ class HomeViewModel: ViewModel() {
             return favouriteMoviesList.value!!.find { it.id == movieID } != null
         } else return false
     }
-
 }

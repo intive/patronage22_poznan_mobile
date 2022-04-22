@@ -1,5 +1,6 @@
 package com.intive.patronage22.intivi.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.R
 import com.intive.patronage22.intivi.model.Movie
+import com.intive.patronage22.intivi.model.OpenDetailsEvent
 import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
 
@@ -36,6 +38,13 @@ class MovieListAdapter(private val MovieItemList: List<Movie>, private val viewM
             } else {
                 viewModel.putFavourite(holder.itemMovieId!!)
                 holder.itemFavourite.setBackgroundResource(R.drawable.ic_favourite_grid_item_fill)
+            }
+        }
+
+        holder.itemImage.setOnClickListener {
+            if (holder.itemMovieId != null) {
+                Log.d("bayraktar", "setting details event with id = ${holder.itemMovieId}")
+                viewModel.setDetailsEvent(OpenDetailsEvent(holder.itemMovieId))
             }
         }
     }
