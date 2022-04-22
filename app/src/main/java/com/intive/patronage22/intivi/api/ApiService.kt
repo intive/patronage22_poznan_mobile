@@ -25,10 +25,10 @@ interface ApiService {
     fun fetchGenres(): Call<GenresResponse>
 
     @GET(Constants.POPULAR_URL)
-    fun fetchPopular(): Call<List<Movie>>
+    fun fetchPopular(): Call<List<MovieResponse>>
 
     @GET(Constants.FAVOURITES_URL)
-    fun fetchFavourites(): Call<List<FavouriteMovie>>
+    fun fetchFavourites(): Call<List<FavouriteMovieResponse>>
 
     @PUT("/api/mylist/{movieID}")
     fun putFavourites(@Path("movieID") movieID: Int): Call<Unit>
@@ -37,5 +37,5 @@ interface ApiService {
     fun deleteFavourites(@Path("movieID") movieID: Int): Call<Unit>
 
     @GET("/api/movies/{movieID}")
-    fun getMovieDetails(@Path("movieID") movieID: Int): Call<Movie>
+    fun getMovieDetails(@Path("movieID") movieID: Int): Call<MovieResponse>
 }
