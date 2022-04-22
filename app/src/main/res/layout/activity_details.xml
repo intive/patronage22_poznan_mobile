@@ -17,6 +17,19 @@
         android:scaleType="centerCrop"
         tools:ignore="ContentDescription" />
 
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_margin="75dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/watch_button_layout"
+        android:text="@string/loading_movie_details"/>
+
         <RelativeLayout
             android:id="@+id/detailsLayout"
             android:layout_width="match_parent"
@@ -117,6 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="@dimen/detailsStartMargin"
+                    android:paddingBottom="24dp"
                     android:fontFamily="@font/inter"
                     android:text=""
                     android:textColor="@color/gray_20"

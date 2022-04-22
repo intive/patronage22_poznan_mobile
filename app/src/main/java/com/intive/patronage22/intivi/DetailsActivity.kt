@@ -46,6 +46,13 @@ class DetailsActivity : AppCompatActivity() {
             }
         }
 
+        detailsViewModel.apiError.observe(this) {
+            if (it != null) {
+                bind.errorText?.text = it
+                bind.errorText?.visibility = View.VISIBLE
+            } else bind.errorText?.visibility = View.GONE
+        }
+
         if (Build.VERSION.SDK_INT < 29) this.window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS

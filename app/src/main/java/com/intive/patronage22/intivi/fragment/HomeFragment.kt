@@ -6,14 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.intive.patronage22.intivi.R
 import com.intive.patronage22.intivi.adapter.MovieListAdapter
 import com.intive.patronage22.intivi.databinding.FragmentHomeBinding
 import com.intive.patronage22.intivi.viewmodel.HomeViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
     private lateinit var bind: FragmentHomeBinding
@@ -42,27 +38,27 @@ class HomeFragment : Fragment() {
             bind.recyclerView.adapter =
                 MovieListAdapter(homeViewModel.popularMoviesList.value!!, homeViewModel)
             if (it.isNotEmpty()) {
-                bind.noMoviesErrorTextView.visibility = View.GONE
+                bind.errorTextView.visibility = View.GONE
             } else {
-                bind.noMoviesErrorTextView.visibility = View.VISIBLE
+                bind.errorTextView.visibility = View.VISIBLE
             }
         }
 
-        homeViewModel.favouriteMoviesListResponse.observe(viewLifecycleOwner) {
+        homeViewModel.favouriteMoviesList.observe(viewLifecycleOwner) {
             if (homeViewModel.popularMoviesList.value != null) {
                 bind.recyclerView.adapter =
                     MovieListAdapter(homeViewModel.popularMoviesList.value!!, homeViewModel)
             }
         }
 
-        waitForMovies()
-
-    }
-
-    private fun waitForMovies() {
-        lifecycleScope.launch {
-            delay(15000)
-            bind.noMoviesErrorTextView.text = getString(R.string.no_movies_error_message)
+        homeViewModel.apiErrorHome.observe(viewLifecycleOwner) {
+            bind.errorTextView.text = it
+            if (it != null) {
+                bind.errorTextView.visibility = View.VISIBLE
+            } else {
+                bind.errorTextView.visibility = View.GONE
+            }
         }
+
     }
 }
