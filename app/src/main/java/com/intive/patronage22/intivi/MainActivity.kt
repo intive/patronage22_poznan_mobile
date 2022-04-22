@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -54,6 +55,12 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("movieId", it.movieId)
                 startActivity(intent)
                 finish()
+            }
+        }
+
+        homeViewModel.apiErrorFavouriteOperation.observe(this) {
+            if (it != null) {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -18,7 +18,16 @@ class HomeViewModel : ViewModel() {
     val popularMoviesList: LiveData<List<MovieItem>> = _popularMoviesList
 
     private val _favouriteMoviesList = MutableLiveData<List<MovieItem>>()
-    val favouriteMoviesListResponse: LiveData<List<MovieItem>> = _favouriteMoviesList
+    val favouriteMoviesList: LiveData<List<MovieItem>> = _favouriteMoviesList
+
+    private val _apiErrorFavourites = MutableLiveData<String?>(null)
+    val apiErrorFavourites: LiveData<String?> = _apiErrorFavourites
+
+    private val _apiErrorHome = MutableLiveData<String?>(null)
+    val apiErrorHome: LiveData<String?> = _apiErrorHome
+
+    private val _apiErrorFavouriteOperation = MutableLiveData<String?>(null)
+    val apiErrorFavouriteOperation: LiveData<String?> = _apiErrorFavouriteOperation
 
     init {
         fetchFavourites()
@@ -32,17 +41,22 @@ class HomeViewModel : ViewModel() {
     fun fetchPopular() {
         ApiClient().getService()?.fetchPopular()?.enqueue(object : Callback<List<MovieResponse>> {
             override fun onFailure(call: Call<List<MovieResponse>>, t: Throwable) {
-                //Handle failure
+                _apiErrorHome.value = t.message
             }
 
-            override fun onResponse(call: Call<List<MovieResponse>>, response: Response<List<MovieResponse>>) {
+            override fun onResponse(
+                call: Call<List<MovieResponse>>,
+                response: Response<List<MovieResponse>>
+            ) {
                 val responseBody = response.body()
                 if (response.isSuccessful) {
                     if (responseBody != null) {
-                        _popularMoviesList.value = MovieResponseParser.parseMovieResponseToMovieItem(responseBody!!)
+                        _apiErrorHome.value = null
+                        _popularMoviesList.value =
+                            MovieResponseParser.parseMovieResponseToMovieItem(responseBody)
                     }
                 } else {
-                    //Handle error
+                    _apiErrorHome.value = response.code().toString()
                 }
             }
         })
@@ -52,7 +66,7 @@ class HomeViewModel : ViewModel() {
         ApiClient().getService()?.fetchFavourites()
             ?.enqueue(object : Callback<List<FavouriteMovieResponse>> {
                 override fun onFailure(call: Call<List<FavouriteMovieResponse>>, t: Throwable) {
-                    //handle failure
+                    _apiErrorFavourites.value = t.message
                 }
 
                 override fun onResponse(
@@ -62,10 +76,12 @@ class HomeViewModel : ViewModel() {
                     val responseBody = response.body()
                     if (response.isSuccessful) {
                         if (responseBody != null) {
-                            _favouriteMoviesList.value = MovieResponseParser.parseMovieResponseToMovieItem(responseBody!!)
+                            _apiErrorFavourites.value = null
+                            _favouriteMoviesList.value =
+                                MovieResponseParser.parseMovieResponseToMovieItem(responseBody)
                         }
                     } else {
-                        //handle error
+                        _apiErrorFavourites.value = response.code().toString()
                     }
                 }
             })
@@ -75,14 +91,15 @@ class HomeViewModel : ViewModel() {
         ApiClient().getService()?.putFavourites(movieID)?.enqueue(object : Callback<Unit> {
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                 if (response.isSuccessful) {
+                    _apiErrorFavouriteOperation.value = null
                     fetchFavourites()
                 } else {
-                    //handle error
+                    _apiErrorFavouriteOperation.value = response.code().toString()
                 }
             }
 
             override fun onFailure(call: Call<Unit>, t: Throwable) {
-                //handle failure
+                _apiErrorFavouriteOperation.value = t.message
             }
         })
     }
@@ -91,21 +108,22 @@ class HomeViewModel : ViewModel() {
         ApiClient().getService()?.deleteFavourites(movieID)?.enqueue(object : Callback<Unit> {
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                 if (response.isSuccessful) {
+                    _apiErrorFavouriteOperation.value = null
                     fetchFavourites()
                 } else {
-                    //handle error
+                    _apiErrorFavouriteOperation.value = response.code().toString()
                 }
             }
 
             override fun onFailure(call: Call<Unit>, t: Throwable) {
-                //handle failure
+                _apiErrorFavouriteOperation.value = t.message
             }
         })
     }
 
     fun checkFavouriteStatus(movieID: Int): Boolean {
-        if (favouriteMoviesListResponse.value != null) {
-            return favouriteMoviesListResponse.value!!.find { it.id == movieID } != null
+        if (favouriteMoviesList.value != null) {
+            return favouriteMoviesList.value!!.find { it.id == movieID } != null
         } else return false
     }
 }

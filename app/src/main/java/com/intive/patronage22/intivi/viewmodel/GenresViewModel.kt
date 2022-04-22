@@ -15,13 +15,13 @@ class GenresViewModel : ViewModel() {
     private val _genresList = MutableLiveData<List<Genres>>()
     val genresList: LiveData<List<Genres>> = _genresList
 
-    private val _genresApiSuccess = MutableLiveData(false)
-    val genresApiSuccess: LiveData<Boolean> = _genresApiSuccess
+    private val _apiError = MutableLiveData<String?>(null)
+    val apiError: LiveData<String?> = _apiError
 
     fun fetchGenres() {
         ApiClient().getService()?.fetchGenres()?.enqueue(object : Callback<GenresResponse> {
             override fun onFailure(call: Call<GenresResponse>, t: Throwable) {
-                _genresApiSuccess.value = false
+                _apiError.value = t.message
             }
 
             override fun onResponse(
@@ -32,10 +32,10 @@ class GenresViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     if (responseBody?.genres != null) {
                         _genresList.value = responseBody.genres
-                        _genresApiSuccess.value = true
+                        _apiError.value = null
                     }
                 } else {
-                    _genresApiSuccess.value = false
+                    _apiError.value = response.code().toString()
                 }
             }
         })

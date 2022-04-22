@@ -8,13 +8,15 @@
     android:id="@+id/homeRootLayout">
 
     <TextView
-        android:id="@+id/no_movies_error_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/loading_movies_message"
+        android:id="@+id/error_text_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/loading_movies"
+        android:gravity="center"
         android:textAlignment="center"
+        android:layout_margin="75dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_component"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

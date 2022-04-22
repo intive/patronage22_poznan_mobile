@@ -22,8 +22,9 @@ class GenresFragment : Fragment() {
     ): View {
         bind = FragmentGenresBinding.inflate(layoutInflater)
 
-        genresViewModel.genresApiSuccess.observe(viewLifecycleOwner) {
-            if (!it) {
+        genresViewModel.apiError.observe(viewLifecycleOwner) {
+            bind.errorTextView?.text = it
+            if (it != null) {
                 bind.errorTextView?.visibility = View.VISIBLE
             } else bind.errorTextView?.visibility = View.GONE
         }
@@ -39,7 +40,7 @@ class GenresFragment : Fragment() {
     }
 
     private fun populateGenres() {
-        var genresNameList = arrayListOf<String>()
+        val genresNameList = arrayListOf<String>()
         for (genre in genresViewModel.genresList.value!!) {
             genresNameList.add(genre.name)
         }
