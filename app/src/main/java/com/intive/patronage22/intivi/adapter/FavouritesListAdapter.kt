@@ -1,16 +1,22 @@
 package com.intive.patronage22.intivi.adapter
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.intive.patronage22.intivi.DetailsActivity
 import com.intive.patronage22.intivi.R
 import com.intive.patronage22.intivi.model.FavouriteMovie
+import com.intive.patronage22.intivi.model.OpenDetailsEvent
 import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
+import java.security.AccessController.getContext
 
 class FavouritesListAdapter(private val MovieItemList: List<FavouriteMovie>, private val viewModel: HomeViewModel): RecyclerView.Adapter<FavouritesListAdapter.ViewHolder>() {
 
@@ -29,13 +35,20 @@ class FavouritesListAdapter(private val MovieItemList: List<FavouriteMovie>, pri
             holder.itemFavourite.setBackgroundResource(R.drawable.ic_favourite_grid_item)
         }
 
-        holder.itemFavourite.setOnClickListener { _ ->
+        holder.itemFavourite.setOnClickListener {
             if(viewModel.checkFavouriteStatus(holder.itemMovieId!!)){
                 viewModel.deleteFavourite(holder.itemMovieId!!)
                 holder.itemFavourite.setBackgroundResource(R.drawable.ic_favourite_grid_item)
             } else {
                 viewModel.putFavourite(holder.itemMovieId!!)
                 holder.itemFavourite.setBackgroundResource(R.drawable.ic_favourite_grid_item_fill)
+            }
+        }
+
+        holder.itemImage.setOnClickListener {
+            if (holder.itemMovieId != null) {
+                Log.d("bayraktar", "setting details event with id = ${holder.itemMovieId}")
+                viewModel.setDetailsEvent(OpenDetailsEvent(holder.itemMovieId))
             }
         }
     }

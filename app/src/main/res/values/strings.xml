@@ -8,11 +8,6 @@
     <string name="repeatPassEditTextHint">Repeat password</string>
     <string name="patronageLogo">Patronage logo</string>
 
-    <string name="detailsTitleText">The Witcher</string>
-    <string name="detailsYearText">2019</string>
-    <string name="detailsSeasonsText">2 seasons</string>
-    <string name="detailsPGText">PG</string>
-    <string name="detailsDescriptionText">Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.\n</string>
     <string name="detailsWatchButtonText">Watch</string>
 
     <string name="heartIcon">Heart icon</string>
@@ -39,7 +34,6 @@
     <string name="videoPlayerTitle">S1: The beginnings</string>
     <string name="videoTime">-59:13</string>
 
-    <string name="media_url_mp3">https://storage.googleapis.com/exoplayer-test-media-0/play.mp3</string>
     <string name="media_url_mp4">https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4</string>
 
     <string name="emailInvalidError">Email must be valid.</string>
@@ -68,4 +62,5 @@
     <string name="loading_favourites_error">Something went wrong…</string>
     <string name="popular">Popular</string>
     <string name="unknown">\???</string>
+    <string name="movie">Movie</string>
 </resources>

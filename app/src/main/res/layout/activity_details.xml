@@ -8,14 +8,13 @@
 
     <ImageView
         android:id="@+id/detailsPhoto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="112dp"
-        app:srcCompat="@drawable/details_photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/watch_button_layout"
         android:scaleType="centerCrop"
-        android:scrollX="170dp"
         tools:ignore="ContentDescription" />
 
         <RelativeLayout
@@ -35,7 +34,7 @@
                 android:layout_marginTop="@dimen/detailsTitleTopMargin"
                 android:fontFamily="@font/inter_medium"
                 app:lineHeight = "32dp"
-                android:text="@string/detailsTitleText"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/detailsTitleTextSize" />
 
@@ -53,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/detailsStartMargin"
                     android:fontFamily="@font/inter_semibold"
-                    android:text="@string/detailsYearText"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/detailsInfoTextSize"
                     android:layout_centerVertical="true"/>
@@ -72,7 +71,7 @@
                     android:id="@+id/detailsSeasonsText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/detailsSeasonsText"
+                    android:text=""
                     android:textSize="@dimen/detailsInfoTextSize"
                     android:fontFamily="@font/inter_semibold"
                     android:layout_toEndOf="@+id/detailsCircle"
@@ -95,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/detailsStartMargin"
-                    android:text="@string/detailsPGText"
+                    android:text=""
                     android:textSize="@dimen/detailsInfoTextSize"
                     android:fontFamily="@font/inter_semibold"
                     android:layout_toEndOf="@+id/detailsCircle2"
@@ -119,7 +118,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="@dimen/detailsStartMargin"
                     android:fontFamily="@font/inter"
-                    android:text="@string/detailsDescriptionText"
+                    android:text=""
                     android:textColor="@color/gray_20"
                     android:textSize="@dimen/detailsInfoTextSize"
                     app:lineHeight="@dimen/detailsLineHeight" />
@@ -128,6 +127,7 @@
         </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/watch_button_layout"
         android:layout_width="match_parent"
         android:layout_height="112dp"
         app:layout_constraintLeft_toLeftOf="parent"
