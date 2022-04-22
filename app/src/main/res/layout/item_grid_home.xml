@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
@@ -30,7 +29,7 @@
             android:id="@+id/movieTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="12dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
             android:gravity="start"
@@ -42,19 +41,18 @@
             android:textStyle="normal"
             app:layout_constraintTop_toBottomOf="@+id/movieAvatar"
             app:layout_constraintStart_toStartOf="@+id/movieAvatar"
-            app:layout_constraintEnd_toStartOf="@+id/favorities"/>
+            app:layout_constraintEnd_toStartOf="@+id/movieFavouritesCheckBox"/>
 
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/favorities"
+        <ImageButton
+            android:id="@+id/movieFavouritesCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:button="@drawable/checkbox_favourites"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="10dp"
+            android:padding="1dp"
+            android:background="@drawable/ic_favourite_grid_item"
             android:minWidth="0dp"
             android:minHeight="0dp"
-            android:nextFocusRight="@id/movieAvatar"
-            android:scaleType="centerInside"
             app:layout_constraintEnd_toEndOf="@+id/movieAvatar"
             app:layout_constraintTop_toBottomOf="@+id/movieAvatar" />
 

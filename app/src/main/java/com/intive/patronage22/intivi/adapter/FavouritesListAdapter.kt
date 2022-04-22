@@ -8,18 +8,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.R
-import com.intive.patronage22.intivi.model.Movie
+import com.intive.patronage22.intivi.model.FavouriteMovie
 import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
 
-class MovieListAdapter(private val MovieItemList: List<Movie>, private val viewModel: HomeViewModel):RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
+class FavouritesListAdapter(private val MovieItemList: List<FavouriteMovie>, private val viewModel: HomeViewModel): RecyclerView.Adapter<FavouritesListAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouritesListAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_grid_home, parent,false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavouritesListAdapter.ViewHolder, position: Int) {
         holder.itemMovieId = MovieItemList[position].id
         holder.itemTitle.text = MovieItemList[position].title
         Picasso.get().load(MovieItemList[position].images.poster.xl).error(R.drawable.app_logo).into(holder.itemImage)

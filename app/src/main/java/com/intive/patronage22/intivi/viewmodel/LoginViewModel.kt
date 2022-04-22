@@ -29,9 +29,9 @@ class LoginViewModel: ViewModel(){
     private val _repeatPasswordErrorMessage = MutableLiveData<Int?>(null)
     val repeatPasswordErrorMessage: LiveData<Int?> = _repeatPasswordErrorMessage
 
-    private val _emailHolder = MutableLiveData("")
+    private val _emailHolder = MutableLiveData("qwerty@qwerty.qwerty")
     val emailHolder: LiveData<String> = _emailHolder
-    private val _passwordHolder = MutableLiveData("")
+    private val _passwordHolder = MutableLiveData("qwertyA1!")
     val passwordHolder: LiveData<String> = _passwordHolder
     private val _secondPasswordHolder = MutableLiveData("")
     val secondPasswordHolder: LiveData<String> = _secondPasswordHolder

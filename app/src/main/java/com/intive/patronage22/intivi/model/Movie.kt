@@ -3,7 +3,7 @@ package com.intive.patronage22.intivi.model
 data class Movie (
     val adult: Boolean,
     val genreIDS: List<Long>,
-    val id: Long,
+    val id: Int,
     val originalLanguage: String,
     val originalTitle: String,
     val overview: String,
