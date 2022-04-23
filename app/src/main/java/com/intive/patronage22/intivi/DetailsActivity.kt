@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.intive.patronage22.intivi.databinding.ActivityDetailsBinding
@@ -26,18 +27,24 @@ class DetailsActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        bind.watchButton.setOnClickListener{
+        bind.watchButton.setOnClickListener {
             val intent = Intent(this, VideoPlayerActivity::class.java)
             intent.putExtra("movieTitle", detailsViewModel.movieDetails.value?.title)
             startActivity(intent)
         }
 
+        bind.toolbarCircleFavourite.setOnClickListener {
+            if (detailsViewModel.isFavourite.value == true) {
+                detailsViewModel.deleteFavourite()
+            } else detailsViewModel.putFavourite()
+        }
+
         val movieId = bundle?.getInt("movieId")
         detailsViewModel.getMovieDetails(movieId!!)
 
-        detailsViewModel.movieResponseDetails.observe(this) {
-            if (detailsViewModel.movieResponseDetails.value != null) {
-                val details = detailsViewModel.movieResponseDetails.value!!
+        detailsViewModel.movieDetails.observe(this) {
+            if (detailsViewModel.movieDetails.value != null) {
+                val details = detailsViewModel.movieDetails.value!!
                 Picasso.get().load(details.posterOriginalUrl).error(R.drawable.app_logo)
                     .into(bind.detailsPhoto)
                 bind.detailsTitle.text = details.title
@@ -55,9 +62,28 @@ class DetailsActivity : AppCompatActivity() {
             } else bind.errorText?.visibility = View.GONE
         }
 
+        detailsViewModel.apiErrorFavouriteOperation.observe(this) {
+            if (it != null) {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+        }
+
         if (Build.VERSION.SDK_INT < 29) this.window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
+
+        detailsViewModel.isFavourite.observe(this) {
+            if (it) {
+                bind.imageViewHeart.setBackgroundResource(R.drawable.ic_favourite_grid_item_fill)
+            } else {
+                bind.imageViewHeart.setBackgroundResource(R.drawable.ic_favourite_grid_item)
+            }
+        }
+    }
+
+    //TODO temp solution to refresh favourited status displayed in MainActivity which could have changed in details activity. Should be individual data update??
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }

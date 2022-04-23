@@ -54,7 +54,12 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, DetailsActivity::class.java)
                 intent.putExtra("movieId", it.movieId)
                 startActivity(intent)
-                finish()
+            }
+        }
+
+        homeViewModel.apiErrorFavouriteOperation.observe(this) {
+            if (it != null) {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             }
         }
     }

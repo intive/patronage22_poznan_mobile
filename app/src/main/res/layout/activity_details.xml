@@ -240,15 +240,12 @@
 
                 <ImageView
                     android:id="@+id/imageViewHeart"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:contentDescription="@string/heartIcon"
                     android:padding="@dimen/toolbar_heart_icon_padding"
-                    android:src="@drawable/ic_favourite" />
+                    android:background="@drawable/ic_favourite" />
             </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
