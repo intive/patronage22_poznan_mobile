@@ -1,24 +1,14 @@
 package com.intive.patronage22.intivi
 
-import android.media.Image
-import android.os.Build
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.Window
-import android.view.WindowInsets
-import android.view.WindowManager
-import android.widget.FrameLayout
-import android.widget.ImageView
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.TextView
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.core.view.get
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.util.Log
 import com.google.android.exoplayer2.util.Util
 import com.intive.patronage22.intivi.databinding.ActivityVideoPlayerBinding
 
@@ -35,12 +25,19 @@ class VideoPlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityVideoPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val bundle = intent.extras
+        val movieId = bundle?.getInt("movieId")
+        val movieTitle = bundle?.getString("movieTitle")
         controller = WindowInsetsControllerCompat(window, window.decorView)
         controller.hide(WindowInsetsCompat.Type.systemBars())
         controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
+        binding.playerView.findViewById<TextView>(R.id.video_player_title).text = movieTitle
+
         binding.playerView.findViewById<View>(R.id.close_video_player).setOnClickListener{
+            val intent = Intent(this, DetailsActivity::class.java)
+            intent.putExtra("movieId", movieId)
+            startActivity(intent)
             finish()
         }
     }

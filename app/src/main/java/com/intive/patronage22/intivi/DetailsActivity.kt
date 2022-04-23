@@ -1,6 +1,7 @@
 package com.intive.patronage22.intivi
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -25,16 +26,21 @@ class DetailsActivity : AppCompatActivity() {
         val view: View = bind.root
         setContentView(view)
 
+        val movieId = bundle?.getInt("movieId")
+        detailsViewModel.getMovieDetails(movieId!!)
+
         bind.toolbarCircleBack.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
 
         bind.watchButton.setOnClickListener{
-            startActivity(Intent(this, VideoPlayerActivity::class.java))
+            val intent = Intent(this, VideoPlayerActivity::class.java)
+            intent.putExtra("movieId", movieId)
+            intent.putExtra("movieTitle", detailsViewModel.movieDetails.value?.title)
+            startActivity(intent)
+            finish()
         }
-
-        val movieId = bundle?.getInt("movieId")
-        detailsViewModel.getMovieDetails(movieId!!)
 
         detailsViewModel.movieDetails.observe(this) {
             if (detailsViewModel.movieDetails.value != null) {

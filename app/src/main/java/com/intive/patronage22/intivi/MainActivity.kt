@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 
         homeViewModel.openDetailsEvent.observe(this) {
             if (it.movieId != null) {
-                Log.d("bayraktar", "Opening details with id = ${it.movieId}")
                 val intent = Intent(this, DetailsActivity::class.java)
                 intent.putExtra("movieId", it.movieId)
                 startActivity(intent)
