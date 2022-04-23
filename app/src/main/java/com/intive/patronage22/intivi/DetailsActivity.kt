@@ -1,18 +1,14 @@
 package com.intive.patronage22.intivi
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
-import com.intive.patronage22.intivi.adapter.MovieListAdapter
 import com.intive.patronage22.intivi.databinding.ActivityDetailsBinding
 import com.intive.patronage22.intivi.viewmodel.DetailsViewModel
-import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
 
 class DetailsActivity : AppCompatActivity() {
@@ -30,16 +26,13 @@ class DetailsActivity : AppCompatActivity() {
         detailsViewModel.getMovieDetails(movieId!!)
 
         bind.toolbarCircleBack.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            onBackPressed()
         }
 
         bind.watchButton.setOnClickListener{
             val intent = Intent(this, VideoPlayerActivity::class.java)
-            intent.putExtra("movieId", movieId)
             intent.putExtra("movieTitle", detailsViewModel.movieDetails.value?.title)
             startActivity(intent)
-            finish()
         }
 
         detailsViewModel.movieDetails.observe(this) {

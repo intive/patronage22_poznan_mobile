@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, DetailsActivity::class.java)
                 intent.putExtra("movieId", it.movieId)
                 startActivity(intent)
-                finish()
             }
         }
     }
