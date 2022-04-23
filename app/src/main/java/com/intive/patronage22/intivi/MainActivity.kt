@@ -57,11 +57,5 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
-
-        homeViewModel.apiErrorFavouriteOperation.observe(this) {
-            if (it != null) {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 }

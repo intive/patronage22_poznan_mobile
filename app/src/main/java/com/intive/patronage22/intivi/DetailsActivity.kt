@@ -23,11 +23,13 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(view)
 
         bind.toolbarCircleBack.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            onBackPressed()
         }
 
-        bind.watchButton.setOnClickListener {
-            startActivity(Intent(this, VideoPlayerActivity::class.java))
+        bind.watchButton.setOnClickListener{
+            val intent = Intent(this, VideoPlayerActivity::class.java)
+            intent.putExtra("movieTitle", detailsViewModel.movieDetails.value?.title)
+            startActivity(intent)
         }
 
         val movieId = bundle?.getInt("movieId")
