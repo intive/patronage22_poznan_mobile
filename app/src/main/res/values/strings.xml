@@ -63,4 +63,7 @@
     <string name="loading_genres">Loading genres…</string>
     <string name="loading_favourites">Loading favourites…</string>
     <string name="loading_movie_details">Loading movie details…</string>
+    <string name="animation">Animation</string>
+    <string name="horror">Horror</string>
+    <string name="drama">Drama</string>
 </resources>

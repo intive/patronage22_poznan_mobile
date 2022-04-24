@@ -60,5 +60,21 @@ class HomeFragment : Fragment() {
             }
         }
 
+        bind.filterFirst.setOnClickListener{
+            homeViewModel.fetchPopular()
+        }
+
+        bind.filterSecond.setOnClickListener{
+            homeViewModel.fetchGenreMembers(16)
+        }
+
+        bind.filterThird.setOnClickListener{
+            homeViewModel.fetchGenreMembers(27)
+        }
+
+        bind.filterFourth.setOnClickListener{
+            homeViewModel.fetchGenreMembers(18)
+        }
+
     }
 }

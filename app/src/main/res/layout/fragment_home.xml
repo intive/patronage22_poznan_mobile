@@ -2,29 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.HomeFragment"
-    android:id="@+id/homeRootLayout">
+    tools:context=".fragment.HomeFragment">
 
     <TextView
         android:id="@+id/error_text_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/loading_movies"
-        android:gravity="center"
-        android:textAlignment="center"
         android:layout_margin="75dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:text="@string/loading_movies"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/header_bar"
+        style="@style/headerBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/headerBarStyle"
         android:gravity="center|start"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -50,60 +50,76 @@
             android:textAppearance="@style/headline6" />
     </LinearLayout>
 
-    <LinearLayout
+    <HorizontalScrollView
         android:id="@+id/filter_component"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_bar">
 
-        <TextView
-            android:id="@+id/filter_button_series"
-            style="@style/filter_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/popular"
-            tools:layout_conversion_absoluteHeight="32dp"
-            tools:layout_conversion_absoluteWidth="69dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/filter_button_kids"
-            style="@style/filter_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/kids"
-            tools:layout_conversion_absoluteHeight="32dp"
-            tools:layout_conversion_absoluteWidth="74dp" />
+            <TextView
+                android:id="@+id/filter_first"
+                style="@style/filter_button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/popular" />
 
-        <TextView
-            android:id="@+id/filter_button_movies"
-            style="@style/filter_button_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/unknown"
-            tools:layout_conversion_absoluteHeight="32dp"
-            tools:layout_conversion_absoluteWidth="59dp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/filter_second"
+                style="@style/filter_button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/animation" />
+
+            <TextView
+                android:id="@+id/filter_third"
+                style="@style/filter_button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/horror" />
+
+            <TextView
+                android:id="@+id/filter_fourth"
+                style="@style/filter_button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/drama" />
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <LinearLayout
+        android:id="@+id/recyclerViewRoot"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_component"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_component">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:foregroundGravity="center"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_grid_home"
-            android:paddingTop="8dp"
             android:layout_gravity="center_horizontal"
-            android:background="@color/bastille"/>
+            android:background="@color/bastille"
+            android:foregroundGravity="center"
+            android:paddingTop="8dp"
+            tools:listitem="@layout/item_grid_home" />
     </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:background="@drawable/gradient_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/recyclerViewRoot"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
