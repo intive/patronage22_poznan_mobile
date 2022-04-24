@@ -8,46 +8,48 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.intive.patronage22.intivi.R
+import com.intive.patronage22.intivi.adapter.GenresListAdapter
+import com.intive.patronage22.intivi.adapter.MovieListAdapter
 import com.intive.patronage22.intivi.databinding.FragmentGenresBinding
-import com.intive.patronage22.intivi.viewmodel.GenresViewModel
+import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 
 class GenresFragment : Fragment() {
 
     private lateinit var bind: FragmentGenresBinding
-    private val genresViewModel: GenresViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         bind = FragmentGenresBinding.inflate(layoutInflater)
+        return bind.root
+    }
 
-        genresViewModel.apiError.observe(viewLifecycleOwner) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.apiError.observe(viewLifecycleOwner) {
             bind.errorTextView?.text = it
             if (it != null) {
                 bind.errorTextView?.visibility = View.VISIBLE
             } else bind.errorTextView?.visibility = View.GONE
         }
 
-        genresViewModel.genresList.observe(viewLifecycleOwner) {
+        viewModel.genresList.observe(viewLifecycleOwner) {
             if (it != null) {
-                populateGenres()
+                bind.genresRecycler?.adapter = GenresListAdapter(viewModel.genresList.value!!, viewModel, activity
+                )
             }
         }
 
-        genresViewModel.fetchGenres()
-        return bind.root
-    }
+        viewModel.fetchGenres()
 
-    private fun populateGenres() {
-        val genresNameList = arrayListOf<String>()
-        for (genre in genresViewModel.genresList.value!!) {
-            genresNameList.add(genre.name)
+        bind.genresRecycler?.apply {
+            if (viewModel.genresList.value != null) {
+                adapter = GenresListAdapter(viewModel.genresList.value!!, viewModel, activity)
+            }
         }
-        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(
-            requireContext(), R.layout.genres_text, genresNameList
-        )
-        bind.genresList.adapter = arrayAdapter
     }
 
 }

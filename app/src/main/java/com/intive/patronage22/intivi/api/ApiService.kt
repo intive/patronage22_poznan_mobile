@@ -38,4 +38,7 @@ interface ApiService {
 
     @GET("/api/movies/{movieID}")
     fun getMovieDetails(@Path("movieID") movieID: Int): Call<MovieResponse>
+
+    @GET("/api/movies/category/{id}")
+    fun fetchGenreMembers(@Path("id") genreId: Int): Call<List<MovieResponse>>
 }
