@@ -31,6 +31,10 @@ class DetailsViewModel : ViewModel() {
 
     private var _movieId: Int? = null
 
+    fun setApiError(error: String){
+        _apiError.value = error
+    }
+
     fun getMovieDetails(movieId: Int) {
         ApiClient().getService()?.getMovieDetails(movieId)?.enqueue(object : Callback<MovieResponse> {
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {

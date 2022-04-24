@@ -37,7 +37,9 @@ class SignInFragment : Fragment() {
         passwordTextInput = bind.passwordTextInputLayout
 
         bind.signInButton.setOnClickListener {
-            loginViewModel.onSignInButtonClicked()
+            if(loginViewModel.loadingStatus.value == false) {
+                loginViewModel.onSignInButtonClicked()
+            }
         }
 
         emailTextInput.editText?.addTextChangedListener(object : OnTextChangeListener {

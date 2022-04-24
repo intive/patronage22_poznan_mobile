@@ -10,246 +10,252 @@
         android:id="@+id/detailsPhoto"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/watch_button_layout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/watch_button_layout"
-        android:scaleType="centerCrop"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/error_text"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:layout_margin="75dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/detailsLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/watch_button_layout"
-        android:text="@string/loading_movie_details"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ProgressBar
+        android:id="@+id/loading_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/detailsLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <RelativeLayout
+        android:id="@+id/detailsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detailsLayoutHeight"
+        android:background="@drawable/details_background"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/detailsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/detailsStartMargin"
+            android:layout_marginTop="@dimen/detailsTitleTopMargin"
+            android:ellipsize="end"
+            android:fontFamily="@font/inter_medium"
+            android:maxLines="1"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/detailsTitleTextSize"
+            app:lineHeight="32dp" />
 
         <RelativeLayout
-            android:id="@+id/detailsLayout"
+            android:id="@+id/infoLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/detailsLayoutHeight"
-            android:orientation="vertical"
-            android:background="@drawable/details_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detailsInfoTopMargin"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/detailsTitle"
+                android:id="@+id/details_year_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/detailsStartMargin"
-                android:layout_marginTop="@dimen/detailsTitleTopMargin"
-                android:fontFamily="@font/inter_medium"
-                app:lineHeight="32dp"
-                android:maxLines="1"
-                android:ellipsize="end"
+                android:fontFamily="@font/inter_semibold"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/detailsTitleTextSize" />
+                android:textSize="@dimen/detailsInfoTextSize" />
 
-            <RelativeLayout
-                android:id="@+id/infoLayout"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/detailsCircle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/detailsInfoTopMargin"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/detailsStartMargin"
+                android:layout_toEndOf="@+id/details_year_text"
+                app:srcCompat="@drawable/circle_shape"
+                tools:ignore="ContentDescription" />
 
-                <TextView
-                    android:id="@+id/details_year_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/detailsStartMargin"
-                    android:fontFamily="@font/inter_semibold"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/detailsInfoTextSize"
-                    android:layout_centerVertical="true"/>
+            <TextView
+                android:id="@+id/detailsSeasonsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/detailsStartMargin"
+                android:layout_toEndOf="@+id/detailsCircle"
+                android:fontFamily="@font/inter_semibold"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/detailsInfoTextSize" />
 
-                <ImageView
-                    android:id="@+id/detailsCircle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/circle_shape"
-                    tools:ignore="ContentDescription"
-                    android:layout_toEndOf="@+id/details_year_text"
-                    android:layout_marginStart="@dimen/detailsStartMargin"
-                    android:layout_centerVertical="true"/>
+            <ImageView
+                android:id="@+id/detailsCircle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/detailsStartMargin"
+                android:layout_toEndOf="@+id/detailsSeasonsText"
+                app:srcCompat="@drawable/circle_shape"
+                tools:ignore="ContentDescription" />
 
-                <TextView
-                    android:id="@+id/detailsSeasonsText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="@dimen/detailsInfoTextSize"
-                    android:fontFamily="@font/inter_semibold"
-                    android:layout_toEndOf="@+id/detailsCircle"
-                    android:layout_marginStart="@dimen/detailsStartMargin"
-                    android:textColor="@color/white"
-                    android:layout_centerVertical="true"/>
-
-                <ImageView
-                    android:id="@+id/detailsCircle2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/circle_shape"
-                    tools:ignore="ContentDescription"
-                    android:layout_toEndOf="@+id/detailsSeasonsText"
-                    android:layout_marginStart="@dimen/detailsStartMargin"
-                    android:layout_centerVertical="true"/>
-
-                <TextView
-                    android:id="@+id/detailsPGText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/detailsStartMargin"
-                    android:text=""
-                    android:textSize="@dimen/detailsInfoTextSize"
-                    android:fontFamily="@font/inter_semibold"
-                    android:layout_toEndOf="@+id/detailsCircle2"
-                    android:textColor="@color/white"
-                    android:layout_centerVertical="true"/>
-
-            </RelativeLayout>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/infoLayout"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="84dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/detailsDescriptionText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginHorizontal="@dimen/detailsStartMargin"
-                    android:paddingBottom="24dp"
-                    android:fontFamily="@font/inter"
-                    android:text=""
-                    android:textColor="@color/gray_20"
-                    android:textSize="@dimen/detailsInfoTextSize"
-                    app:lineHeight="@dimen/detailsLineHeight" />
-            </ScrollView>
+            <TextView
+                android:id="@+id/detailsPGText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/detailsStartMargin"
+                android:layout_toEndOf="@+id/detailsCircle2"
+                android:fontFamily="@font/inter_semibold"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/detailsInfoTextSize" />
 
         </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/infoLayout"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="84dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/detailsDescriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/detailsStartMargin"
+                android:fontFamily="@font/inter"
+                android:paddingBottom="24dp"
+                android:text=""
+                android:textColor="@color/gray_20"
+                android:textSize="@dimen/detailsInfoTextSize"
+                app:lineHeight="@dimen/detailsLineHeight" />
+        </ScrollView>
+
+    </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/watch_button_layout"
         android:layout_width="match_parent"
         android:layout_height="112dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@drawable/button_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/button_background">
+        app:layout_constraintLeft_toLeftOf="parent">
 
-    <RelativeLayout
-        android:id="@+id/detailsButtonLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf= "parent"
-        android:gravity="center"
-        android:elevation="3dp">
-
-        <ImageView
-            android:id="@+id/details_button_chevron"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/detailsButtonLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="13dp"
-            android:layout_marginEnd="13dp"
-            android:layout_toStartOf="@+id/details_button_text"
-            app:srcCompat="@drawable/ic_chevronright"
-            tools:ignore="ContentDescription" />
+            android:elevation="3dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/details_button_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/detailsWatchButtonText"
-            android:textSize="16sp"
-            android:fontFamily="@font/inter_semibold"
-            android:textColor="@color/black"
-            android:layout_centerVertical="true"/>
+            <ImageView
+                android:id="@+id/details_button_chevron"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="13dp"
+                android:layout_marginEnd="13dp"
+                android:layout_toStartOf="@+id/details_button_text"
+                app:srcCompat="@drawable/ic_chevronright"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/details_button_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/detailsWatchButtonText"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
         </RelativeLayout>
 
         <Button
             android:id="@+id/watchButton"
+            style="@style/logInUpButton"
             android:layout_marginHorizontal="@dimen/detailsStartMargin"
             app:cornerRadius="@dimen/detailsWatchButtonCornerRadius"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            style="@style/logInUpButton"
-            />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/headerBarStyle"
-            android:background="@drawable/gradient_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appBarLayout"
+        style="@style/headerBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-            <RelativeLayout
-                android:id="@+id/toolbarCircleBack"
-                android:layout_width="@dimen/toolbar_circle_width"
-                android:layout_height="@dimen/toolbar_circle_width"
-                android:layout_marginStart="@dimen/toolbar_circle_margin_left_right"
-                android:layout_marginBottom="@dimen/header_bar_item_padding_bottom"
-                android:background="@drawable/ic_toolbar_circle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+        <RelativeLayout
+            android:id="@+id/toolbarCircleBack"
+            android:layout_width="@dimen/toolbar_circle_width"
+            android:layout_height="@dimen/toolbar_circle_width"
+            android:layout_marginStart="@dimen/toolbar_circle_margin_left_right"
+            android:layout_marginBottom="@dimen/header_bar_item_padding_bottom"
+            android:background="@drawable/ic_toolbar_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-                <ImageView
-                    android:id="@+id/imageViewBackArrow"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:contentDescription="@string/backArrow"
-                    android:padding="@dimen/toolbar_back_arrow_padding"
-                    app:srcCompat="@drawable/ic_chevron_left" />
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/imageViewBackArrow"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:contentDescription="@string/backArrow"
+                android:padding="@dimen/toolbar_back_arrow_padding"
+                app:srcCompat="@drawable/ic_chevron_left" />
+        </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/toolbarCircleFavourite"
-                android:layout_width="@dimen/toolbar_circle_width"
-                android:layout_height="@dimen/toolbar_circle_width"
-                android:layout_marginEnd="@dimen/toolbar_circle_margin_left_right"
-                android:layout_marginBottom="@dimen/header_bar_item_padding_bottom"
-                android:background="@drawable/ic_toolbar_circle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+        <RelativeLayout
+            android:id="@+id/toolbarCircleFavourite"
+            android:layout_width="@dimen/toolbar_circle_width"
+            android:layout_height="@dimen/toolbar_circle_width"
+            android:layout_marginEnd="@dimen/toolbar_circle_margin_left_right"
+            android:layout_marginBottom="@dimen/header_bar_item_padding_bottom"
+            android:background="@drawable/ic_toolbar_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-                <ImageView
-                    android:id="@+id/imageViewHeart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:contentDescription="@string/heartIcon"
-                    android:padding="@dimen/toolbar_heart_icon_padding"
-                    android:background="@drawable/ic_favourite" />
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/imageViewHeart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_favourite"
+                android:contentDescription="@string/heartIcon"
+                android:padding="@dimen/toolbar_heart_icon_padding" />
+        </RelativeLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,8 +39,13 @@ class FavouritesFragment : Fragment() {
         }
 
         homeViewModel.favouriteMoviesList.observe(viewLifecycleOwner) {
-            bind.recyclerView.adapter =
-                MovieListAdapter(homeViewModel.favouriteMoviesList.value!!, homeViewModel)
+            if (it.isNotEmpty()) {
+                bind.recyclerView.adapter =
+                    MovieListAdapter(homeViewModel.favouriteMoviesList.value!!, homeViewModel)
+                bind.loadingBar.visibility = View.GONE
+            } else {
+                bind.errorTextView.visibility = View.VISIBLE
+            }
         }
 
         homeViewModel.apiErrorFavourites.observe(viewLifecycleOwner) {

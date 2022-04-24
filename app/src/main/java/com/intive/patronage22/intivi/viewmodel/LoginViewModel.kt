@@ -37,6 +37,9 @@ class LoginViewModel : ViewModel() {
     private val _secondPasswordHolder = MutableLiveData("")
     val secondPasswordHolder: LiveData<String> = _secondPasswordHolder
 
+    private val _loadingStatus = MutableLiveData<Boolean>(false)
+    val loadingStatus: LiveData<Boolean> = _loadingStatus
+
     fun updateEmail(newEmail: String) {
         _emailHolder.value = newEmail
     }
@@ -79,9 +82,11 @@ class LoginViewModel : ViewModel() {
     }
 
     private fun loginUser(email: String, password: String) {
+
+        _loadingStatus.value = true
+
         ApiClient().getService()?.signIn(email, password)
             ?.enqueue(object : Callback<SignInResponse> {
-
                 override fun onResponse(
                     call: Call<SignInResponse>,
                     response: Response<SignInResponse>
@@ -89,14 +94,17 @@ class LoginViewModel : ViewModel() {
                     val loginResponse = response.body()
                     if (response.isSuccessful) {
                         if (loginResponse?.token != null) {
+                            _loadingStatus.value = false
                             _logInEvent.value = LogInEvent(true, loginResponse.token)
                         }
                     } else {
+                        _loadingStatus.value = false
                         assignFullError(R.string.incorrectPasswordOrEmailError)
                     }
                 }
 
                 override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
+                    _loadingStatus.value = false
                     assignFullError(R.string.serverConnectionFailedError)
                 }
             })

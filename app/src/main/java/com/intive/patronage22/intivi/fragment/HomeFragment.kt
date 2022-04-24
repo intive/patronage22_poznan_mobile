@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
                 MovieListAdapter(homeViewModel.popularMoviesList.value!!, homeViewModel)
             if (it.isNotEmpty()) {
                 bind.errorTextView.visibility = View.GONE
+                bind.loadingBar.visibility = View.GONE
             } else {
                 bind.errorTextView.visibility = View.VISIBLE
             }
@@ -76,5 +77,10 @@ class HomeFragment : Fragment() {
             homeViewModel.fetchGenreMembers(18)
         }
 
+    }
+
+    override fun onResume(){
+        super.onResume()
+        homeViewModel.fetchFavourites()
     }
 }

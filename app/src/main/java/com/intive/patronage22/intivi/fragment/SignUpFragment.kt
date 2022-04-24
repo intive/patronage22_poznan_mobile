@@ -31,7 +31,9 @@ class SignUpFragment : Fragment() {
 
 
         bind.signUpButton.setOnClickListener {
-            loginViewModel.onRegisterButtonClicked()
+            if(loginViewModel.loadingStatus.value == false) {
+                loginViewModel.onRegisterButtonClicked()
+            }
         }
 
         loginViewModel.emailErrorMessage.observe(viewLifecycleOwner) {

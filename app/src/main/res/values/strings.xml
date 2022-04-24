@@ -66,4 +66,5 @@
     <string name="animation">Animation</string>
     <string name="horror">Horror</string>
     <string name="drama">Drama</string>
+    <string name="working">Working…</string>
 </resources>

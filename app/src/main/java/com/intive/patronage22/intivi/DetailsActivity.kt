@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.intive.patronage22.intivi.databinding.ActivityDetailsBinding
 import com.intive.patronage22.intivi.viewmodel.DetailsViewModel
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 class DetailsActivity : AppCompatActivity() {
@@ -45,8 +46,19 @@ class DetailsActivity : AppCompatActivity() {
         detailsViewModel.movieDetails.observe(this) {
             if (detailsViewModel.movieDetails.value != null) {
                 val details = detailsViewModel.movieDetails.value!!
-                Picasso.get().load(details.posterOriginalUrl).error(R.drawable.app_logo)
-                    .into(bind.detailsPhoto)
+
+                Picasso.get().load(details.posterOriginalUrl).into(bind.detailsPhoto,
+                    object: Callback{
+                        override fun onSuccess(){
+                            bind.loadingBar?.visibility = View.GONE
+                        }
+
+                        override fun onError(e: Exception) {
+                            detailsViewModel.setApiError(e.message!!)
+                            bind.loadingBar?.visibility = View.GONE
+                        }
+                    })
+
                 bind.detailsTitle.text = details.title
                 bind.detailsDescriptionText.text = details.overview
                 bind.detailsYearText.text = details.releaseDate.substringBefore("-", "N/A")
@@ -59,6 +71,7 @@ class DetailsActivity : AppCompatActivity() {
             if (it != null) {
                 bind.errorText?.text = it
                 bind.errorText?.visibility = View.VISIBLE
+                bind.loadingBar?.visibility = View.GONE
             } else bind.errorText?.visibility = View.GONE
         }
 
@@ -80,10 +93,5 @@ class DetailsActivity : AppCompatActivity() {
                 bind.imageViewHeart.setBackgroundResource(R.drawable.ic_favourite_grid_item)
             }
         }
-    }
-
-    //TODO temp solution to refresh favourited status displayed in MainActivity which could have changed in details activity. Should be individual data update??
-    override fun onBackPressed() {
-        startActivity(Intent(this, MainActivity::class.java))
     }
 }

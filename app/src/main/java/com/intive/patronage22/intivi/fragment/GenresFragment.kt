@@ -32,14 +32,15 @@ class GenresFragment : Fragment() {
         viewModel.apiError.observe(viewLifecycleOwner) {
             bind.errorTextView?.text = it
             if (it != null) {
+                bind.loadingBar?.visibility = View.GONE
                 bind.errorTextView?.visibility = View.VISIBLE
             } else bind.errorTextView?.visibility = View.GONE
         }
 
         viewModel.genresList.observe(viewLifecycleOwner) {
             if (it != null) {
-                bind.genresRecycler?.adapter = GenresListAdapter(viewModel.genresList.value!!, viewModel, activity
-                )
+                bind.loadingBar?.visibility = View.GONE
+                bind.genresRecycler?.adapter = GenresListAdapter(viewModel.genresList.value!!, viewModel, activity)
             }
         }
 
