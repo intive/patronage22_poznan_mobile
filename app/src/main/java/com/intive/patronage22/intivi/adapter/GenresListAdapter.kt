@@ -30,6 +30,7 @@ class GenresListAdapter(
         holder.itemTitle.setOnClickListener {
             if (holder.itemGenreId != null) {
                 viewModel.fetchGenreMembers(holder.itemGenreId!!)
+                viewModel.setHomeEvent(false)
                 activity?.findViewById<TabLayout>(R.id.footer_tab)?.getTabAt(0)!!.select()
             }
         }
