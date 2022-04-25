@@ -1,10 +1,11 @@
 package com.intive.patronage22.intivi.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.*
-import com.intive.patronage22.intivi.LoginValidation.checkEmailError
-import com.intive.patronage22.intivi.LoginValidation.checkPasswordError
-import com.intive.patronage22.intivi.LoginValidation.checkSecondPasswordError
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.intive.patronage22.intivi.LoginValidator.checkEmailError
+import com.intive.patronage22.intivi.LoginValidator.checkPasswordError
+import com.intive.patronage22.intivi.LoginValidator.checkSecondPasswordError
 import com.intive.patronage22.intivi.R
 import com.intive.patronage22.intivi.api.ApiClient
 import com.intive.patronage22.intivi.database.UserRepository
@@ -15,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginViewModel: ViewModel(){
+class LoginViewModel : ViewModel() {
 
     lateinit var userRepo: UserRepository
 
@@ -36,79 +37,100 @@ class LoginViewModel: ViewModel(){
     private val _secondPasswordHolder = MutableLiveData("")
     val secondPasswordHolder: LiveData<String> = _secondPasswordHolder
 
-    fun updateEmail(newEmail: String){
+    private val _loadingStatus = MutableLiveData<Boolean>(false)
+    val loadingStatus: LiveData<Boolean> = _loadingStatus
+
+    fun updateEmail(newEmail: String) {
         _emailHolder.value = newEmail
     }
 
-    fun updatePassword(newPassword: String){
+    fun updatePassword(newPassword: String) {
         _passwordHolder.value = newPassword
     }
 
-    fun updateSecondPassword(newSecondPassword: String){
+    fun updateSecondPassword(newSecondPassword: String) {
         _secondPasswordHolder.value = newSecondPassword
     }
 
-    fun onSignInButtonClicked(email: String = emailHolder.value.toString().lowercase(), password: String = passwordHolder.value.toString()){
+    fun onSignInButtonClicked(
+        email: String = emailHolder.value.toString().lowercase(),
+        password: String = passwordHolder.value.toString()
+    ) {
         _emailErrorMessage.value = null
         _passwordErrorMessage.value = null
         _emailErrorMessage.value = checkEmailError(email)
         _passwordErrorMessage.value = checkPasswordError(password)
-        if(_emailErrorMessage.value == null && _passwordErrorMessage.value == null) {
+        if (_emailErrorMessage.value == null && _passwordErrorMessage.value == null) {
             loginUser(email, password)
         }
     }
 
-    fun onRegisterButtonClicked(email: String = emailHolder.value.toString().lowercase(), password: String = passwordHolder.value.toString(), secondPassword: String = secondPasswordHolder.value.toString()){
+    fun onRegisterButtonClicked(
+        email: String = emailHolder.value.toString().lowercase(),
+        password: String = passwordHolder.value.toString(),
+        secondPassword: String = secondPasswordHolder.value.toString()
+    ) {
         _emailErrorMessage.value = null
         _passwordErrorMessage.value = null
         _repeatPasswordErrorMessage.value = null
         _emailErrorMessage.value = checkEmailError(email)
         _passwordErrorMessage.value = checkPasswordError(password)
         _repeatPasswordErrorMessage.value = checkSecondPasswordError(password, secondPassword)
-        if(emailErrorMessage.value == null && passwordErrorMessage.value == null && repeatPasswordErrorMessage.value == null){
+        if (emailErrorMessage.value == null && passwordErrorMessage.value == null && repeatPasswordErrorMessage.value == null) {
             registerUser(email, password)
         }
     }
 
-    private fun loginUser(email: String, password: String){
+    private fun loginUser(email: String, password: String) {
+
+        _loadingStatus.value = true
+
         ApiClient().getService()?.signIn(email, password)
             ?.enqueue(object : Callback<SignInResponse> {
-
-                override fun onResponse(call: Call<SignInResponse>, response: Response<SignInResponse>) {
+                override fun onResponse(
+                    call: Call<SignInResponse>,
+                    response: Response<SignInResponse>
+                ) {
                     val loginResponse = response.body()
-                    if(response.isSuccessful) {
+                    if (response.isSuccessful) {
                         if (loginResponse?.token != null) {
+                            _loadingStatus.value = false
                             _logInEvent.value = LogInEvent(true, loginResponse.token)
                         }
-                    }
-                    else {
+                    } else {
+                        _loadingStatus.value = false
                         assignFullError(R.string.incorrectPasswordOrEmailError)
                     }
                 }
+
                 override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
+                    _loadingStatus.value = false
                     assignFullError(R.string.serverConnectionFailedError)
                 }
             })
     }
 
-    private fun registerUser(email: String, password: String){
+    private fun registerUser(email: String, password: String) {
         ApiClient().getService()?.signUp(email, email, password)
-            ?.enqueue(object : Callback<SignUpResponse>{
-                override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
-                    if(response.isSuccessful) {
-                        loginUser(email,password)
-                    }
-                    else {
+            ?.enqueue(object : Callback<SignUpResponse> {
+                override fun onResponse(
+                    call: Call<SignUpResponse>,
+                    response: Response<SignUpResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        loginUser(email, password)
+                    } else {
                         assignFullError(R.string.incorrectPasswordOrEmailError)
                     }
                 }
+
                 override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                     assignFullError(R.string.serverConnectionFailedError)
                 }
             })
     }
 
-    private fun assignFullError(errorMessage: Int?){
+    private fun assignFullError(errorMessage: Int?) {
         _emailErrorMessage.value = errorMessage
         _passwordErrorMessage.value = errorMessage
     }

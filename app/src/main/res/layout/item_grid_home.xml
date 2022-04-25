@@ -39,6 +39,8 @@
             android:textFontWeight="600"
             android:textSize="14sp"
             android:textStyle="normal"
+            android:maxLines="2"
+            android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@+id/movieAvatar"
             app:layout_constraintStart_toStartOf="@+id/movieAvatar"
             app:layout_constraintEnd_toStartOf="@+id/movieFavouritesCheckBox"/>

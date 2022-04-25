@@ -3,6 +3,7 @@ package com.intive.patronage22.intivi
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,10 +14,12 @@ import com.intive.patronage22.intivi.adapter.FragmentsAdapter
 import com.intive.patronage22.intivi.api.ApiClient
 import com.intive.patronage22.intivi.api.SessionManager
 import com.intive.patronage22.intivi.database.UserRepository
+import com.intive.patronage22.intivi.databinding.ActivityLoginBinding
 import com.intive.patronage22.intivi.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
 
+    private lateinit var bind: ActivityLoginBinding
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
     private var userRepo = UserRepository()
@@ -25,7 +28,9 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        bind = ActivityLoginBinding.inflate(layoutInflater)
+        val view: View = bind.root
+        setContentView(view)
 
         //TODO Dagger dependency injection (Room database no longer used)
         userRepo.initialize(this)
@@ -49,13 +54,29 @@ class LoginActivity : AppCompatActivity() {
             }
         }.attach()
 
-        if (Build.VERSION.SDK_INT < 29) this.window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        if (Build.VERSION.SDK_INT < 29) this.window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
 
         loginViewModel.logInEvent.observe(this) {
             if (it.canLogIn && it.token != null) {
                 sessionManager.saveAuthToken(it.token!!)
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
+            }
+        }
+
+        loginViewModel.loadingStatus.observe(this) {
+            if (it) {
+                bind.loadingIndicatorLayout?.visibility = View.VISIBLE
+                window.setFlags(
+                    WindowManager.LayoutParams.FLAG_DIM_BEHIND,
+                    WindowManager.LayoutParams.FLAG_DIM_BEHIND
+                )
+            } else {
+                bind.loadingIndicatorLayout?.visibility = View.GONE
+                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
             }
         }
     }

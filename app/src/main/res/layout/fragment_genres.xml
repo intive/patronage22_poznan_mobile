@@ -19,15 +19,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/failed_fetch_request" />
+        android:text="@string/loading_genres" />
 
-    <ListView
-        android:id="@+id/genres_list"
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/loading_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="24dp"
-        android:paddingVertical="24dp">
-    </ListView>
+        android:layout_gravity="center"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/genres_recycler"
+        tools:listitem="@layout/genres_list_item"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:spanCount="1"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@color/greyed_out"
+        android:layout_marginEnd="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </FrameLayout>

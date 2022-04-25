@@ -1,60 +1,56 @@
 package com.intive.patronage22.intivi.fragment
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.intive.patronage22.intivi.api.ApiClient
 import com.intive.patronage22.intivi.R
-import com.intive.patronage22.intivi.viewmodel.LoginViewModel
+import com.intive.patronage22.intivi.adapter.GenresListAdapter
+import com.intive.patronage22.intivi.adapter.MovieListAdapter
 import com.intive.patronage22.intivi.databinding.FragmentGenresBinding
-import com.intive.patronage22.intivi.model.Genres
-import com.intive.patronage22.intivi.model.GenresResponse
-import com.intive.patronage22.intivi.viewmodel.GenresViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 
 class GenresFragment : Fragment() {
 
     private lateinit var bind: FragmentGenresBinding
-    private val genresViewModel: GenresViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         bind = FragmentGenresBinding.inflate(layoutInflater)
+        return bind.root
+    }
 
-        genresViewModel.genresApiSuccess.observe(viewLifecycleOwner){
-            if(!it) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.apiError.observe(viewLifecycleOwner) {
+            bind.errorTextView?.text = it
+            if (it != null) {
+                bind.loadingBar?.visibility = View.GONE
                 bind.errorTextView?.visibility = View.VISIBLE
             } else bind.errorTextView?.visibility = View.GONE
         }
 
-        genresViewModel.genresList.observe(viewLifecycleOwner){
-            if(it != null) {
-                populateGenres()
+        viewModel.genresList.observe(viewLifecycleOwner) {
+            if (it != null) {
+                bind.loadingBar?.visibility = View.GONE
+                bind.genresRecycler?.adapter = GenresListAdapter(viewModel.genresList.value!!, viewModel, activity)
             }
         }
 
-        genresViewModel.fetchGenres()
-        return bind.root
-    }
+        viewModel.fetchGenres()
 
-    private fun populateGenres(){
-        var genresNameList = arrayListOf<String>()
-        for(genre in genresViewModel.genresList.value!!)
-        {
-            genresNameList.add(genre.name)
+        bind.genresRecycler?.apply {
+            if (viewModel.genresList.value != null) {
+                adapter = GenresListAdapter(viewModel.genresList.value!!, viewModel, activity)
+            }
         }
-        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext(), R.layout.genres_text, genresNameList
-        )
-        bind.genresList.adapter = arrayAdapter
     }
 
 }
