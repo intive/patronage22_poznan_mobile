@@ -37,7 +37,11 @@ class DetailsActivity : AppCompatActivity() {
         bind.toolbarCircleFavourite.setOnClickListener {
             if (detailsViewModel.isFavourite.value == true) {
                 detailsViewModel.deleteFavourite()
-            } else detailsViewModel.putFavourite()
+                bind.imageViewHeart.setBackgroundResource(R.drawable.ic_favourite_grid_item)
+            } else {
+                detailsViewModel.putFavourite()
+                bind.imageViewHeart.setBackgroundResource(R.drawable.ic_favourite_grid_item_fill)
+            }
         }
 
         val movieId = bundle?.getInt("movieId")
