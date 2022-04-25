@@ -69,18 +69,22 @@ class HomeFragment : Fragment() {
 
         bind.filterFirst.setOnClickListener{
             homeViewModel.fetchPopular()
+            bind.appBarLayout.setExpanded(false)
         }
 
         bind.filterSecond.setOnClickListener{
             homeViewModel.fetchGenreMembers(16)
+            bind.appBarLayout.setExpanded(false)
         }
 
         bind.filterThird.setOnClickListener{
             homeViewModel.fetchGenreMembers(27)
+            bind.appBarLayout.setExpanded(false)
         }
 
         bind.filterFourth.setOnClickListener{
             homeViewModel.fetchGenreMembers(18)
+            bind.appBarLayout.setExpanded(false)
         }
 
     }
