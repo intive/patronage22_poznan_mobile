@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         tabLayout = findViewById(R.id.footer_tab)
         viewPager = findViewById(R.id.main_viewPager)
         viewPager.adapter = MainFragmentsAdapter(this, tabLayout.tabCount)
+        viewPager.isUserInputEnabled = false
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
