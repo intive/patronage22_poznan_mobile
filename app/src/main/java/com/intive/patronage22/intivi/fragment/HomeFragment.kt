@@ -52,6 +52,12 @@ class HomeFragment : Fragment() {
             }
         }
 
+        homeViewModel.openHomeEvent.observe(viewLifecycleOwner) {
+            if (it == false) {
+                bind.appBarLayout.setExpanded(false)
+            }
+        }
+
         homeViewModel.apiErrorHome.observe(viewLifecycleOwner) {
             bind.errorTextView.text = it
             if (it != null) {

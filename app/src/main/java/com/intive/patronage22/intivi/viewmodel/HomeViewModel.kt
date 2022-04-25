@@ -1,6 +1,5 @@
 package com.intive.patronage22.intivi.viewmodel
 
-import android.R
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,8 +15,8 @@ class HomeViewModel : ViewModel() {
     private val _openDetailsEvent = MutableLiveData(OpenDetailsEvent(null))
     val openDetailsEvent: LiveData<OpenDetailsEvent> = _openDetailsEvent
 
-    private val _openHomeEvent = MutableLiveData(OpenDetailsEvent(null))
-    val openHomeEvent: LiveData<OpenDetailsEvent> = _openHomeEvent
+    private val _openHomeEvent = MutableLiveData<Boolean>(true)
+    val openHomeEvent: LiveData<Boolean> = _openHomeEvent
 
     private val _homeMoviesList = MutableLiveData<List<MovieItem>>()
     val popularMoviesList: LiveData<List<MovieItem>> = _homeMoviesList
@@ -47,6 +46,10 @@ class HomeViewModel : ViewModel() {
 
     fun setDetailsEvent(detailsEvent: OpenDetailsEvent) {
         _openDetailsEvent.value = detailsEvent
+    }
+
+    fun setHomeEvent(it: Boolean) {
+        _openHomeEvent.value = it
     }
 
     fun fetchPopular() {
