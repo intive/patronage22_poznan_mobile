@@ -88,11 +88,13 @@ class DetailsViewModel : ViewModel() {
                     _apiErrorFavouriteOperation.value = null
                     fetchFavourites()
                 } else {
+                    _isFavourite.value = false
                     _apiErrorFavouriteOperation.value = response.code().toString()
                 }
             }
 
             override fun onFailure(call: Call<Unit>, t: Throwable) {
+                _isFavourite.value = false
                 _apiErrorFavouriteOperation.value = t.message
             }
         })
@@ -105,19 +107,21 @@ class DetailsViewModel : ViewModel() {
                     _apiErrorFavouriteOperation.value = null
                     fetchFavourites()
                 } else {
+                    _isFavourite.value = true
                     _apiErrorFavouriteOperation.value = response.code().toString()
                 }
             }
 
             override fun onFailure(call: Call<Unit>, t: Throwable) {
+                _isFavourite.value = true
                 _apiErrorFavouriteOperation.value = t.message
             }
         })
     }
 
     fun checkFavouriteStatus(movieID: Int): Boolean {
-        if (favouriteMoviesList.value != null) {
-            return favouriteMoviesList.value!!.find { it.id == movieID } != null
-        } else return false
+        return if (favouriteMoviesList.value != null) {
+            favouriteMoviesList.value!!.find { it.id == movieID } != null
+        } else false
     }
 }

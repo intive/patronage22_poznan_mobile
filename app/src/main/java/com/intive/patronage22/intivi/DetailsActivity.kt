@@ -37,7 +37,11 @@ class DetailsActivity : AppCompatActivity() {
         bind.toolbarCircleFavourite.setOnClickListener {
             if (detailsViewModel.isFavourite.value == true) {
                 detailsViewModel.deleteFavourite()
-            } else detailsViewModel.putFavourite()
+                bind.imageViewHeart.setBackgroundResource(R.drawable.ic_favourite_grid_item)
+            } else {
+                detailsViewModel.putFavourite()
+                bind.imageViewHeart.setBackgroundResource(R.drawable.ic_favourite_grid_item_fill)
+            }
         }
 
         val movieId = bundle?.getInt("movieId")
@@ -59,6 +63,8 @@ class DetailsActivity : AppCompatActivity() {
                         }
                     })
 
+                bind.detailsCircle.visibility = View.VISIBLE
+                bind.detailsCircle2.visibility = View.VISIBLE
                 bind.detailsTitle.text = details.title
                 bind.detailsDescriptionText.text = details.overview
                 bind.detailsYearText.text = details.releaseDate.substringBefore("-", "N/A")
