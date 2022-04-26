@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.R
 import com.intive.patronage22.intivi.model.MovieItem
 import com.intive.patronage22.intivi.model.OpenDetailsEvent
 import com.intive.patronage22.intivi.viewmodel.HomeViewModel
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 class MovieListAdapter(
@@ -27,8 +29,17 @@ class MovieListAdapter(
         holder.itemMovieId = movieResponseItemList[position].id
         holder.itemTitle.text = movieResponseItemList[position].title
         Picasso.get().load(movieResponseItemList[position].posterXlUrl)
-            .error(R.drawable.app_logo)
-            .into(holder.itemImage)
+            .error(R.drawable.poster_error_xl)
+            .into(holder.itemImage, object: Callback {
+                override fun onSuccess(){
+                    holder.progressBar.visibility = View.GONE
+                }
+
+                override fun onError(e: Exception) {
+                    holder.progressBar.visibility = View.GONE
+                }
+            })
+
         if (viewModel.checkFavouriteStatus(holder.itemMovieId!!)) {
             holder.itemFavourite.setBackgroundResource(R.drawable.ic_favourite_grid_item_fill)
         } else {
@@ -61,5 +72,6 @@ class MovieListAdapter(
         var itemImage: ImageView = itemView.findViewById(R.id.movieAvatar)
         var itemTitle: TextView = itemView.findViewById(R.id.movieTitle)
         var itemFavourite: ImageButton = itemView.findViewById(R.id.movieFavouritesCheckBox)
+        var progressBar: ProgressBar = itemView.findViewById(R.id.progressBar)
     }
 }
