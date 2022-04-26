@@ -63,6 +63,8 @@ class DetailsActivity : AppCompatActivity() {
                         }
                     })
 
+                bind.detailsCircle.visibility = View.VISIBLE
+                bind.detailsCircle2.visibility = View.VISIBLE
                 bind.detailsTitle.text = details.title
                 bind.detailsDescriptionText.text = details.overview
                 bind.detailsYearText.text = details.releaseDate.substringBefore("-", "N/A")
