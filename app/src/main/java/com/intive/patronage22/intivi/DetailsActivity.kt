@@ -47,7 +47,9 @@ class DetailsActivity : AppCompatActivity() {
             if (detailsViewModel.movieDetails.value != null) {
                 val details = detailsViewModel.movieDetails.value!!
 
-                Picasso.get().load(details.posterOriginalUrl).into(bind.detailsPhoto,
+                Picasso.get().load(details.posterOriginalUrl)
+                    .error(R.drawable.poster_error_original)
+                    .into(bind.detailsPhoto,
                     object: Callback{
                         override fun onSuccess(){
                             bind.loadingBar?.visibility = View.GONE
