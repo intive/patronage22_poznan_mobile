@@ -3,7 +3,7 @@ package com.intive.patronage22.intivi.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +14,7 @@ import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
 
 class MovieListAdapter(
-    private val movieResponseItemList: List<MovieItem>,
+    private val movieResponseItemList: List<MovieItem>?,
     private val viewModel: HomeViewModel
 ) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
@@ -24,42 +24,35 @@ class MovieListAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
-        holder.itemMovieId = movieResponseItemList[position].id
-        holder.itemTitle.text = movieResponseItemList[position].title
-        Picasso.get().load(movieResponseItemList[position].posterXlUrl)
-            .error(R.drawable.app_logo)
-            .into(holder.itemImage)
-        if (viewModel.checkFavouriteStatus(holder.itemMovieId!!)) {
-            holder.itemFavourite.setBackgroundResource(R.drawable.ic_favourite_grid_item_fill)
-        } else {
-            holder.itemFavourite.setBackgroundResource(R.drawable.ic_favourite_grid_item)
-        }
+        if (movieResponseItemList != null) {
+            holder.itemMovieId = movieResponseItemList[position].id
+            holder.itemTitle.text = movieResponseItemList[position].title
+            holder.itemFavourite.isChecked = viewModel.checkFavouriteStatus(holder.itemMovieId!!)
+            Picasso.get().load(movieResponseItemList[position].posterXlUrl)
+                .error(R.drawable.app_logo)
+                .into(holder.itemImage)
 
-        holder.itemFavourite.setOnClickListener { _ ->
-            if (viewModel.checkFavouriteStatus(holder.itemMovieId!!)) {
-                viewModel.deleteFavourite(holder.itemMovieId!!)
-                holder.itemFavourite.setBackgroundResource(R.drawable.ic_favourite_grid_item)
-            } else {
-                viewModel.putFavourite(holder.itemMovieId!!)
-                holder.itemFavourite.setBackgroundResource(R.drawable.ic_favourite_grid_item_fill)
+            holder.itemFavourite.setOnClickListener {
+                holder.itemFavourite.isChecked = !holder.itemFavourite.isSelected
+                viewModel.handleFavouriteRequest(holder.itemMovieId!!)
             }
-        }
 
-        holder.itemImage.setOnClickListener {
-            if (holder.itemMovieId != null) {
-                viewModel.setDetailsEvent(OpenDetailsEvent(holder.itemMovieId))
+            holder.itemImage.setOnClickListener {
+                if (holder.itemMovieId != null) {
+                    viewModel.setDetailsEvent(OpenDetailsEvent(holder.itemMovieId))
+                }
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return movieResponseItemList.size
+        return movieResponseItemList?.size ?: 0
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemMovieId: Int? = null
         var itemImage: ImageView = itemView.findViewById(R.id.movieAvatar)
         var itemTitle: TextView = itemView.findViewById(R.id.movieTitle)
-        var itemFavourite: ImageButton = itemView.findViewById(R.id.movieFavouritesCheckBox)
+        var itemFavourite: CheckBox = itemView.findViewById(R.id.movieFavouritesCheckBox)
     }
 }

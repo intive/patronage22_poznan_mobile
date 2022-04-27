@@ -25,18 +25,15 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        
         bind.recyclerView.apply {
             layoutManager = GridLayoutManager(activity, 2)
-            if (homeViewModel.popularMoviesList.value != null) {
-                adapter = MovieListAdapter(homeViewModel.popularMoviesList.value!!, homeViewModel)
-            }
+            adapter = MovieListAdapter(homeViewModel.homeMoviesList.value, homeViewModel)
         }
 
-        //TODO update individual items instead of the whole dataset
-        homeViewModel.popularMoviesList.observe(viewLifecycleOwner) {
+        homeViewModel.homeMoviesList.observe(viewLifecycleOwner) {
             bind.recyclerView.adapter =
-                MovieListAdapter(homeViewModel.popularMoviesList.value!!, homeViewModel)
+                MovieListAdapter(homeViewModel.homeMoviesList.value!!, homeViewModel)
             if (it.isNotEmpty()) {
                 bind.errorTextView.visibility = View.GONE
                 bind.loadingBar.visibility = View.GONE
@@ -46,9 +43,14 @@ class HomeFragment : Fragment() {
         }
 
         homeViewModel.favouriteMoviesList.observe(viewLifecycleOwner) {
-            if (homeViewModel.popularMoviesList.value != null) {
-                bind.recyclerView.adapter =
-                    MovieListAdapter(homeViewModel.popularMoviesList.value!!, homeViewModel)
+            val differenceList =
+                homeViewModel.returnFavouritesDifference(homeViewModel.oldFavouritesMovieList, it)
+            if (differenceList != null) {
+                homeViewModel.homeMoviesList.value?.forEachIndexed { index, item ->
+                    if (item in differenceList) {
+                        bind.recyclerView.adapter?.notifyItemChanged(index)
+                    }
+                }
             }
         }
 
@@ -61,26 +63,20 @@ class HomeFragment : Fragment() {
             }
         }
 
-        bind.filterFirst.setOnClickListener{
+        bind.filterFirst.setOnClickListener {
             homeViewModel.fetchPopular()
         }
 
-        bind.filterSecond.setOnClickListener{
+        bind.filterSecond.setOnClickListener {
             homeViewModel.fetchGenreMembers(16)
         }
 
-        bind.filterThird.setOnClickListener{
+        bind.filterThird.setOnClickListener {
             homeViewModel.fetchGenreMembers(27)
         }
 
-        bind.filterFourth.setOnClickListener{
+        bind.filterFourth.setOnClickListener {
             homeViewModel.fetchGenreMembers(18)
         }
-
-    }
-
-    override fun onResume(){
-        super.onResume()
-        homeViewModel.fetchFavourites()
     }
 }
