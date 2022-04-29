@@ -14,9 +14,11 @@ import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
 
 class MovieListAdapter(
-    private val movieResponseItemList: List<MovieItem>?,
+    movieResponseItemList: List<MovieItem>?,
     private val viewModel: HomeViewModel
 ) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
+
+    var data: MutableList<MovieItem>? = movieResponseItemList?.toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_grid_home, parent, false)
@@ -24,29 +26,32 @@ class MovieListAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
-        if (movieResponseItemList != null) {
-            holder.itemMovieId = movieResponseItemList[position].id
-            holder.itemTitle.text = movieResponseItemList[position].title
-            holder.itemFavourite.isChecked = viewModel.checkFavouriteStatus(holder.itemMovieId!!)
-            Picasso.get().load(movieResponseItemList[position].posterXlUrl)
-                .error(R.drawable.app_logo)
-                .into(holder.itemImage)
 
-            holder.itemFavourite.setOnClickListener {
-                holder.itemFavourite.isChecked = !holder.itemFavourite.isSelected
-                viewModel.handleFavouriteRequest(holder.itemMovieId!!)
-            }
+        data?.let {
+            it[position].let { movie ->
+                holder.itemMovieId = movie.id
+                holder.itemTitle.text = movie.title
+                holder.itemFavourite.isChecked = viewModel.checkFavouriteStatus(holder.itemMovieId!!)
+                Picasso.get().load(movie.posterXlUrl)
+                    .error(R.drawable.app_logo)
+                    .into(holder.itemImage)
 
-            holder.itemImage.setOnClickListener {
-                if (holder.itemMovieId != null) {
-                    viewModel.setDetailsEvent(OpenDetailsEvent(holder.itemMovieId))
+                holder.itemFavourite.setOnClickListener {
+                    holder.itemFavourite.isSelected = !holder.itemFavourite.isSelected
+                    viewModel.handleFavouriteRequest(holder.itemMovieId!!)
+                }
+
+                holder.itemImage.setOnClickListener {
+                    if (holder.itemMovieId != null) {
+                        viewModel.setDetailsEvent(OpenDetailsEvent(holder.itemMovieId))
+                    }
                 }
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return movieResponseItemList?.size ?: 0
+        return data?.size ?: 0
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -54,5 +59,11 @@ class MovieListAdapter(
         var itemImage: ImageView = itemView.findViewById(R.id.movieAvatar)
         var itemTitle: TextView = itemView.findViewById(R.id.movieTitle)
         var itemFavourite: CheckBox = itemView.findViewById(R.id.movieFavouritesCheckBox)
+    }
+
+    fun removeItemAt(index: Int){
+        data?.removeAt(index)
+        notifyItemRemoved(index)
+        notifyItemRangeChanged(index, itemCount)
     }
 }

@@ -9,7 +9,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class HomeViewModel : ViewModel() {
 
     private val _openDetailsEvent = MutableLiveData(OpenDetailsEvent(null))
@@ -100,7 +99,7 @@ class HomeViewModel : ViewModel() {
             })
     }
 
-    fun returnFavouritesDifference(oldList: List<MovieItem>?, newList: List<MovieItem>?): List<MovieItem>?{
+    fun returnFavouritesDifference(oldList: List<MovieItem>? = oldFavouritesMovieList, newList: List<MovieItem>? = favouriteMoviesList.value): List<MovieItem>?{
         return when {
             (oldList != null && newList != null) -> {oldList.minus(newList) + newList.minus(oldList)}
             (oldList != null && newList == null) -> oldList
@@ -203,4 +202,5 @@ class HomeViewModel : ViewModel() {
             }
         })
     }
+
 }

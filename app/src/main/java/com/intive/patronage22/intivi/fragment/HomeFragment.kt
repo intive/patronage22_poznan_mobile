@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         bind.recyclerView.apply {
             layoutManager = GridLayoutManager(activity, 2)
             adapter = MovieListAdapter(homeViewModel.homeMoviesList.value, homeViewModel)
@@ -42,9 +42,10 @@ class HomeFragment : Fragment() {
             }
         }
 
+        //TODO notify favourited state only using payload
         homeViewModel.favouriteMoviesList.observe(viewLifecycleOwner) {
             val differenceList =
-                homeViewModel.returnFavouritesDifference(homeViewModel.oldFavouritesMovieList, it)
+                homeViewModel.returnFavouritesDifference()
             if (differenceList != null) {
                 homeViewModel.homeMoviesList.value?.forEachIndexed { index, item ->
                     if (item in differenceList) {
