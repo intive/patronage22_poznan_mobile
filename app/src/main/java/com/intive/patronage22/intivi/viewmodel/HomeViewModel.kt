@@ -1,6 +1,5 @@
 package com.intive.patronage22.intivi.viewmodel
 
-import android.R
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,8 +18,8 @@ class HomeViewModel : ViewModel() {
     private val _openHomeEvent = MutableLiveData(OpenDetailsEvent(null))
     val openHomeEvent: LiveData<OpenDetailsEvent> = _openHomeEvent
 
-    private val _homeMoviesList = MutableLiveData<List<MovieItem>>()
-    val popularMoviesList: LiveData<List<MovieItem>> = _homeMoviesList
+    private val _popularMoviesList = MutableLiveData<List<MovieItem>>()
+    val popularMoviesList: LiveData<List<MovieItem>> = _popularMoviesList
 
     private val _favouriteMoviesList = MutableLiveData<List<MovieItem>>()
     val favouriteMoviesList: LiveData<List<MovieItem>> = _favouriteMoviesList
@@ -40,9 +39,14 @@ class HomeViewModel : ViewModel() {
     private val _apiErrorGenres = MutableLiveData<String?>(null)
     val apiError: LiveData<String?> = _apiErrorGenres
 
+    var recommended_image_url = MutableLiveData<String?>(null)
+    var recommended_genre = MutableLiveData<String?>(null)
+    val recommended_movie = 0
+
     init {
-        fetchFavourites()
         fetchPopular()
+        fetchFavourites()
+        fetchGenres()
     }
 
     fun setDetailsEvent(detailsEvent: OpenDetailsEvent) {
@@ -63,8 +67,9 @@ class HomeViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     if (responseBody != null) {
                         _apiErrorHome.value = null
-                        _homeMoviesList.value =
+                        _popularMoviesList.value =
                             MovieResponseParser.parseMovieResponseToMovieItem(responseBody)
+                        recommended_image_url.value = popularMoviesList.value?.get(recommended_movie)?.posterXlUrl.toString()
                     }
                 } else {
                     _apiErrorHome.value = response.code().toString()
@@ -153,6 +158,7 @@ class HomeViewModel : ViewModel() {
                     if (responseBody?.genres != null) {
                         _genresList.value = responseBody.genres
                         _apiErrorGenres.value = null
+                        recommended_genre.value = genresList.value?.get(recommended_movie)?.name.toString()
                     }
                 } else {
                     _apiErrorGenres.value = response.code().toString()
@@ -174,7 +180,7 @@ class HomeViewModel : ViewModel() {
                 val responseBody = response.body()
                 if (response.isSuccessful) {
                     if (responseBody != null) {
-                        _homeMoviesList.value =
+                        _popularMoviesList.value =
                             MovieResponseParser.parseMovieResponseToMovieItem(responseBody)
                         _apiErrorGenres.value = null
                     }

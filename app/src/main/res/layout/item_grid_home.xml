@@ -1,63 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="12dp"
-    app:cardElevation="0dp"
-    app:cardBackgroundColor="@color/bastille">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="wrap_content"
+    <data>
+        <variable
+            name="movies"
+            type="com.intive.patronage22.intivi.model.MovieItem" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_margin="12dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/bastille">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/movieAvatar"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:src="@drawable/avatar_moonfall"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:shapeAppearanceOverlay="@style/roundedImage" />
+            android:layout_gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/movieTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="start"
-            android:fontFamily="@font/inter"
-            android:lineHeight="20sp"
-            android:text="Untitled"
-            android:textFontWeight="600"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            android:maxLines="2"
-            android:ellipsize="end"
-            app:layout_constraintTop_toBottomOf="@+id/movieAvatar"
-            app:layout_constraintStart_toStartOf="@+id/movieAvatar"
-            app:layout_constraintEnd_toStartOf="@+id/movieFavouritesCheckBox"/>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/movieAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                app:image="@{movies.posterXlUrl}"
+                tools:src="@drawable/avatar_moonfall"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:shapeAppearanceOverlay="@style/roundedImage" />
 
-        <ImageButton
-            android:id="@+id/movieFavouritesCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
-            android:layout_marginTop="10dp"
-            android:padding="1dp"
-            android:background="@drawable/ic_favourite_grid_item"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            app:layout_constraintEnd_toEndOf="@+id/movieAvatar"
-            app:layout_constraintTop_toBottomOf="@+id/movieAvatar" />
+            <TextView
+                android:id="@+id/movieTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:gravity="start"
+                android:fontFamily="@font/inter"
+                android:lineHeight="20sp"
+                tools:text="Untitle"
+                android:text="@{movies.title}"
+                android:textFontWeight="600"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:layout_constraintTop_toBottomOf="@+id/movieAvatar"
+                app:layout_constraintStart_toStartOf="@+id/movieAvatar"
+                app:layout_constraintEnd_toStartOf="@+id/movieFavouritesCheckBox" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/movieFavouritesCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="10dp"
+                android:padding="1dp"
+                android:background="@drawable/ic_favourite_grid_item"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                app:layout_constraintEnd_toEndOf="@+id/movieAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/movieAvatar" />
 
-</androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
