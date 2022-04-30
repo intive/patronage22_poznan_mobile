@@ -40,6 +40,10 @@ android {
         enabled = true
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     packagingOptions {
         pickFirst 'META-INF/AL2.0'
         pickFirst 'META-INF/LGPL2.1'
@@ -79,4 +83,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.3.1'
 
     implementation "com.squareup.picasso:picasso:$picassoVersion"
+
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 }
