@@ -1,5 +1,6 @@
 package com.intive.patronage22.intivi.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.intive.patronage22.intivi.model.OpenDetailsEvent
 import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
 
+
 class MovieListAdapter(
     movieResponseItemList: List<MovieItem>?,
     private val viewModel: HomeViewModel
@@ -25,6 +27,7 @@ class MovieListAdapter(
         return ViewHolder(v)
     }
 
+    //TODO store favourite status in the data set?
     override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
 
         data?.let {
@@ -50,6 +53,16 @@ class MovieListAdapter(
         }
     }
 
+    //TODO this works?? check when other done
+    override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int, payloads: MutableList<Any>) {
+        if(payloads.isEmpty())
+            super.onBindViewHolder(holder, position, payloads)
+        else {
+            if(payloads.any { it == "favouriteChange"})
+                holder.itemFavourite.isChecked = viewModel.checkFavouriteStatus(holder.itemMovieId!!)
+        }
+    }
+
     override fun getItemCount(): Int {
         return data?.size ?: 0
     }
@@ -64,6 +77,9 @@ class MovieListAdapter(
     fun removeItemAt(index: Int){
         data?.removeAt(index)
         notifyItemRemoved(index)
-        notifyItemRangeChanged(index, itemCount)
+    }
+
+    fun updateFavouritedStatus(position: Int, newStatus: Boolean) {
+        notifyItemChanged(position, newStatus)
     }
 }

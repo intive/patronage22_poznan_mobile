@@ -61,7 +61,7 @@ class FavouritesFragment : Fragment() {
 
     }
 
-    //TODO use notify item inserted instead
+    //TODO use notify item inserted/removed instead?
     override fun onResume() {
         super.onResume()
         homeViewModel.fetchFavourites()

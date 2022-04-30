@@ -1,6 +1,7 @@
 package com.intive.patronage22.intivi.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,14 +43,13 @@ class HomeFragment : Fragment() {
             }
         }
 
-        //TODO notify favourited state only using payload
+        //TODO this omits initial view holder binding on non-favourited items...
         homeViewModel.favouriteMoviesList.observe(viewLifecycleOwner) {
-            val differenceList =
-                homeViewModel.returnFavouritesDifference()
+            val differenceList = homeViewModel.returnFavouritesDifference()
             if (differenceList != null) {
                 homeViewModel.homeMoviesList.value?.forEachIndexed { index, item ->
                     if (item in differenceList) {
-                        bind.recyclerView.adapter?.notifyItemChanged(index)
+                        bind.recyclerView.adapter?.notifyItemChanged(index, "favouriteChange")
                     }
                 }
             }
