@@ -36,6 +36,7 @@ class HomeFragment : Fragment() {
             override fun onQueryTextSubmit(query: String): Boolean {
                 homeViewModel.fetchSearchQuery(query)
                 searchView.clearFocus()
+                bind.appBarLayout.setExpanded(false)
                 return false
             }
 
