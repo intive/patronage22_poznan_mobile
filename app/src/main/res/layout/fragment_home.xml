@@ -30,15 +30,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header_bar"
         style="@style/headerBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="2dp"
         android:outlineProvider="none"
-        android:gravity="center|start"
-        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -50,17 +48,41 @@
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/app_logo_margin_start"
             android:background="@drawable/app_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/appName"
+            android:id="@+id/app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/app_name_margin_start"
             android:gravity="center"
             android:text="@string/app_name"
-            android:textAppearance="@style/headline6" />
-    </LinearLayout>
+            android:textAppearance="@style/headline6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/app_logo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/app_logo_height"
+            android:layout_marginEnd="@dimen/app_logo_margin_start"
+            app:closeIcon="@drawable/ic_close_white"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintLeft_toRightOf="@id/app_name"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryBackground="@drawable/search_background"
+            app:queryHint="@string/search"
+            app:searchHintIcon="@null"
+            app:searchIcon="@drawable/ic_search" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <HorizontalScrollView
         android:id="@+id/filter_component"
@@ -68,8 +90,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:elevation="2dp"
-        android:outlineProvider="none"
         android:orientation="horizontal"
+        android:outlineProvider="none"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_bar">
 
@@ -138,40 +160,40 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/details_photo"
-                        tools:ignore="ContentDescription"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/details_photo"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:scaleType="centerCrop"
                         android:background="@drawable/gradient_background"
-                        tools:ignore="ContentDescription"
+                        android:scaleType="centerCrop"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
-                        android:scaleType="centerCrop"
                         android:background="@drawable/gradient_bottom_to_top"
-                        tools:ignore="ContentDescription"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.75">
 
@@ -179,16 +201,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_semibold"
-                            android:textSize="12sp"
-                            android:text="Fantasy"/>
+                            android:text="Fantasy"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="The Witcher"
+                            android:layout_marginBottom="8dp"
                             android:fontFamily="@font/inter_bold"
-                            android:textSize="40sp"
-                            android:layout_marginBottom="8dp"/>
+                            android:text="The Witcher"
+                            android:textSize="40sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -247,35 +269,34 @@
                             android:id="@+id/recommended_watch_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ic_home_watch_button"/>
+                            android:background="@drawable/ic_home_watch_button" />
 
                     </LinearLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_semi_circle"
-                        android:rotation="-90"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_chevron_left_stroke"
-                        android:rotation="90"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_semi_circle"
+                            android:rotation="-90"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_chevron_left_stroke"
+                            android:rotation="90"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -292,9 +313,9 @@
 
             <LinearLayout
                 android:id="@+id/recyclerViewRoot"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"

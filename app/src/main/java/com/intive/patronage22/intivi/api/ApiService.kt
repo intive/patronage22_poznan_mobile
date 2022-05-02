@@ -41,4 +41,7 @@ interface ApiService {
 
     @GET("/api/movies/category/{id}")
     fun fetchGenreMembers(@Path("id") genreId: Int): Call<List<MovieResponse>>
+
+    @GET("/api/movies/search")
+    fun fetchSearchQuery(@Query("query") query: String): Call<List<MovieResponse>>
 }

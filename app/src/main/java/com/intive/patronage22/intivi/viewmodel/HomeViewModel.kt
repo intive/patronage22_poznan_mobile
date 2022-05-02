@@ -1,6 +1,5 @@
 package com.intive.patronage22.intivi.viewmodel
 
-import android.R
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -162,26 +161,56 @@ class HomeViewModel : ViewModel() {
     }
 
     fun fetchGenreMembers(genreId: Int) {
-        ApiClient().getService()?.fetchGenreMembers(genreId)?.enqueue(object : Callback<List<MovieResponse>> {
-            override fun onFailure(call: Call<List<MovieResponse>>, t: Throwable) {
-                _apiErrorGenres.value = t.message
-            }
-
-            override fun onResponse(
-                call: Call<List<MovieResponse>>,
-                response: Response<List<MovieResponse>>
-            ) {
-                val responseBody = response.body()
-                if (response.isSuccessful) {
-                    if (responseBody != null) {
-                        _homeMoviesList.value =
-                            MovieResponseParser.parseMovieResponseToMovieItem(responseBody)
-                        _apiErrorGenres.value = null
-                    }
-                } else {
-                    _apiErrorGenres.value = response.code().toString()
+        ApiClient().getService()?.fetchGenreMembers(genreId)
+            ?.enqueue(object : Callback<List<MovieResponse>> {
+                override fun onFailure(call: Call<List<MovieResponse>>, t: Throwable) {
+                    _apiErrorGenres.value = t.message
                 }
-            }
-        })
+
+                override fun onResponse(
+                    call: Call<List<MovieResponse>>,
+                    response: Response<List<MovieResponse>>
+                ) {
+                    val responseBody = response.body()
+                    if (response.isSuccessful) {
+                        if (responseBody != null) {
+                            _homeMoviesList.value =
+                                MovieResponseParser.parseMovieResponseToMovieItem(responseBody)
+                            _apiErrorGenres.value = null
+                        }
+                    } else {
+                        _apiErrorGenres.value = response.code().toString()
+                    }
+                }
+            })
+    }
+
+    fun fetchSearchQuery(query: String) {
+        ApiClient().getService()?.fetchSearchQuery(query)
+            ?.enqueue(object : Callback<List<MovieResponse>> {
+                override fun onFailure(call: Call<List<MovieResponse>>, t: Throwable) {
+                    _apiErrorHome.value = t.message
+                }
+
+                override fun onResponse(
+                    call: Call<List<MovieResponse>>,
+                    response: Response<List<MovieResponse>>
+                ) {
+                    val responseBody = response.body()
+                    if (response.isSuccessful) {
+                        if (responseBody != null) {
+                            _homeMoviesList.value =
+                                MovieResponseParser.parseMovieResponseToMovieItem(responseBody)
+                            if (responseBody.isNotEmpty()) {
+                                _apiErrorHome.value = null
+                            } else {
+                                _apiErrorHome.value = "No results."
+                            }
+                        }
+                    } else {
+                        _apiErrorHome.value = response.code().toString()
+                    }
+                }
+            })
     }
 }
