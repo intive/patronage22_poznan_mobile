@@ -67,4 +67,6 @@
     <string name="horror">Horror</string>
     <string name="drama">Drama</string>
     <string name="working">Working…</string>
+    <string name="search"> Search</string>
+    <string name="no_results">No results.</string>
 </resources>
