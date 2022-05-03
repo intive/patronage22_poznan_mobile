@@ -1,6 +1,5 @@
 package com.intive.patronage22.intivi.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.intive.patronage22.intivi.model.OpenDetailsEvent
 import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 import com.squareup.picasso.Picasso
 
-
 class MovieListAdapter(
     movieResponseItemList: List<MovieItem>?,
     private val viewModel: HomeViewModel
@@ -27,14 +25,14 @@ class MovieListAdapter(
         return ViewHolder(v)
     }
 
-    //TODO store favourite status in the data set?
     override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
 
         data?.let {
             it[position].let { movie ->
                 holder.itemMovieId = movie.id
                 holder.itemTitle.text = movie.title
-                holder.itemFavourite.isChecked = viewModel.checkFavouriteStatus(holder.itemMovieId!!)
+                holder.itemFavourite.isChecked =
+                    viewModel.checkFavouriteStatus(holder.itemMovieId!!)
                 Picasso.get().load(movie.posterXlUrl)
                     .error(R.drawable.app_logo)
                     .into(holder.itemImage)
@@ -53,13 +51,17 @@ class MovieListAdapter(
         }
     }
 
-    //TODO this works?? check when other done
-    override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int, payloads: MutableList<Any>) {
-        if(payloads.isEmpty())
+    override fun onBindViewHolder(
+        holder: MovieListAdapter.ViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if (payloads.isEmpty())
             super.onBindViewHolder(holder, position, payloads)
         else {
-            if(payloads.any { it == "favouriteChange"})
-                holder.itemFavourite.isChecked = viewModel.checkFavouriteStatus(holder.itemMovieId!!)
+            if (payloads.any { it == "favouriteChange" })
+                holder.itemFavourite.isChecked =
+                    viewModel.checkFavouriteStatus(holder.itemMovieId!!)
         }
     }
 
@@ -74,12 +76,8 @@ class MovieListAdapter(
         var itemFavourite: CheckBox = itemView.findViewById(R.id.movieFavouritesCheckBox)
     }
 
-    fun removeItemAt(index: Int){
+    fun removeItemAt(index: Int) {
         data?.removeAt(index)
         notifyItemRemoved(index)
-    }
-
-    fun updateFavouritedStatus(position: Int, newStatus: Boolean) {
-        notifyItemChanged(position, newStatus)
     }
 }
