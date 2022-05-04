@@ -10,15 +10,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.intive.patronage22.intivi.adapter.MovieListAdapter
 import com.intive.patronage22.intivi.databinding.FragmentFavouritesBinding
-import com.intive.patronage22.intivi.model.MovieItem
 import com.intive.patronage22.intivi.viewmodel.HomeViewModel
 
 class FavouritesFragment : Fragment() {
 
     private lateinit var bind: FragmentFavouritesBinding
     private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: MovieListAdapter
     private val homeViewModel: HomeViewModel by activityViewModels()
-    private var previousItemList: List<MovieItem>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,18 +35,14 @@ class FavouritesFragment : Fragment() {
             layoutManager = GridLayoutManager(activity, 2)
             adapter = MovieListAdapter(homeViewModel.favouriteMoviesList.value, homeViewModel)
         }
+        adapter = recyclerView.adapter as MovieListAdapter
 
         homeViewModel.favouriteMoviesList.observe(viewLifecycleOwner) {
             when (it.isNotEmpty()) {
                 true -> bind.loadingBar.visibility = View.GONE
                 false -> bind.errorTextView.visibility = View.VISIBLE
             }
-            val oldAdapterData = (recyclerView.adapter as MovieListAdapter).data?.toList()
-            oldAdapterData?.forEachIndexed { index, item ->
-                if (item !in homeViewModel.favouriteMoviesList.value!!) {
-                    (recyclerView.adapter as MovieListAdapter).removeItemAt(index)
-                }
-            }
+            adapter.updateData(homeViewModel.favouriteMoviesList.value!!)
         }
 
         homeViewModel.apiErrorFavourites.observe(viewLifecycleOwner) {
@@ -61,19 +56,9 @@ class FavouritesFragment : Fragment() {
 
     }
 
-    //TODO use notify item inserted/removed instead?
     override fun onResume() {
         super.onResume()
         homeViewModel.fetchFavourites()
-        if(previousItemList != homeViewModel.favouriteMoviesList.value) {
-            recyclerView.adapter =
-                MovieListAdapter(homeViewModel.favouriteMoviesList.value!!, homeViewModel)
-        }
-    }
-
-    override fun onPause(){
-        super.onPause()
-        previousItemList = (recyclerView.adapter as MovieListAdapter).data!!.toList()
     }
 
 }

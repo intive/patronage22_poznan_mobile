@@ -1,5 +1,6 @@
 package com.intive.patronage22.intivi.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,8 +77,39 @@ class MovieListAdapter(
         var itemFavourite: CheckBox = itemView.findViewById(R.id.movieFavouritesCheckBox)
     }
 
-    fun removeItemAt(index: Int) {
+    private fun removeItemAt(index: Int) {
         data?.removeAt(index)
         notifyItemRemoved(index)
+    }
+
+    private fun addItem(item: MovieItem) {
+        data?.add(item)
+        notifyItemInserted(data!!.size)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newData: List<MovieItem>) {
+        val oldData = data?.toList()
+        oldData?.forEachIndexed { index, item ->
+            if (item !in newData) {
+                removeItemAt(index)
+            }
+        }
+        if (oldData != null) {
+            newData.forEach { item ->
+                if (item !in oldData) {
+                    addItem(item)
+                }
+            }
+        } else {
+            data = newData.toMutableList()
+            notifyDataSetChanged()
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateFullData(newData: List<MovieItem>) {
+        data = newData.toMutableList()
+        notifyDataSetChanged()
     }
 }
