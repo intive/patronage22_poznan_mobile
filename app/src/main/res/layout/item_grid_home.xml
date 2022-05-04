@@ -34,9 +34,6 @@
             android:layout_marginTop="8dp"
             android:gravity="start"
             android:fontFamily="@font/inter"
-            android:lineHeight="20sp"
-            android:text="Untitled"
-            android:textFontWeight="600"
             android:textSize="14sp"
             android:textStyle="normal"
             android:maxLines="2"
@@ -45,14 +42,14 @@
             app:layout_constraintStart_toStartOf="@+id/movieAvatar"
             app:layout_constraintEnd_toStartOf="@+id/movieFavouritesCheckBox"/>
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/movieFavouritesCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginTop="10dp"
             android:padding="1dp"
-            android:background="@drawable/ic_favourite_grid_item"
+            android:button="@drawable/checkbox_favourites"
             android:minWidth="0dp"
             android:minHeight="0dp"
             app:layout_constraintEnd_toEndOf="@+id/movieAvatar"

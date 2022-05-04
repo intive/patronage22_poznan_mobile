@@ -1,6 +1,5 @@
 package com.intive.patronage22.intivi.viewmodel
 
-import android.R
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +8,6 @@ import com.intive.patronage22.intivi.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 class HomeViewModel : ViewModel() {
 
@@ -20,7 +18,7 @@ class HomeViewModel : ViewModel() {
     val openHomeEvent: LiveData<OpenDetailsEvent> = _openHomeEvent
 
     private val _homeMoviesList = MutableLiveData<List<MovieItem>>()
-    val popularMoviesList: LiveData<List<MovieItem>> = _homeMoviesList
+    val homeMoviesList: LiveData<List<MovieItem>> = _homeMoviesList
 
     private val _favouriteMoviesList = MutableLiveData<List<MovieItem>>()
     val favouriteMoviesList: LiveData<List<MovieItem>> = _favouriteMoviesList
@@ -39,6 +37,8 @@ class HomeViewModel : ViewModel() {
 
     private val _apiErrorGenres = MutableLiveData<String?>(null)
     val apiError: LiveData<String?> = _apiErrorGenres
+
+    var oldFavouritesMovieList: List<MovieItem>? = null
 
     init {
         fetchFavourites()
@@ -73,7 +73,8 @@ class HomeViewModel : ViewModel() {
         })
     }
 
-    fun fetchFavourites() {
+    fun fetchFavourites(){
+        oldFavouritesMovieList = _favouriteMoviesList.value
         ApiClient().getService()?.fetchFavourites()
             ?.enqueue(object : Callback<List<FavouriteMovieResponse>> {
                 override fun onFailure(call: Call<List<FavouriteMovieResponse>>, t: Throwable) {
@@ -98,7 +99,16 @@ class HomeViewModel : ViewModel() {
             })
     }
 
-    fun putFavourite(movieID: Int) {
+    fun returnFavouritesDifference(oldList: List<MovieItem>? = oldFavouritesMovieList, newList: List<MovieItem>? = favouriteMoviesList.value): List<MovieItem>?{
+        return when {
+            (oldList != null && newList != null) -> {oldList.minus(newList) + newList.minus(oldList)}
+            (oldList != null && newList == null) -> oldList
+            (oldList == null && newList != null) -> newList
+            else -> null
+        }
+    }
+
+    private fun putFavourite(movieID: Int) {
         ApiClient().getService()?.putFavourites(movieID)?.enqueue(object : Callback<Unit> {
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                 if (response.isSuccessful) {
@@ -115,7 +125,7 @@ class HomeViewModel : ViewModel() {
         })
     }
 
-    fun deleteFavourite(movieID: Int) {
+    private fun deleteFavourite(movieID: Int) {
         ApiClient().getService()?.deleteFavourites(movieID)?.enqueue(object : Callback<Unit> {
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                 if (response.isSuccessful) {
@@ -133,9 +143,17 @@ class HomeViewModel : ViewModel() {
     }
 
     fun checkFavouriteStatus(movieID: Int): Boolean {
-        if (favouriteMoviesList.value != null) {
-            return favouriteMoviesList.value!!.find { it.id == movieID } != null
-        } else return false
+        return if (favouriteMoviesList.value != null) {
+            favouriteMoviesList.value!!.find { it.id == movieID } != null
+        } else false
+    }
+
+    fun handleFavouriteRequest(movieId: Int){
+        if(checkFavouriteStatus(movieId)){
+            deleteFavourite(movieId)
+            } else {
+                putFavourite((movieId))
+        }
     }
 
     fun fetchGenres() {
@@ -184,4 +202,5 @@ class HomeViewModel : ViewModel() {
             }
         })
     }
+
 }
